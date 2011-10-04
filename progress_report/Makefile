@@ -1,0 +1,9 @@
+all: 
+	pdflatex progress.tex
+
+FILES := progress.tex
+
+clean:
+	rm -rf *.pdf *aux *.log *.dvi *.out
+
+.PHONY: all
