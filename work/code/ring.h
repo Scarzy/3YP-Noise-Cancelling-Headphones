@@ -11,8 +11,6 @@ typedef struct {
 	Int32 ring[RING_SIZE];
 } ringbuf;
 
-void wave(void);
-
 void init_ring(void *a);
 
 void inc_ring(void *a);
