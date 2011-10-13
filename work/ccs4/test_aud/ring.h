@@ -1,7 +1,7 @@
 #ifndef RING_H_
 #define RING_H_
 
-#define RING_SIZE 200
+#define RING_SIZE 150
 
 #include <tistdtypes.h>
 
@@ -10,8 +10,6 @@ typedef struct {
 	Int32 size;
 	Int32 ring[RING_SIZE];
 } ringbuf;
-
-void wave(void);
 
 void init_ring(void *a);
 

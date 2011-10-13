@@ -1,1 +1,1 @@
-"../codec.c" "../ring.c" 
+"../codec.c" "../ring.c" "../test.c" 
