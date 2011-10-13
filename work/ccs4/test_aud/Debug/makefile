@@ -10,6 +10,7 @@ SPACE := $(EMPTY) $(EMPTY)
 ORDERED_OBJS += \
 $(GEN_CMDS_QUOTED) \
 "./ring.obj" \
+"./codec.obj" \
 -l"libc.a" \
 -l"dsk6713bsl.lib" \
 
@@ -109,15 +110,15 @@ all: test_aud.out
 test_aud.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Linker'
-	"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/bin/cl6x" -mv6700 -g --define="CHIP_6713" --define="_DEBUG" --diag_warning=225 -z -m"test_aud.map" --warn_sections -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/lib" -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/include" --reread_libs --rom_model -o "test_aud.out" $(ORDERED_OBJS)
+	"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/bin/cl6x" -mv6700 -g --define="CHIP_6713" --define="_DEBUG" --diag_warning=225 -z -m"test_aud.map" --stack_size=0x400 --warn_sections -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/lib" -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/include" --reread_libs --rom_model -o "test_aud.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QTD) "test_aud.out"
-	-$(RM) ".\ring.obj" 
-	-$(RM) ".\ring.pp" 
+	-$(RM) ".\codec.obj" ".\ring.obj" 
+	-$(RM) ".\codec.pp" ".\ring.pp" 
 	-@echo ' '
 
 .PHONY: all clean dependents

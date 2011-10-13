@@ -45,6 +45,7 @@
 <option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.generatedLinkerCommandFiles.1737284750" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.generatedLinkerCommandFiles" valueType="libs">
 <listOptionValue builtIn="false" value="&quot;$(GEN_CMDS_QUOTED)&quot;"/>
 </option>
+<option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.STACK_SIZE.2026180020" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.STACK_SIZE" value="0x400" valueType="string"/>
 </tool>
 <macros expandEnvironmentMacros="true"/>
 </toolChain>

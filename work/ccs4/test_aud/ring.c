@@ -3,17 +3,26 @@
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
 
+#define A_SIZE 500
+
 void main()
 {
-	ringbuf a, b;
+//	ringbuf a;//, b;
+	int i = 0;
+	Int32 a[A_SIZE];
 	
-	init_ring(&a);
-	init_ring(&b);
+	//DSK6713_init();
+	//DSK6713_LED_init();
+	//DSK6713_DIP_init();
 	
-	DSK6713_init();
-	DSK6713_LED_init();
-	DSK6713_DIP_init();
-	
+	for(i = 0; i < A_SIZE; i++)
+	{
+		a[i] = 0;
+	}
+	DSK6713_LED_on(3);
+//	init_ring(&a);
+//	init_ring(&b);
+		
 /*	DSK6713_LED_on(0);
 	DSK6713_LED_on(1);
 	DSK6713_LED_on(2);
@@ -30,6 +39,7 @@ void main()
 	DSK6713_LED_on(3);*/
 	
 	
+	
 	while(1)
 	{
 		if(!DSK6713_DIP_get(0))
@@ -38,12 +48,12 @@ void main()
 		if(!DSK6713_DIP_get(1))
 		{
 			DSK6713_LED_on(1);
-			inc_ring(&a);
+//			inc_ring(&a);
 		}
 		else
 		{
 			DSK6713_LED_off(1);
-			dec_ring(&a);
+//			dec_ring(&a);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 #ifndef RING_H_
 #define RING_H_
 
-#define RING_SIZE 150
+#define RING_SIZE 200
 
 #include <tistdtypes.h>
 

@@ -1,1 +1,1 @@
-"./ring.obj" -l"libc.a" -l"dsk6713bsl.lib" 
+"./ring.obj" "./codec.obj" -l"libc.a" -l"dsk6713bsl.lib" 
