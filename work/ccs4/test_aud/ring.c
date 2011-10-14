@@ -30,3 +30,8 @@ void init_ring(void *a)
 	}while( ptr != ((ringbuf *)a)->ring );
 }
 
+void init_ring_ptr(void *a, int32_t * ptr)
+{
+	ptr = ((ringbuf *)a)->ring;
+}
+ 

@@ -12,6 +12,7 @@ typedef struct {
 } ringbuf;
 
 void init_ring(void *a);
+void init_ring_ptr(void *a, int32_t * ptr);
 
 void inc_ring(void * a, int32_t * ptr);
 void dec_ring(void * a, int32_t * ptr);
