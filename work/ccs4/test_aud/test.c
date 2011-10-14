@@ -1,4 +1,5 @@
 #include "ring.h"
+#include <stdint.h>
 #include "dsk6713.h"
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
@@ -9,8 +10,8 @@ void wave(void);
 
 void main()
 {
-	Int32 a[A_SIZE];
-	int i = 0;
+	int32_t a[A_SIZE];
+	int32_t i = 0;
 	
 	for(i = 0; i < A_SIZE; i++)
 	{
