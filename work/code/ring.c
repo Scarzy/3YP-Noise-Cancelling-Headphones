@@ -26,7 +26,7 @@ void init_ring(void *ring, int32_t * arr, int size)
 	do
 	{
 		*ptr = 0;
-		inc_ring(&ring, &ptr);
+		inc_ring(ring, &ptr);
 		i++;
 	}while( ptr != ((ringbuf *)ring)->ring );
 }
