@@ -1,31 +1,38 @@
 #include "ring.h"
 
-void inc_ring(void * a)
+void inc_ring(void * ring, int32_t ** ptr)
 {
-	if(((ringbuf *)a)->pos == ((ringbuf *)a)->ring + ((ringbuf *)a)->size - 1)
-		((ringbuf *)a)->pos = ((ringbuf *)a)->ring;
+	if(*ptr == ((ringbuf *)ring)->ring + ((ringbuf *)ring)->size - 1)
+		*ptr = ((ringbuf *)ring)->ring;
 	else
-		((ringbuf *)a)->pos++;
+		*ptr = *ptr + 1;
 }
 
-void dec_ring(void *a)
+void dec_ring(void * ring, int32_t ** ptr)
 {
-	if(((ringbuf *)a)->pos == ((ringbuf *)a)->ring)
-		((ringbuf *)a)->pos = ((ringbuf *)a)->ring + ((ringbuf *)a)->size - 1;
+	if(*ptr == ((ringbuf *)ring)->ring)
+		*ptr = ((ringbuf *)ring)->ring + ((ringbuf *)ring)->size - 1;
 	else
-		((ringbuf *)a)->pos--;
+		*ptr = *ptr - 1;
 }
 
-void init_ring(void *a)
+void init_ring(void *ring, int32_t * arr, int size)
 {
 	int i = 0;
-	((ringbuf *)a)->size = RING_SIZE;
-	((ringbuf *)a)->pos = ((ringbuf *)a)->ring;
+	int32_t * ptr;
+	((ringbuf *)ring)->ring = arr;
+	((ringbuf *)ring)->size = size;
+	ptr = ((ringbuf *)ring)->ring;
 	do
 	{
-		*((ringbuf *)a)->pos = 0;
-		inc_ring(a);
+		*ptr = 0;
+		inc_ring(&ring, &ptr);
 		i++;
-	}while( ((ringbuf *)a)->pos != ((ringbuf *)a)->ring );
+	}while( ptr != ((ringbuf *)ring)->ring );
 }
 
+void init_ring_ptr(void *ring, int32_t ** ptr)
+{
+	*ptr = ((ringbuf *)ring)->ring;
+}
+ 

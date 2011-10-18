@@ -3,17 +3,18 @@
 
 #define RING_SIZE 150
 
+#include <stdint.h>
 #include <tistdtypes.h>
 
 typedef struct {
-	Int32 * pos;
-	Int32 size;
-	Int32 ring[RING_SIZE];
+	int32_t * ring;
+	int32_t size;
 } ringbuf;
 
-void init_ring(void *a);
+void init_ring(void *ring, int32_t * arr, int size);
+void init_ring_ptr(void *ring, int32_t ** ptr);
 
-void inc_ring(void *a);
-void dec_ring(void *a);
+void inc_ring(void * ring, int32_t ** ptr);
+void dec_ring(void * ring, int32_t ** ptr);
 
 #endif /*RING_H_*/
