@@ -4,21 +4,26 @@
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
 
-#define A_SIZE 500
+#define A_SIZE 10
 
 void wave(void);
 
 void main()
 {
 	int32_t a[A_SIZE];
-	int32_t i = 0;
+/*	int32_t i = 0;
 	
 	for(i = 0; i < A_SIZE; i++)
 	{
 		a[i] = 0;
 	}
 	
-	while(1);
+	while(1);*/
+	
+	ringbuf ring;
+	int32_t * ptr;
+	init_ring(&ring, a, A_SIZE);
+	init_ring_ptr(&ring, &ptr);
 /*	ringbuf a, b;
 	
 	init_ring(&a);
@@ -52,12 +57,12 @@ void main()
 		if(!DSK6713_DIP_get(1))
 		{
 			DSK6713_LED_on(1);
-			inc_ring(&a);
+			inc_ring(&ring, &ptr);
 		}
 		else
 		{
 			DSK6713_LED_off(1);
-			dec_ring(&a);
+			dec_ring(&ring, &ptr);
 		}
 	}
 }

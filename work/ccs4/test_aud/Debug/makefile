@@ -111,7 +111,7 @@ all: test_aud.out
 test_aud.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Linker'
-	"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/bin/cl6x" -mv6700 -g --define="CHIP_6713" --define="_DEBUG" --diag_warning=225 -z -m"test_aud.map" --stack_size=0x400 --warn_sections -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/lib" -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/include" --reread_libs --rom_model -o "test_aud.out" $(ORDERED_OBJS)
+	"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/bin/cl6x" -mv6710 -g --define="CHIP_6713" --define="_DEBUG" --diag_warning=225 -z -m"test_aud.map" --stack_size=0x400 --warn_sections -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/lib" -i"C:/Program Files (x86)/Texas Instruments/ccsv4/tools/compiler/c6000/include" --reread_libs --rom_model -o "test_aud.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

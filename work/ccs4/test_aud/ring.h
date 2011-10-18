@@ -11,10 +11,10 @@ typedef struct {
 	int32_t size;
 } ringbuf;
 
-void init_ring(void *a);
-void init_ring_ptr(void *a, int32_t * ptr);
+void init_ring(void *ring, int32_t * arr, int size);
+void init_ring_ptr(void *ring, int32_t ** ptr);
 
-void inc_ring(void * a, int32_t * ptr);
-void dec_ring(void * a, int32_t * ptr);
+void inc_ring(void * ring, int32_t ** ptr);
+void dec_ring(void * ring, int32_t ** ptr);
 
 #endif /*RING_H_*/
