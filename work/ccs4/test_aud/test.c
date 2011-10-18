@@ -4,7 +4,7 @@
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
 
-#define A_SIZE 10
+#define A_SIZE 250
 
 void wave(void);
 
