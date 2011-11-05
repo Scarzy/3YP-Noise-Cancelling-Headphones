@@ -4,51 +4,26 @@
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
 
-#define A_SIZE 10
+#define BUF_SIZE 10000
 
+int32_t buf_l[BUF_SIZE];
+int32_t buf_r[BUF_SIZE];
+
+void test(void);
 void wave(void);
 
 void main()
 {
-	int32_t a[A_SIZE];
-/*	int32_t i = 0;
-	
-	for(i = 0; i < A_SIZE; i++)
-	{
-		a[i] = 0;
-	}
-	
-	while(1);*/
-	
-	ringbuf ring;
+	ringbuf ring_l, ring_r;
 	int32_t * ptr;
-	init_ring(&ring, a, A_SIZE);
-	init_ring_ptr(&ring, &ptr);
-/*	ringbuf a, b;
-	
-	init_ring(&a);
-	init_ring(&b);
-	
-	DSK6713_init();
-	DSK6713_LED_init();
-	DSK6713_DIP_init();
-	
-	DSK6713_LED_on(0);
-	DSK6713_LED_on(1);
-	DSK6713_LED_on(2);
-	DSK6713_LED_on(3);
-	DSK6713_waitusec(100000);
-	DSK6713_LED_off(0);
-	DSK6713_LED_off(1);
-	DSK6713_LED_off(2);
-	DSK6713_LED_off(3);
-	DSK6713_waitusec(100000);
-	DSK6713_LED_on(0);
-	DSK6713_LED_on(1);
-	DSK6713_LED_on(2);
-	DSK6713_LED_on(3);*/
-	
-	
+	init_ring(&ring_l, buf_l, BUF_SIZE);
+	init_ring(&ring_r, buf_r, BUF_SIZE);
+	init_ring_ptr(&ring_l, &ptr);
+	test();
+}
+
+void test()
+{
 	while(1)
 	{
 		if(!DSK6713_DIP_get(0))
@@ -57,12 +32,12 @@ void main()
 		if(!DSK6713_DIP_get(1))
 		{
 			DSK6713_LED_on(1);
-			inc_ring(&ring, &ptr);
+			inc_ring(&ring_a, &ptr);
 		}
 		else
 		{
 			DSK6713_LED_off(1);
-			dec_ring(&ring, &ptr);
+			dec_ring(&ring_a, &ptr);
 		}
 	}
 }
