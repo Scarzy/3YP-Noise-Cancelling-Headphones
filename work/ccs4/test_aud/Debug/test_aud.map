@@ -1,17 +1,17 @@
 ******************************************************************************
                TMS320C6x Linker PC v7.0.3                      
 ******************************************************************************
->> Linked Tue Oct 18 20:37:07 2011
+>> Linked Thu Nov 03 18:49:50 2011
 
 OUTPUT FILE NAME:   <test_aud.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00001200
+ENTRY POINT SYMBOL: "_c_int00"  address: 00014aa0
 
 
 MEMORY CONFIGURATION
 
          name            origin    length      used     unused   attr    fill
 ----------------------  --------  ---------  --------  --------  ----  --------
-  RAM                   00000001   fffffffe  0000180c  ffffe7f2  RWIX
+  RAM                   00000001   fffffffe  0001508c  fffeaf72  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -21,48 +21,49 @@ section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
 .pinit     0    00000004    00000000     UNINITIALIZED
 
-.switch    0    00000004    00000018     
-                  00000004    00000018     test.obj (.switch:_wave)
-
 .data      0    00000008    00000000     UNINITIALIZED
 
 .bss       0    00000008    00000000     UNINITIALIZED
 
-.text      0    00000020    00001360     
-                  00000020    00000480     dsk6713bsl.lib : dsk6713.obj (.text)
-                  000004a0    00000480     test.obj (.text)
-                  00000920    00000240     rts6700.lib : memcpy62.obj (.text:_memcpy)
-                  00000b60    000001e0     ring.obj (.text)
-                  00000d40    000001a0     dsk6713bsl.lib : dsk6713_led.obj (.text)
-                  00000ee0    00000120     rts6700.lib : autoinit.obj (.text:__auto_init)
-                  00001000    00000120                 : exit.obj (.text:_exit)
-                  00001120    000000e0                 : strasg.obj (.text:__strasg)
-                  00001200    00000080                 : boot.obj (.text:_c_int00)
-                  00001280    00000080     dsk6713bsl.lib : dsk6713_dip.obj (.text)
-                  00001300    00000040     rts6700.lib : args_main.obj (.text:__args_main)
-                  00001340    00000020                 : _lock.obj (.text:__nop)
-                  00001360    00000020                 : exit.obj (.text:_abort)
+.far       0    00000008    000138a0     UNINITIALIZED
+                  00000008    00013880     test.obj (.far)
+                  00013888    0000000c     rts6700.lib : exit.obj (.far)
+                  00013894    00000008     codec.obj (.far)
+                  0001389c    00000008     rts6700.lib : _lock.obj (.far)
+                  000138a4    00000002     dsk6713bsl.lib : dsk6713.obj (.far)
+                  000138a6    00000002                    : dsk6713_led.obj (.far)
 
-.stack     0    00001380    00000400     UNINITIALIZED
-                  00001380    00000008     rts6700.lib : boot.obj (.stack)
-                  00001388    000003f8     --HOLE--
+.switch    0    000138a8    00000018     
+                  000138a8    00000018     test.obj (.switch:_wave)
 
-.cinit     0    00001780    00000054     
-                  00001780    0000002c     rts6700.lib : exit.obj (.cinit)
-                  000017ac    00000004     --HOLE-- [fill = 0]
-                  000017b0    0000001c                 : _lock.obj (.cinit)
-                  000017cc    00000004     --HOLE-- [fill = 0]
-                  000017d0    00000004     (.pad.cinit) [fill = 0]
+.text      0    000138c0    00001360     
+                  000138c0    00000480     dsk6713bsl.lib : dsk6713.obj (.text)
+                  00013d40    00000480     test.obj (.text)
+                  000141c0    00000240     rts6700.lib : memcpy62.obj (.text:_memcpy)
+                  00014400    000001e0     ring.obj (.text)
+                  000145e0    000001a0     dsk6713bsl.lib : dsk6713_led.obj (.text)
+                  00014780    00000120     rts6700.lib : autoinit.obj (.text:__auto_init)
+                  000148a0    00000120                 : exit.obj (.text:_exit)
+                  000149c0    000000e0                 : strasg.obj (.text:__strasg)
+                  00014aa0    00000080                 : boot.obj (.text:_c_int00)
+                  00014b20    00000080     dsk6713bsl.lib : dsk6713_dip.obj (.text)
+                  00014ba0    00000040     rts6700.lib : args_main.obj (.text:__args_main)
+                  00014be0    00000020                 : _lock.obj (.text:__nop)
+                  00014c00    00000020                 : exit.obj (.text:_abort)
 
-.const     0    000017d8    00000020     
-                  000017d8    00000020     dsk6713bsl.lib : dsk6713.obj (.const)
+.stack     0    00014c20    00000400     UNINITIALIZED
+                  00014c20    00000008     rts6700.lib : boot.obj (.stack)
+                  00014c28    000003f8     --HOLE--
 
-.far       0    000017f8    00000020     UNINITIALIZED
-                  000017f8    0000000c     rts6700.lib : exit.obj (.far)
-                  00001804    00000008     codec.obj (.far)
-                  0000180c    00000008     rts6700.lib : _lock.obj (.far)
-                  00001814    00000002     dsk6713bsl.lib : dsk6713.obj (.far)
-                  00001816    00000002                    : dsk6713_led.obj (.far)
+.cinit     0    00015020    00000054     
+                  00015020    0000002c     rts6700.lib : exit.obj (.cinit)
+                  0001504c    00000004     --HOLE-- [fill = 0]
+                  00015050    0000001c                 : _lock.obj (.cinit)
+                  0001506c    00000004     --HOLE-- [fill = 0]
+                  00015070    00000004     (.pad.cinit) [fill = 0]
+
+.const     0    00015078    00000020     
+                  00015078    00000020     dsk6713bsl.lib : dsk6713.obj (.const)
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -72,64 +73,66 @@ address    name
 00000008   $bss
 00000008   .bss
 00000008   .data
-00000020   .text
-00001360   C$$EXIT
-00001288   _DSK6713_DIP_get
-00001280   _DSK6713_DIP_init
-00000d40   _DSK6713_LED_init
-00000d68   _DSK6713_LED_off
-00000dc4   _DSK6713_LED_on
-00000e20   _DSK6713_LED_toggle
-00000434   _DSK6713_getVersion
-0000006c   _DSK6713_init
-00000388   _DSK6713_rget
-0000039c   _DSK6713_rset
-00001814   _DSK6713_version
-000003b0   _DSK6713_wait
-00000408   _DSK6713_waitusec
-00001780   __STACK_END
+000138c0   .text
+00014c00   C$$EXIT
+00014b28   _DSK6713_DIP_get
+00014b20   _DSK6713_DIP_init
+000145e0   _DSK6713_LED_init
+00014608   _DSK6713_LED_off
+00014664   _DSK6713_LED_on
+000146c0   _DSK6713_LED_toggle
+00013cd4   _DSK6713_getVersion
+0001390c   _DSK6713_init
+00013c28   _DSK6713_rget
+00013c3c   _DSK6713_rset
+000138a4   _DSK6713_version
+00013c50   _DSK6713_wait
+00013ca8   _DSK6713_waitusec
+00015020   __STACK_END
 00000400   __STACK_SIZE
 00000001   __TI_args_main
-00001800   ___TI_enable_exit_profile_output
+00013890   ___TI_enable_exit_profile_output
 ffffffff   ___TI_pprof_out_hndl
 ffffffff   ___TI_prof_data_size
 ffffffff   ___TI_prof_data_start
 ffffffff   ___binit__
 00000008   ___bss__
 ffffffff   ___c_args__
-00001780   ___cinit__
+00015020   ___cinit__
 00000008   ___data__
 00000008   ___edata__
 00000008   ___end__
-00001380   ___etext__
+00014c20   ___etext__
 ffffffff   ___pinit__
-00000020   ___text__
-00001300   __args_main
-00000ee0   __auto_init
-000017f8   __cleanup_ptr
-000017fc   __dtors_ptr
-0000180c   __lock
-00001340   __nop
-00001380   __stack
-00001120   __strasg
-00001810   __unlock
-00001360   _abort
-00001200   _c_int00
-00001804   _data_in
-00001808   _data_out
-00000be0   _dec_ring
-00001000   _exit
-00000b60   _inc_ring
-00000c60   _init_ring
-00000d14   _init_ring_ptr
-000004a0   _main
-00000920   _memcpy
-000005b4   _wave
+000138c0   ___text__
+00014ba0   __args_main
+00014780   __auto_init
+00013888   __cleanup_ptr
+0001388c   __dtors_ptr
+0001389c   __lock
+00014be0   __nop
+00014c20   __stack
+000149c0   __strasg
+000138a0   __unlock
+00014c00   _abort
+00000008   _buf_a
+00009c48   _buf_b
+00014aa0   _c_int00
+00013894   _data_in
+00013898   _data_out
+00014480   _dec_ring
+000148a0   _exit
+00014400   _inc_ring
+00014500   _init_ring
+000145b4   _init_ring_ptr
+00013d40   _main
+000141c0   _memcpy
+00013e58   _wave
 ffffffff   binit
-00001780   cinit
+00015020   cinit
 00000008   edata
 00000008   end
-00001380   etext
+00014c20   etext
 ffffffff   pinit
 
 
@@ -145,52 +148,54 @@ address    name
 00000008   ___data__
 00000008   ___edata__
 00000008   ___end__
+00000008   _buf_a
 00000008   edata
 00000008   end
-00000020   .text
-00000020   ___text__
-0000006c   _DSK6713_init
-00000388   _DSK6713_rget
-0000039c   _DSK6713_rset
-000003b0   _DSK6713_wait
 00000400   __STACK_SIZE
-00000408   _DSK6713_waitusec
-00000434   _DSK6713_getVersion
-000004a0   _main
-000005b4   _wave
-00000920   _memcpy
-00000b60   _inc_ring
-00000be0   _dec_ring
-00000c60   _init_ring
-00000d14   _init_ring_ptr
-00000d40   _DSK6713_LED_init
-00000d68   _DSK6713_LED_off
-00000dc4   _DSK6713_LED_on
-00000e20   _DSK6713_LED_toggle
-00000ee0   __auto_init
-00001000   _exit
-00001120   __strasg
-00001200   _c_int00
-00001280   _DSK6713_DIP_init
-00001288   _DSK6713_DIP_get
-00001300   __args_main
-00001340   __nop
-00001360   C$$EXIT
-00001360   _abort
-00001380   ___etext__
-00001380   __stack
-00001380   etext
-00001780   __STACK_END
-00001780   ___cinit__
-00001780   cinit
-000017f8   __cleanup_ptr
-000017fc   __dtors_ptr
-00001800   ___TI_enable_exit_profile_output
-00001804   _data_in
-00001808   _data_out
-0000180c   __lock
-00001810   __unlock
-00001814   _DSK6713_version
+00009c48   _buf_b
+00013888   __cleanup_ptr
+0001388c   __dtors_ptr
+00013890   ___TI_enable_exit_profile_output
+00013894   _data_in
+00013898   _data_out
+0001389c   __lock
+000138a0   __unlock
+000138a4   _DSK6713_version
+000138c0   .text
+000138c0   ___text__
+0001390c   _DSK6713_init
+00013c28   _DSK6713_rget
+00013c3c   _DSK6713_rset
+00013c50   _DSK6713_wait
+00013ca8   _DSK6713_waitusec
+00013cd4   _DSK6713_getVersion
+00013d40   _main
+00013e58   _wave
+000141c0   _memcpy
+00014400   _inc_ring
+00014480   _dec_ring
+00014500   _init_ring
+000145b4   _init_ring_ptr
+000145e0   _DSK6713_LED_init
+00014608   _DSK6713_LED_off
+00014664   _DSK6713_LED_on
+000146c0   _DSK6713_LED_toggle
+00014780   __auto_init
+000148a0   _exit
+000149c0   __strasg
+00014aa0   _c_int00
+00014b20   _DSK6713_DIP_init
+00014b28   _DSK6713_DIP_get
+00014ba0   __args_main
+00014be0   __nop
+00014c00   C$$EXIT
+00014c00   _abort
+00014c20   ___etext__
+00014c20   __stack
+00014c20   etext
+00015020   __STACK_END
+00015020   ___cinit__
+00015020   cinit
 ffffffff   ___TI_pprof_out_hndl
 ffffffff   ___TI_prof_data_size
 ffffffff   ___TI_prof_data_start
@@ -200,4 +205,4 @@ ffffffff   ___pinit__
 ffffffff   binit
 ffffffff   pinit
 
-[62 symbols]
+[64 symbols]
