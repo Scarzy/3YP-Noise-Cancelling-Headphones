@@ -579,7 +579,7 @@ C 30300 13700 1 0 0 resistor-2.sym
 T 30700 14050 5 10 0 0 0 0 1
 device=RESISTOR
 T 30500 14000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R15
 T 30500 13500 5 10 1 1 0 0 1
 value=47R
 }
@@ -610,7 +610,7 @@ C 21000 10200 1 0 0 resistor-2.sym
 T 21400 10550 5 10 0 0 0 0 1
 device=RESISTOR
 T 21200 10500 5 10 1 1 0 0 1
-refdes=R23
+refdes=R32
 T 21200 10000 5 10 1 1 0 0 1
 value=7K5
 }
