@@ -6,8 +6,8 @@
 
 #define BUF_SIZE 10000
 
-int32_t buf_l[BUF_SIZE];
-int32_t buf_r[BUF_SIZE];
+volatile int32_t buf_l[BUF_SIZE];
+volatile int32_t buf_r[BUF_SIZE];
 
 void test(void);
 void wave(void);
