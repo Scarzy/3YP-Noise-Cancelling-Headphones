@@ -34,11 +34,13 @@ void test()
 		if(!DSK6713_DIP_get(1))
 		{
 			DSK6713_LED_on(1);
+			while(!DSK6713_AIC23_read(codec,&ptr));
 			inc_ring(&ring_a, &ptr);
 		}
 		else
 		{
 			DSK6713_LED_off(1);
+			while(!DSK6713_AIC23_write(codec,&ptr));
 			dec_ring(&ring_a, &ptr);
 		}
 	}
