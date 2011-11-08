@@ -6,7 +6,7 @@
 #include "dsk6713_dip.h"
 #include "codec.h"
 
-#define BUF_SIZE 10000
+#define BUF_SIZE 20000
 
 #define WAVE_DEL 4096
 
