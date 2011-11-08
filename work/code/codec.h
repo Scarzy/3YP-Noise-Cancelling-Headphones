@@ -1,4 +1,6 @@
+#include <dsk6713.h>
 #include <dsk6713_aic23.h>
+#include <stdint.h>
 
 #define AIC23_CODEC_ID 0
 

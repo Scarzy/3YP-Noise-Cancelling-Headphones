@@ -1,6 +1,7 @@
 #include "ring.h"
 #include <stdint.h>
-#include "dsk6713.h"
+#include <dsk6713.h>
+#include <dsk6713_aic23.h>
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
 #include "codec.h"
