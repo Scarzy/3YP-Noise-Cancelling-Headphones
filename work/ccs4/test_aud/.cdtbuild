@@ -36,6 +36,7 @@
 <option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.MAP_FILE.992590743" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.MAP_FILE" value="&quot;test_aud.map&quot;" valueType="string"/>
 <option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.LIBRARY.411464239" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.LIBRARY" valueType="libs">
 <listOptionValue builtIn="false" value="&quot;libc.a&quot;"/>
+<listOptionValue builtIn="false" value="&quot;C:\Program Files (x86)\Texas Instruments\ccsv4\tools\compiler\c6000\lib\csl6713.lib&quot;"/>
 <listOptionValue builtIn="false" value="&quot;dsk6713bsl.lib&quot;"/>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.SEARCH_PATH.299610564" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.SEARCH_PATH" valueType="stringList">

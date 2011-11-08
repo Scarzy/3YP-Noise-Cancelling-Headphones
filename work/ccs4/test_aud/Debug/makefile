@@ -13,6 +13,7 @@ $(GEN_CMDS_QUOTED) \
 "./ring.obj" \
 "./codec.obj" \
 -l"libc.a" \
+-l"C:\Program Files (x86)\Texas Instruments\ccsv4\tools\compiler\c6000\lib\csl6713.lib" \
 -l"dsk6713bsl.lib" \
 
 -include ../makefile.init
