@@ -335,7 +335,7 @@ MCBSP_Config mcbsp_control_config = {
 	MCBSP_FMKS(SPCR, XINTM, XRDY) |		//XINT driven by XRDY
 	MCBSP_FMKS(SPCR, XSYNCERR, YES) |	//Error checking used
 	MCBSP_FMKS(SPCR, XRST, YES) |		//Enable Transmitter
-	MCBSP_FMKS(SPCR, DLB, NO) |		//No digital loop back
+	MCBSP_FMKS(SPCR, DLB, OFF) |		//No digital loop back
 	MCBSP_FMKS(SPCR, RJUST, RZF) |		//Right justify, 0 fill
 	MCBSP_FMKS(SPCR, CLKSTP, NODELAY) |	//No clock delay in SPI mode
 	MCBSP_FMKS(SPCR, DXENA, OFF) |		//DX disabled
