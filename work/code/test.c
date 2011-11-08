@@ -10,22 +10,26 @@
 
 #define WAVE_DEL 4096
 
+int32_t buf[BUF_SIZE];
+
+extern DSK6713_AIC23_CodecHandle codec;
+
+uint32_t a_val_in;
+int16_t r_val_out, l_val_out;
+
+ringbuf ring;
+int32_t * ptr;
+
 int wave_count = 0;
 int16_t wave_del = 0;
-
-volatile int32_t buf_l[BUF_SIZE];
-volatile int32_t buf_r[BUF_SIZE];
 
 void test(void);
 void wave(void);
 
 void main()
 {
-	ringbuf ring_l, ring_r;
-	int32_t * ptr;
-	init_ring(&ring_l, buf_l, BUF_SIZE);
-	init_ring(&ring_r, buf_r, BUF_SIZE);
-	init_ring_ptr(&ring_l, &ptr);
+	init_ring(&ring, buf, BUF_SIZE);
+	init_ring_ptr(&ring, &ptr);
 	codecSetup();
 	test();
 }
@@ -37,18 +41,18 @@ void test()
 		if(!DSK6713_DIP_get(0))
 			wave();
 		
+		if(!DSK6713_DIP_get(1) && !DSK6713_DIP_get(2))
+		{
+			while(!DSK6713_AIC23_read(codec,ptr));
+		}
+		
 		if(!DSK6713_DIP_get(1))
 		{
-			DSK6713_LED_on(1);
-			while(!DSK6713_AIC23_read(codec,&ptr));
-			inc_ring(&ring_a, &ptr);
+			int16_t a = *ptr;
+			while(!DSK6713_AIC23_write(codec,a));
+			while(!DSK6713_AIC23_write(codec,a));
 		}
-		else
-		{
-			DSK6713_LED_off(1);
-			while(!DSK6713_AIC23_write(codec,&ptr));
-			dec_ring(&ring_a, &ptr);
-		}
+		inc_ring(&ring, &ptr);
 	}
 }
 
