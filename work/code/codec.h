@@ -63,9 +63,9 @@ MCBSP_Config mcbsp_data_config = {
 	MCBSP_FMKS(SPCR, XINTM, XRDY) |		//XINT driven by XRDY
 	MCBSP_FMKS(SPCR, XSYNCERR, YES) |	//Error checking used
 	MCBSP_FMKS(SPCR, XRST, YES) |		//Enable Transmitter
-	MCBSP_FMKS(SPCR, DLB, NO) |		//No digital loop back
+	MCBSP_FMKS(SPCR, DLB, OFF) |		//No digital loop back
 	MCBSP_FMKS(SPCR, RJUST, RZF) |		//Right justify, 0 fill
-	MCBSP_FMKS(SPCR, CLKSTP, NODELAY) |	//No clock delay in SPI mode
+	MCBSP_FMKS(SPCR, CLKSTP, DISABLE) |	//Clock stop disabled
 	MCBSP_FMKS(SPCR, DXENA, OFF) |		//DX disabled
 	MCBSP_FMKS(SPCR, RINTM, RRDY) |		//RINT driven by RRDY
 	MCBSP_FMKS(SPCR, RSYNCERR, YES) |	//Error checking used
@@ -121,7 +121,7 @@ MCBSP_Config mcbsp_data_config = {
 	//	3-0	RESERVED
 	MCBSP_FMKS(RCR, RPHASE, DEFAULT) |	//Single Phase
 	MCBSP_FMKS(RCR, RFRLEN2, DEFAULT) |	//1 word
-	MCBSP_FMKS(RCR, RWDLEN2, DEFALUT) |	//8 bits
+	MCBSP_FMKS(RCR, RWDLEN2, DEFAULT) |	//8 bits
 	MCBSP_FMKS(RCR, RCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
 	MCBSP_FMKS(RCR, RFIG, DEFAULT) |	//Receive frame restarts transfer
 	MCBSP_FMKS(RCR, RDATDLY, DEFAULT) |	//0 bit delay
@@ -179,7 +179,7 @@ MCBSP_Config mcbsp_data_config = {
 	//	3-0	RESERVED
 	MCBSP_FMKS(XCR, XPHASE, DEFAULT) |	//Single Phase
 	MCBSP_FMKS(XCR, XFRLEN2, DEFAULT) |	//1 word
-	MCBSP_FMKS(XCR, XWDLEN2, DEFALUT) |	//8 bits
+	MCBSP_FMKS(XCR, XWDLEN2, DEFAULT) |	//8 bits
 	MCBSP_FMKS(XCR, XCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
 	MCBSP_FMKS(XCR, XFIG, DEFAULT) |	//Transmit frame restarts transfer
 	MCBSP_FMKS(XCR, XDATDLY, DEFAULT) |	//0 bit delay
@@ -327,15 +327,15 @@ MCBSP_Config mcbsp_data_config = {
 	//				1	Receive data sampled on falling edge of CLKR
 	MCBSP_FMKS(PCR, XIOEN, SP) |		//DX, FSX and CLKX serial pins
 	MCBSP_FMKS(PCR, RIOEN, SP) |		//DR, FSR, CLKR and CLKS serial pins
-	MCBSP_FMKS(PCR, FSXM, INTERNAL) |	//Use internal clock
+	MCBSP_FMKS(PCR, FSXM, EXTERNAL) |	//Use external clock
 	MCBSP_FMKS(PCR, FSRM, EXTERNAL) |	//Use external clock
-	MCBSP_FMKS(PCR, CLKSM, OUTPUT) |	//McBSP is master and drives CLKX pin
-	MCBSP_FMKS(PCR, CLKRM, INPUT) |		//CLKR output pin
+	MCBSP_FMKS(PCR, CLKSM, INPUT) |		//CLKX input pin
+	MCBSP_FMKS(PCR, CLKRM, INPUT) |		//CLKR input pin
 	MCBSP_FMKS(PCR, DXSTAT, LOW) |		//DX pin low
-	MCBSP_FMKS(PCR, FSXP, ACTIVELOW) |	//Active low
+	MCBSP_FMKS(PCR, FSXP, ACTIVEHIGH) |	//Active high
 	MCBSP_FMKS(PCR, FSRP, ACTIVEHIGH) |	//Active high
-	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on rising edge
-	MCBSP_FMKS(PCR, CLKRP, FALLING)		//Sampled on rising edge
+	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on falling edge
+	MCBSP_FMKS(PCR, CLKRP, RISING)		//Sampled on rising edge
 };
 
 MCBSP_Config mcbsp_control_config = {
@@ -358,7 +358,7 @@ MCBSP_Config mcbsp_control_config = {
 	//RCR - Receive Control Register
 	MCBSP_FMKS(RCR, RPHASE, DEFAULT) |	//Single Phase
 	MCBSP_FMKS(RCR, RFRLEN2, DEFAULT) |	//1 word
-	MCBSP_FMKS(RCR, RWDLEN2, DEFALUT) |	//8 bits
+	MCBSP_FMKS(RCR, RWDLEN2, DEFAULT) |	//8 bits
 	MCBSP_FMKS(RCR, RCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
 	MCBSP_FMKS(RCR, RFIG, DEFAULT) |	//Receive frame restarts transfer
 	MCBSP_FMKS(RCR, RDATDLY, DEFAULT) |	//0 bit delay
@@ -369,7 +369,7 @@ MCBSP_Config mcbsp_control_config = {
 	//XCR - Transmit Control Register
 	MCBSP_FMKS(XCR, XPHASE, DEFAULT) |	//Single Phase
 	MCBSP_FMKS(XCR, XFRLEN2, DEFAULT) |	//1 word
-	MCBSP_FMKS(XCR, XWDLEN2, DEFALUT) |	//8 bits
+	MCBSP_FMKS(XCR, XWDLEN2, DEFAULT) |	//8 bits
 	MCBSP_FMKS(XCR, XCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
 	MCBSP_FMKS(XCR, XFIG, DEFAULT) |	//Transmit frame restarts transfer
 	MCBSP_FMKS(XCR, XDATDLY, DEFAULT) |	//0 bit delay
@@ -401,12 +401,12 @@ MCBSP_Config mcbsp_control_config = {
 	MCBSP_FMKS(PCR, FSXM, INTERNAL) |	//Use internal clock
 	MCBSP_FMKS(PCR, FSRM, EXTERNAL) |	//Use external clock
 	MCBSP_FMKS(PCR, CLKSM, OUTPUT) |	//McBSP is master and drives CLKX pin
-	MCBSP_FMKS(PCR, CLKRM, INPUT) |		//CLKR output pin
+	MCBSP_FMKS(PCR, CLKRM, INPUT) |		//CLKR input pin
 	MCBSP_FMKS(PCR, DXSTAT, LOW) |		//DX pin low
 	MCBSP_FMKS(PCR, FSXP, ACTIVELOW) |	//Active low
 	MCBSP_FMKS(PCR, FSRP, ACTIVEHIGH) |	//Active high
-	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on rising edge
-	MCBSP_FMKS(PCR, CLKRP, FALLING)		//Sampled on rising edge
+	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on falling edge
+	MCBSP_FMKS(PCR, CLKRP, FALLING)		//Sampled on falling edge
 };
 
 void codecSetup(void);
