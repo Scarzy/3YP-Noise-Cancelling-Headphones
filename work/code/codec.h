@@ -339,6 +339,74 @@ MCBSP_Config mcbsp_data_config = {
 };
 
 MCBSP_Config mcbsp_control_config = {
+	//SPCR - Serial Port Control Register
+	MCBSP_FMKS(SPCR, FREE, NO) |		//Do not run clock when halted
+	MCBSP_FMKS(SPCR, SOFT, NO) |		//Clocks stop instantly
+	MCBSP_FMKS(SPCR, FRST, YES) |		//Generate Frame Sync
+	MCBSP_FMKS(SPCR, GRST, YES) |		//Generate Sample Rate
+	MCBSP_FMKS(SPCR, XINTM, XRDY) |		//XINT driven by XRDY
+	MCBSP_FMKS(SPCR, XSYNCERR, YES) |	//Error checking used
+	MCBSP_FMKS(SPCR, XRST, YES) |		//Enable Transmitter
+	MCBSP_FMKS(SPCR, DLB, NO) |		//No digital loop back
+	MCBSP_FMKS(SPCR, RJUST, RZF) |		//Right justify, 0 fill
+	MCBSP_FMKS(SPCR, CLKSTP, NODELAY) |	//No clock delay in SPI mode
+	MCBSP_FMKS(SPCR, DXENA, OFF) |		//DX disabled
+	MCBSP_FMKS(SPCR, RINTM, RRDY) |		//RINT driven by RRDY
+	MCBSP_FMKS(SPCR, RSYNCERR, YES) |	//Error checking used
+	MCBSP_FMKS(SPCR, RRST, YES),		//Enable Receiver
+	
+	//RCR - Receive Control Register
+	MCBSP_FMKS(RCR, RPHASE, DEFAULT) |	//Single Phase
+	MCBSP_FMKS(RCR, RFRLEN2, DEFAULT) |	//1 word
+	MCBSP_FMKS(RCR, RWDLEN2, DEFALUT) |	//8 bits
+	MCBSP_FMKS(RCR, RCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
+	MCBSP_FMKS(RCR, RFIG, DEFAULT) |	//Receive frame restarts transfer
+	MCBSP_FMKS(RCR, RDATDLY, DEFAULT) |	//0 bit delay
+	MCBSP_FMKS(RCR, RFRLEN1, DEFAULT) |	//1 word
+	MCBSP_FMKS(RCR, RWDLEN1, DEFAULT) |	//8 bits
+	MCBSP_FMKS(RCR, RWDREVRS, DEFAULT),	//32 bit reversal disabled
+	
+	//XCR - Transmit Control Register
+	MCBSP_FMKS(XCR, XPHASE, DEFAULT) |	//Single Phase
+	MCBSP_FMKS(XCR, XFRLEN2, DEFAULT) |	//1 word
+	MCBSP_FMKS(XCR, XWDLEN2, DEFALUT) |	//8 bits
+	MCBSP_FMKS(XCR, XCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
+	MCBSP_FMKS(XCR, XFIG, DEFAULT) |	//Transmit frame restarts transfer
+	MCBSP_FMKS(XCR, XDATDLY, DEFAULT) |	//0 bit delay
+	MCBSP_FMKS(XCR, XFRLEN1, DEFAULT) |	//1 word
+	MCBSP_FMKS(XCR, XWDLEN1, DEFAULT) |	//8 bits
+	MCBSP_FMKS(XCR, XWDREVRS, DEFAULT),	//32 bit reversal disabled
+	
+	//SRGR - Sample Rate Generator Register
+	MCBSP_FMKS(SRGR, GSYNC, FREE) |		//Free running
+	MCBSP_FMKS(SRGR, CLKSP, RISING) |	//Rising edge
+	MCBSP_FMKS(SRGR, CLKSM, INTERNAL) |	//CPU clock
+	MCBSP_FMKS(SRGR, FSGM, DXR2XSR) |	//On DXR-XSR copy
+	MCBSP_FMKS(SRGR, FPER, OF(0)) |		//1 CLKG period between frame syncs
+	MCBSP_FMKS(SRGR, FWID, OF(19)) |	//20 lengths active
+	MCBSP_FMKS(SRGR, CLKGDV, OF(99)),	//Divide by 100
+	
+	//MCR - Multi-channel Control Register
+	MCBSP_MCR_DEFAULT,
+	
+	//RCER - Receive Channel Enable Register
+	MCBSP_RCER_DEFAULT,	//All disabled
+	
+	//XCER - Transmit Channel Enable Register
+	MCBSP_XCER_DEFAULT,	//All disabled
+	
+	//PCR - Pin Control Register
+	MCBSP_FMKS(PCR, XIOEN, SP) |		//DX, FSX and CLKX serial pins
+	MCBSP_FMKS(PCR, RIOEN, SP) |		//DR, FSR, CLKR and CLKS serial pins
+	MCBSP_FMKS(PCR, FSXM, INTERNAL) |	//Use internal clock
+	MCBSP_FMKS(PCR, FSRM, EXTERNAL) |	//Use external clock
+	MCBSP_FMKS(PCR, CLKSM, OUTPUT) |	//McBSP is master and drives CLKX pin
+	MCBSP_FMKS(PCR, CLKRM, INPUT) |		//CLKR output pin
+	MCBSP_FMKS(PCR, DXSTAT, LOW) |		//DX pin low
+	MCBSP_FMKS(PCR, FSXP, ACTIVELOW) |	//Active low
+	MCBSP_FMKS(PCR, FSRP, ACTIVEHIGH) |	//Active high
+	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on rising edge
+	MCBSP_FMKS(PCR, CLKRP, FALLING)		//Sampled on rising edge
 };
 
 void codecSetup(void);
