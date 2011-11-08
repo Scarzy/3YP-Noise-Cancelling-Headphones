@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include "codec.h"
 
 McBSP_Handle mcbspControlHandle;
