@@ -34,5 +34,6 @@ bool mcbspSetup()
 
 void codecSetup()
 {
+	DSK6713_init();
 	codec = DSK6713_AIC23_openCodec(AIC23_CODEC_ID, &aic23_config);
 }

@@ -3,6 +3,7 @@
 #include "dsk6713.h"
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
+#include "codec.h"
 
 #define BUF_SIZE 10000
 
@@ -19,6 +20,7 @@ void main()
 	init_ring(&ring_l, buf_l, BUF_SIZE);
 	init_ring(&ring_r, buf_r, BUF_SIZE);
 	init_ring_ptr(&ring_l, &ptr);
+	codecSetup();
 	test();
 }
 
