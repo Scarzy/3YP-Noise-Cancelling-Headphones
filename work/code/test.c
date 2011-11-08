@@ -8,6 +8,11 @@
 
 #define BUF_SIZE 10000
 
+#define WAVE_DEL 4096
+
+int wave_count = 0;
+int16_t wave_del = 0;
+
 volatile int32_t buf_l[BUF_SIZE];
 volatile int32_t buf_r[BUF_SIZE];
 
@@ -49,58 +54,50 @@ void test()
 
 void wave()
 {
-	int count = 0;
-	while(1)
-    {
-        switch(count++)
-        {
-        	case 0: 	DSK6713_LED_on(0);
-        				DSK6713_LED_off(1);
-        				DSK6713_LED_off(2);
-        				DSK6713_LED_off(3);
-        				break;
-        	case 1: 	DSK6713_LED_off(0);
-        				DSK6713_LED_on(1);
-        				DSK6713_LED_off(2);
-        				DSK6713_LED_off(3);
-        				break;
-        	case 2: 	DSK6713_LED_off(0);
-        				DSK6713_LED_off(1);
-        				DSK6713_LED_on(2);
-        				DSK6713_LED_off(3);
-        				break;
-        	case 3: 	DSK6713_LED_off(0);
-        				DSK6713_LED_off(1);
-        				DSK6713_LED_off(2);
-        				DSK6713_LED_on(3);
-        				break;
-        	case 4: 	DSK6713_LED_off(0);
-        				DSK6713_LED_off(1);
-        				DSK6713_LED_on(2);
-        				DSK6713_LED_off(3);
-        				break;
-        	case 5: 	DSK6713_LED_off(0);
-        				DSK6713_LED_on(1);
-        				DSK6713_LED_off(2);
-        				DSK6713_LED_off(3);
-        				count = 0;
-        				break;
-        	default: 	DSK6713_LED_off(0);
-        				DSK6713_LED_off(1);
-        				DSK6713_LED_off(2);
-        				DSK6713_LED_off(3);
-        				count = 0;
-        				break;
-        }
-	DSK6713_waitusec(100000);
-	
-	if(DSK6713_DIP_get(0))
+	if(wave_del++ != WAVE_DEL)
 	{
-		DSK6713_LED_off(0);
-        	DSK6713_LED_off(1);
-        	DSK6713_LED_off(2);
-        	DSK6713_LED_off(3);
-        	return;			
+		return;
 	}
-    }
+	wave_del = 0;
+	
+	switch(wave_count++)
+	{
+		case 0: 	DSK6713_LED_on(0);
+        			DSK6713_LED_off(1);
+        			DSK6713_LED_off(2);
+        			DSK6713_LED_off(3);
+        			break;
+        case 1: 	DSK6713_LED_off(0);
+        			DSK6713_LED_on(1);
+        			DSK6713_LED_off(2);
+        			DSK6713_LED_off(3);
+        			break;
+        case 2: 	DSK6713_LED_off(0);
+        			DSK6713_LED_off(1);
+        			DSK6713_LED_on(2);
+        			DSK6713_LED_off(3);
+        			break;
+        case 3: 	DSK6713_LED_off(0);
+        			DSK6713_LED_off(1);
+        			DSK6713_LED_off(2);
+        			DSK6713_LED_on(3);
+        			break;
+        case 4: 	DSK6713_LED_off(0);
+        			DSK6713_LED_off(1);
+        			DSK6713_LED_on(2);
+        			DSK6713_LED_off(3);
+        			break;
+        case 5: 	DSK6713_LED_off(0);
+        			DSK6713_LED_on(1);
+        			DSK6713_LED_off(2);
+        			DSK6713_LED_off(3);
+        			wave_count = 0;
+        			break;
+        default: 	DSK6713_LED_off(0);
+        			DSK6713_LED_off(1);
+        			DSK6713_LED_off(2);
+        			DSK6713_LED_off(3);
+        			wave_count = 0;
+        			break;
+	}
 }
