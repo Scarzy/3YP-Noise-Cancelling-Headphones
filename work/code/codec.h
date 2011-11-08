@@ -3,7 +3,7 @@
 #define AIC23_CODEC_ID 0
 
 
-MCBSP_Config mcbsp_data_config = {
+/*MCBSP_Config mcbsp_data_config = {
 	//MCBSP_FMKS(REGISTER, PORTION, VALUE);
 	
 	//SPCR - Serial Port Control Register
@@ -395,7 +395,7 @@ MCBSP_Config mcbsp_control_config = {
 	MCBSP_FMKS(PCR, FSRP, ACTIVEHIGH) |	//Active high
 	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on falling edge
 	MCBSP_FMKS(PCR, CLKRP, FALLING)		//Sampled on falling edge
-};
+};*/
 
 void codecSetup(void);
 

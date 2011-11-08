@@ -1,8 +1,8 @@
 #include <stdbool.h>
 #include "codec.h"
 
-McBSP_Handle mcbspControlHandle;
-McBSP_Handle mcbspDataHandle;
+//McBSP_Handle mcbspControlHandle;
+//McBSP_Handle mcbspDataHandle;
 DSK6713_AIC23_CodecHandle codec;
 	
 DSK6713_AIC23_Config aic23_config = {
@@ -43,7 +43,7 @@ bool mcbspSetup()
 	MCBSP_config(mcbspControlHandle, mcbsp_control_config);
 	MCBSP_config(mcbspDataHandle, mcbsp_data_config);
 	
-}
+}*/
 
 void codecSetup()
 {
