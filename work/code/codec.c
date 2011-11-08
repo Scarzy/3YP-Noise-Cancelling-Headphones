@@ -17,9 +17,9 @@ DSK6713_AIC23_Config aic23_config = {
 	0x0001	//Digital Interface Activation, Active
 };
 
-volatile extern int32_t buf_l*, buf_r*;
+//extern volatile int32_t *buf_l, *buf_r;
 
-#pragma vector=YKNOW_THAT_VECTOR
+/*#pragma vector=YKNOW_THAT_VECTOR
 __interrupt void newSample()
 {
 	
