@@ -1,8 +1,6 @@
 #ifndef RING_H_
 #define RING_H_
 
-#define RING_SIZE 150
-
 #include <stdint.h>
 #include <tistdtypes.h>
 
