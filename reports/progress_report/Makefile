@@ -4,6 +4,6 @@ all:
 FILES := progress.tex
 
 clean:
-	rm -rf *.pdf *aux *.log *.dvi *.out
+	rm -rf *.pdf *aux *.log *.dvi *.out *.toc *.lof *.lot
 
 .PHONY: all
