@@ -10,7 +10,7 @@ void inc_ring(void * ring, int32_t ** ptr, int8_t dataring)
 			*ptr = ((ringbuf *)ring)->ring1 + (*ptr - ((ringbuf *)ring)->ring0);
 	}
 	
-	if(((ringbuf *)ring)->dataring == DATA_RING)
+	if(!(((ringbuf *)ring)->dataring == DATA_RING ^ dataring == DATA_RING))
 	{
 		if(*ptr == ((ringbuf *)ring)->ring0 + ((ringbuf *)ring)->size - 1)
 			*ptr = ((ringbuf *)ring)->ring0;
@@ -35,7 +35,7 @@ void dec_ring(void * ring, int32_t ** ptr)
 		if(*ptr < ((ringbuf *)ring)->ring1)
 			*ptr = ((ringbuf *)ring)->ring1 + (*ptr - ((ringbuf *)ring)->ring0);	
 	}
-	if(((ringbuf *)ring)->dataring == DATA_RING)
+	if(!(((ringbuf *)ring)->dataring == DATA_RING ^ dataring == DATA_RING))
 	{
 		if(*ptr == ((ringbuf *)ring)->ring0)
 			*ptr = ((ringbuf *)ring)->ring0 + ((ringbuf *)ring)->size - 1;
