@@ -23,3 +23,9 @@ Great...
 D = /A/BC + /AB/C + A/B/C + ABC
 E = A (+) B
 D = C (+) E
+
+-------------------------------------
+
+C = (*ptr >= ((ringbuf *)ring)->ring1);
+E = ((ringbuf *)ring)->dataring ^ dataring;
+D = (*ptr >= ((ringbuf *)ring)->ring1) ^ ((ringbuf *)ring)->dataring ^ dataring;
