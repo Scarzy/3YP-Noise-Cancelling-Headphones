@@ -1,0 +1,22 @@
+ A = ((ringbuf *)ring)->dataring
+ B = dataring
+ C = *ptr (dataring)
+ D = switch
+
+ A  B  C | D
+ 0  0  0 | 0
+ 0  0  1 | 1
+ 0  1  0 | 1
+ 0  1  1 | 0
+ 1  0  0 | 1
+ 1  0  1 | 0
+ 1  1  0 | 0
+ 1  1  1 | 1
+
+___|_00__01__11__10_  AB
+ 0 | 0   1   0   1 
+ 1 | 1   0   1   0 
+ C
+
+Great...
+D = /A/BC + /AB/C + A/B/C + ABC
