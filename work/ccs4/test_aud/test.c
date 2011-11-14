@@ -42,14 +42,21 @@ void test()
 		
 		if(!DSK6713_DIP_get(1) && !DSK6713_DIP_get(2))
 		{
-			while(!DSK6713_AIC23_read(codec,ptr));
+			DSK6713_AIC23_read(codec,ptr);
+//			getData(ptr);
 		}
 		
 		if(!DSK6713_DIP_get(1))
 		{
-			int16_t a = *ptr;
+			int32_t a = *ptr;
+//			int16_t l = a;
+//			if(!DSK6713_DIP_get(3))
+//				a &= 0x0000FF00;
+//			else
+//				a &= 0x000000FF;
+//			int16_t r = a<<16;
 			while(!DSK6713_AIC23_write(codec,a));
-			while(!DSK6713_AIC23_write(codec,a));
+//			while(!DSK6713_AIC23_write(codec,r));
 		}
 		inc_ring(&ring, &ptr);
 	}
