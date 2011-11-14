@@ -29,6 +29,21 @@ void crosscorr(int16_t * arr1, int16_t * arr2, double * res, int length, int max
 	}
 }
 
+int dpeak(double * arr, int length)
+{
+	double max = 0;
+	int pos = 0;
+	for(int i = 0; i < length; i++)
+	{
+		if(abs(arr[i]) > max)
+		{
+			max = abs(arr[i]);
+			pos = i;
+		}
+	}
+	return pos;
+}
+
 double mean(int16_t * arr, int length)
 {
 	double mean = 0;
