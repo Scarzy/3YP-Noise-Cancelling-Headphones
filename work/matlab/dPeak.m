@@ -15,7 +15,7 @@ end
 %divide down average
 average = average / length(mat);
 
-if abs(a) < 0.5             %Greater than 50% match required, otherwise cancel 
+if abs(a) < 0.5            %Greater than 50% match required, otherwise cancel 
    a = 0;
    pos = 0;
 end
