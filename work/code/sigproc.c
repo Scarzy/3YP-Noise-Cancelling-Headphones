@@ -1,3 +1,13 @@
+void cancel(int16_t * arr1, int16_t * arr2, int16_t * res, int length)
+{
+	double cc[length];
+	crosscorr(arr1, arr2, cc, length, CROSS_CORR_MAX_DELAY);
+	int shift = dpeak(cc, length);
+	for(int i = 0; i < length; i++)
+	{
+		res[i] = (i - del <= 0) ? arr1[i] : arr1[i] - arr2[i - del] ;
+	}
+}
 
 void crosscorr(int16_t * arr1, int16_t * arr2, double * res, int length, int maxdel)
 {
