@@ -68,13 +68,15 @@ int dpeak(double * arr, int length)
 	return pos;
 }
 
-double mean(int16_t * arr, int length)
+double mean(void * ring, int32_t * ptrin)
 {
+	int32_t * ptr = ptrin;
 	double mean = 0;
-	for(int i = 0; i < length; i++)
+	for(int i = 0; i < ((ringbuf *)ring)->size; i++)
 	{
-		mean += arr[i];
+		mean += *ptr;
+		inc_ring(&ring, &ptr);
 	}
-	return mean / length;
+	return mean / ((ringbuf *)ring)->size;
 }
 
