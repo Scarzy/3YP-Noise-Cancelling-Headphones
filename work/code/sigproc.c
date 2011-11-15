@@ -1,3 +1,5 @@
+#include "sigproc.h"
+
 void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
 {
 	double cc[((ringbuf *)ring1)->length];
