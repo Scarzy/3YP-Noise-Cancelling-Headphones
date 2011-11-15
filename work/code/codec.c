@@ -425,13 +425,13 @@ __interrupt void sendSample()
 	
 }
 
-bool mcbspSetup()
+void mcbspSetup()
 {
 	mcbspControlHandle = MCBSP_open(MCBSP_DEV0, MCBSP_OPEN_RESET);
 	mcbspDataHandle = MCBSP_open(MCBSP_DEV1, MCBSP_OPEN_RESET);
 	if(mcbspControlHandle == INV || mcbspDataHandle == INV)
 	{
-		return false;
+		return;
 	}
 	MCBSP_config(mcbspControlHandle, mcbsp_control_config);
 	MCBSP_config(mcbspDataHandle, mcbsp_data_config);
