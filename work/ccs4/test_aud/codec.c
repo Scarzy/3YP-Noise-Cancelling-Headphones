@@ -1,4 +1,5 @@
 #include "codec.h"
+#include <dsk6713_led.h>
 
 MCBSP_Handle mcbspControlHandle;
 MCBSP_Handle mcbspDataHandle;
@@ -120,15 +121,15 @@ MCBSP_Config mcbsp_data_config = {
 	//				6-7	RESERVED
 	//	4	RWDREVRS Receive 32 bit reversal enable. If set 32-bit reversal enabled. RWDLEN1/2 should be 0x5 and RCOMPAND should be 0x1
 	//	3-0	RESERVED
-	MCBSP_FMKS(RCR, RPHASE, DEFAULT) |	//Single Phase
+	MCBSP_FMKS(RCR, RPHASE, SINGLE) |	//Single Phase
 	MCBSP_FMKS(RCR, RFRLEN2, DEFAULT) |	//1 word
 	MCBSP_FMKS(RCR, RWDLEN2, DEFAULT) |	//8 bits
-	MCBSP_FMKS(RCR, RCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
+	MCBSP_FMKS(RCR, RCOMPAND, MSB) |	//No companding, 8 bit MSB first
 	MCBSP_FMKS(RCR, RFIG, NO) |			//Receive frame does not restart transfer
-	MCBSP_FMKS(RCR, RDATDLY, DEFAULT) |	//0 bit delay
+	MCBSP_FMKS(RCR, RDATDLY, 0BIT) |	//0 bit delay
 	MCBSP_FMKS(RCR, RFRLEN1, OF(0)) |	//1 word
 	MCBSP_FMKS(RCR, RWDLEN1, 32BIT) |	//32 bits
-	MCBSP_FMKS(RCR, RWDREVRS, DEFAULT),	//32 bit reversal disabled
+	MCBSP_FMKS(RCR, RWDREVRS, DISABLE),	//32 bit reversal disabled
 	
 	//XCR - Transmit Control Register
 	//	31	XPHASE	Transmit phases
@@ -178,12 +179,12 @@ MCBSP_Config mcbsp_data_config = {
 	//				6-7	RESERVED
 	//	4	XWDREVRS Transmit 32 bit reversal enable. If set 32-bit reversal enabled. XWDLEN1/2 should be 0x5 and XCOMPAND should be 0x1
 	//	3-0	RESERVED
-	MCBSP_FMKS(XCR, XPHASE, DEFAULT) |	//Single Phase
+	MCBSP_FMKS(XCR, XPHASE, SINGLE) |	//Single Phase
 	MCBSP_FMKS(XCR, XFRLEN2, DEFAULT) |	//1 word
 	MCBSP_FMKS(XCR, XWDLEN2, DEFAULT) |	//8 bits
-	MCBSP_FMKS(XCR, XCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
+	MCBSP_FMKS(XCR, XCOMPAND, MSB) |	//No companding, 8 bit MSB first
 	MCBSP_FMKS(XCR, XFIG, NO) |			//Transmit frame does not restart transfer
-	MCBSP_FMKS(XCR, XDATDLY, DEFAULT) |	//0 bit delay
+	MCBSP_FMKS(XCR, XDATDLY, 0BIT) |	//0 bit delay
 	MCBSP_FMKS(XCR, XFRLEN1, OF(0)) |	//1 word
 	MCBSP_FMKS(XCR, XWDLEN1, 32BIT) |	//32 bits
 	MCBSP_FMKS(XCR, XWDREVRS, DEFAULT),	//32 bit reversal disabled
@@ -330,9 +331,10 @@ MCBSP_Config mcbsp_data_config = {
 	MCBSP_FMKS(PCR, RIOEN, SP) |		//DR, FSR, CLKR and CLKS serial pins
 	MCBSP_FMKS(PCR, FSXM, EXTERNAL) |	//Use external clock
 	MCBSP_FMKS(PCR, FSRM, EXTERNAL) |	//Use external clock
-	MCBSP_FMKS(PCR, CLKXM, DEFAULT) |	//CLKX input pin
+	MCBSP_FMKS(PCR, CLKXM, INPUT) |		//CLKX input pin
 	MCBSP_FMKS(PCR, CLKRM, INPUT) |		//CLKR input pin
-	MCBSP_FMKS(PCR, DXSTAT, DEFAULT) |	//DX pin low
+	MCBSP_FMKS(PCR, CLKSSTAT, DEFAULT) |//
+    MCBSP_FMKS(PCR, DXSTAT, DEFAULT) |	//DX pin low
 	MCBSP_FMKS(PCR, FSXP, ACTIVEHIGH) |	//Active high
 	MCBSP_FMKS(PCR, FSRP, ACTIVEHIGH) |	//Active high
 	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on falling edge
@@ -346,14 +348,14 @@ MCBSP_Config mcbsp_control_config = {
 	MCBSP_FMKS(SPCR, FRST, YES) |		//Generate Frame Sync
 	MCBSP_FMKS(SPCR, GRST, YES) |		//Generate Sample Rate
 	MCBSP_FMKS(SPCR, XINTM, XRDY) |		//XINT driven by XRDY
-	MCBSP_FMKS(SPCR, XSYNCERR, YES) |	//Error checking used
+	MCBSP_FMKS(SPCR, XSYNCERR, NO) |	//Error checking used
 	MCBSP_FMKS(SPCR, XRST, YES) |		//Enable Transmitter
 	MCBSP_FMKS(SPCR, DLB, OFF) |		//No digital loop back
 	MCBSP_FMKS(SPCR, RJUST, RZF) |		//Right justify, 0 fill
 	MCBSP_FMKS(SPCR, CLKSTP, NODELAY) |	//No clock delay in SPI mode
 	MCBSP_FMKS(SPCR, DXENA, OFF) |		//DX disabled
 	MCBSP_FMKS(SPCR, RINTM, RRDY) |		//RINT driven by RRDY
-	MCBSP_FMKS(SPCR, RSYNCERR, YES) |	//Error checking used
+	MCBSP_FMKS(SPCR, RSYNCERR, NO) |	//Error checking used
 	MCBSP_FMKS(SPCR, RRST, YES),		//Enable Receiver
 	
 	//RCR - Receive Control Register
@@ -368,15 +370,15 @@ MCBSP_Config mcbsp_control_config = {
 	MCBSP_FMKS(RCR, RWDREVRS, DEFAULT),	//32 bit reversal disabled
 	
 	//XCR - Transmit Control Register
-	MCBSP_FMKS(XCR, XPHASE, DEFAULT) |	//Single Phase
-	MCBSP_FMKS(XCR, XFRLEN2, DEFAULT) |	//1 word
-	MCBSP_FMKS(XCR, XWDLEN2, DEFAULT) |	//8 bits
-	MCBSP_FMKS(XCR, XCOMPAND, DEFAULT) |	//No companding, 8 bit MSB first
-	MCBSP_FMKS(XCR, XFIG, DEFAULT) |	//Transmit frame restarts transfer
-	MCBSP_FMKS(XCR, XDATDLY, DEFAULT) |	//0 bit delay
-	MCBSP_FMKS(XCR, XFRLEN1, DEFAULT) |	//1 word
-	MCBSP_FMKS(XCR, XWDLEN1, DEFAULT) |	//8 bits
-	MCBSP_FMKS(XCR, XWDREVRS, DEFAULT),	//32 bit reversal disabled
+	MCBSP_FMKS(XCR, XPHASE, SINGLE) |	//Single Phase
+	MCBSP_FMKS(XCR, XFRLEN2, OF(0)) |	//1 word
+	MCBSP_FMKS(XCR, XWDLEN2, 8BIT) |	//8 bits
+	MCBSP_FMKS(XCR, XCOMPAND, MSB) |	//No companding, 8 bit MSB first
+	MCBSP_FMKS(XCR, XFIG, NO) |			//Transmit frame restarts transfer
+	MCBSP_FMKS(XCR, XDATDLY, 1BIT) |	//0 bit delay
+	MCBSP_FMKS(XCR, XFRLEN1, OF(0)) |	//1 word
+	MCBSP_FMKS(XCR, XWDLEN1, 16BIT) |	//8 bits
+	MCBSP_FMKS(XCR, XWDREVRS, DISABLE),	//32 bit reversal disabled
 	
 	//SRGR - Sample Rate Generator Register
 	MCBSP_FMKS(SRGR, GSYNC, FREE) |		//Free running
@@ -401,13 +403,14 @@ MCBSP_Config mcbsp_control_config = {
 	MCBSP_FMKS(PCR, RIOEN, SP) |		//DR, FSR, CLKR and CLKS serial pins
 	MCBSP_FMKS(PCR, FSXM, INTERNAL) |	//Use internal clock
 	MCBSP_FMKS(PCR, FSRM, EXTERNAL) |	//Use external clock
-	MCBSP_FMKS(PCR, CLKXM, DEFAULT) |	//McBSP is master and drives CLKX pin
+	MCBSP_FMKS(PCR, CLKXM, OUTPUT) |	//McBSP is master and drives CLKX pin
 	MCBSP_FMKS(PCR, CLKRM, INPUT) |		//CLKR input pin
-	MCBSP_FMKS(PCR, DXSTAT, DEFAULT) |		//DX pin low
+	MCBSP_FMKS(PCR, CLKSSTAT, DEFAULT) |//
+	MCBSP_FMKS(PCR, DXSTAT, DEFAULT) |	//DX pin low
 	MCBSP_FMKS(PCR, FSXP, ACTIVELOW) |	//Active low
-	MCBSP_FMKS(PCR, FSRP, ACTIVEHIGH) |	//Active high
+	MCBSP_FMKS(PCR, FSRP, DEFAULT) |	//Active high
 	MCBSP_FMKS(PCR, CLKXP, FALLING) |	//Sampled on falling edge
-	MCBSP_FMKS(PCR, CLKRP, FALLING)		//Sampled on falling edge
+	MCBSP_FMKS(PCR, CLKRP, DEFAULT)		//Sampled on falling edge
 };
 //extern volatile int32_t *buf_l, *buf_r;
 
@@ -429,6 +432,13 @@ void mcbspSetup()
 	mcbspDataHandle = MCBSP_open(MCBSP_DEV1, MCBSP_OPEN_RESET);
 	if(mcbspControlHandle == INV || mcbspDataHandle == INV)
 	{
+		while(1)
+		{
+			DSK6713_LED_on(0);
+			DSK6713_LED_off(1);
+			DSK6713_LED_on(2);
+			DSK6713_LED_off(3);
+		}
 		return;
 	}
 	MCBSP_config(mcbspControlHandle, &mcbsp_control_config);
@@ -444,8 +454,8 @@ void mcbspSetup()
 
 void codecSetup()
 {
-	DSK6713_init();
-	codec = DSK6713_AIC23_openCodec(AIC23_CODEC_ID, &aic23_config);
+	//DSK6713_init();
+//	codec = DSK6713_AIC23_openCodec(AIC23_CODEC_ID, &aic23_config);
 	mcbspSetup();
 //	DSK6713_AIC23_setFreq(codec, DSK6713_AIC23_FREQ_48KHZ);
 }

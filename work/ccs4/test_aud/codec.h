@@ -1,6 +1,7 @@
 #ifndef CODEC_H_
 #define CODEC_H_
 
+#include <csl.h>
 #include <dsk6713.h>
 #include <dsk6713_aic23.h>
 #include <stdint.h>

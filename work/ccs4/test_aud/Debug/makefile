@@ -10,6 +10,7 @@ SPACE := $(EMPTY) $(EMPTY)
 ORDERED_OBJS += \
 $(GEN_CMDS_QUOTED) \
 "./test.obj" \
+"./sigproc.obj" \
 "./ring.obj" \
 "./codec.obj" \
 -l"libc.a" \
@@ -119,8 +120,8 @@ test_aud.out: $(OBJS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(C6000_EXECUTABLE_OUTPUTS__QTD) "test_aud.out"
-	-$(RM) ".\codec.obj" ".\ring.obj" ".\test.obj" 
-	-$(RM) ".\codec.pp" ".\ring.pp" ".\test.pp" 
+	-$(RM) ".\codec.obj" ".\ring.obj" ".\sigproc.obj" ".\test.obj" 
+	-$(RM) ".\codec.pp" ".\ring.pp" ".\sigproc.pp" ".\test.pp" 
 	-@echo ' '
 
 .PHONY: all clean dependents
