@@ -5,8 +5,8 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	double cc[((ringbuf *)ring1)->size];
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
-	crosscorr(ring1, ring2, cc, length, CROSS_CORR_MAX_DELAY);
-	int shift = dpeak(cc, length);
+	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
+	int shift = dpeak(cc, ((ringbuf *)ring1)->size);
 	if(shift < 0)
 	{
 		for(int i = 0; i < shift; i++)
@@ -23,30 +23,40 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	}
 }
 
-void crosscorr(int16_t * arr1, int16_t * arr2, double * res, int length, int maxdel)
+void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int length, int maxdel)
 {
+	int16_t * ptr1 = ptr1in;
+	int16_t * ptr2 = ptr2in;
 	double mean1, mean2;
-	mean1 = mean(arr1, length);
-	mean2 = mean(arr2, length);
+	mean1 = mean(ring1, ptr1);
+	mean2 = mean(ring2, ptr2);
 	
 	for(int del = -maxdel; i < maxdel; i++)
 	{
 		int num = 0;
+		ptr1 = ptr1in;
+		ptr2 = ptr2in;
 		for(int i = 0; i < length; i++)
 		{
 			int j = i + del;
 			if(!( (j < 0) || (j >= length) ))
 			{
-				num += ((arr1[i] - mean1) * (arr2[j] - mean2));
+				num += ((*ptr1 - mean1) * (*ptr2 - mean2));
 			}
+			inc_ring(&ring1, &ptr1);
+			inc_ring(&ring2, &ptr2);
 		}
 		
+		ptr1 = ptr1in;
+		ptr2 = ptr2in;
 		int sum1 = 0;
 		int sum2 = 0;
 		for(int i = 0; i < length; i++)
 		{
-			sum1 += ((arr1[i] - mean1) * (arr1[i] - mean1));
-			sum2 += ((arr2[i] - mean2) * (arr2[i] - mean2));
+			sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));
+			sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));
+			inc_ring(&ring1, &ptr1);
+			inc_ring(&ring2, &ptr2);
 		}
 		double s = sqrt(sum1 * sum2);
 		res[del + maxdel] = num / s;
