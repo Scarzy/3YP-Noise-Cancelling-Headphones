@@ -1,8 +1,8 @@
 #include "codec.h"
 #include <dsk6713_led.h>
 
-//McBSP_Handle mcbspControlHandle;
-//McBSP_Handle mcbspDataHandle;
+MCBSP_Handle mcbspControlHandle;
+MCBSP_Handle mcbspDataHandle;
 DSK6713_AIC23_CodecHandle codec;
 
 DSK6713_AIC23_Config aic23_config = {
@@ -424,7 +424,7 @@ __interrupt void newSample()
 __interrupt void sendSample()
 {
 	
-}
+}*/
 
 void mcbspSetup()
 {
@@ -434,13 +434,18 @@ void mcbspSetup()
 	{
 		return;
 	}
-	MCBSP_config(mcbspControlHandle, mcbsp_control_config);
-	MCBSP_config(mcbspDataHandle, mcbsp_data_config);
-	
-}*/
+	MCBSP_config(mcbspControlHandle, &mcbsp_control_config);
+	MCBSP_config(mcbspDataHandle, &mcbsp_data_config);
+	MCBSP_start(mcbspControlHandle, MCBSP_XMIT_START | MCBSP_RCV_START | MCBSP_SRGR_START | MCBSP_SRGR_FRAMESYNC, 220);
+	DSK6713_AIC23_rset(0, DSK6713_AIC23_RESET, 0);
+
+	DSK6713_AIC23_config(AIC23_CODEC_ID, &aic23_config);
+	if (MCBSP_rrdy(mcbspDataHandle))
+		MCBSP_read(mcbspDataHandle);
+	MCBSP_start(mcbspDataHandle, MCBSP_XMIT_START | MCBSP_RCV_START | MCBSP_SRGR_START | MCBSP_SRGR_FRAMESYNC, 220);
+}
 
 void codecSetup()
 {
-	DSK6713_init();
-	codec = DSK6713_AIC23_openCodec(AIC23_CODEC_ID, &aic23_config);
+	mcbspSetup();
 }
