@@ -2,7 +2,7 @@
 
 void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
 {
-	double cc[((ringbuf *)ring1)->length];
+	double cc[((ringbuf *)ring1)->size];
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
 	crosscorr(ring1, ring2, cc, length, CROSS_CORR_MAX_DELAY);
@@ -14,7 +14,7 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 			inc_ring(&ring2, &ptr2);
 		}
 	}
-	for(int i = 0; i < ((ringbuf *)ring1)->length; i++)
+	for(int i = 0; i < ((ringbuf *)ring1)->size; i++)
 	{
 		*ptrres = ((i - shift) <= 0) ? *ptr1 : *ptr1 - *ptr2 ;
 		inc_ring(&ring1, &ptr1);
