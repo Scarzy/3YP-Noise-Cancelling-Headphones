@@ -1,11 +1,23 @@
-void cancel(int16_t * arr1, int16_t * arr2, int16_t * res, int length)
+void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
 {
-	double cc[length];
-	crosscorr(arr1, arr2, cc, length, CROSS_CORR_MAX_DELAY);
+	double cc[((ringbuf *)ring1)->length];
+	int16_t * ptr1 = ptr1in;
+	int16_t * ptr2 = ptr2in;
+	crosscorr(ring1, ring2, cc, length, CROSS_CORR_MAX_DELAY);
 	int shift = dpeak(cc, length);
-	for(int i = 0; i < length; i++)
+	if(shift < 0)
 	{
-		res[i] = (i - del <= 0) ? arr1[i] : arr1[i] - arr2[i - del] ;
+		for(int i = 0; i < shift; i++)
+		{
+			inc_ring(&ring2, &ptr2);
+		}
+	}
+	for(int i = 0; i < ((ringbuf *)ring1)->length; i++)
+	{
+		*ptrres = ((i - shift) <= 0) ? *ptr1 : *ptr1 - *ptr2 ;
+		inc_ring(&ring1, &ptr1);
+		if(!(i < shift))
+			inc_ring(&ring2, &ptr2);
 	}
 }
 
