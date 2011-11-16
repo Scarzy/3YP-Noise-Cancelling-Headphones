@@ -17,14 +17,18 @@ int16_t rbufout[BUF_SIZE];
 
 extern DSK6713_AIC23_CodecHandle codec;
 
-uint32_t a_val_in;
-int16_t r_val_out, l_val_out;
-
-ringbuf ring;
+ringbuf lringin;
+ringbuf rringin;
+ringbuf lringout;
+ringbuf rringout;
 int16_t * lptrin;
 int16_t * rptrin;
 int16_t * lptrout;
 int16_t * rptrout;
+int16_t * lptrcpyi;
+int16_t * rptrcpyi;
+int16_t * lptrcpyo;
+int16_t * rptrcpyo;
 
 int wave_count = 0;
 int16_t wave_del = 0;
@@ -34,8 +38,18 @@ void wave(void);
 
 void main()
 {
-	init_ring(&ring, buf, BUF_SIZE);
-	init_ring_ptr(&ring, &ptr);
+	init_ring(&lringin, lbufin, BUF_SIZE);
+	init_ring(&rringin, rbufin, BUF_SIZE);
+	init_ring(&lringout, lbufout, BUF_SIZE);
+	init_ring(&rringout, rbufout, BUF_SIZE);
+	init_ring_ptr(&lringin, &lptrin);
+	init_ring_ptr(&rringin, &rptrin);
+	init_ring_ptr(&lringout, &lptrout);
+	init_ring_ptr(&rringout, &rptrout);
+	init_ring_ptr(&lringin, &lptrcpyi);
+	init_ring_ptr(&rringin, &rptrcpyi);
+	init_ring_ptr(&lringout, &lptrcpyo);
+	init_ring_ptr(&rringout, &rptrcpyo);
 	codecSetup();
 	test();
 }
@@ -44,24 +58,35 @@ void test()
 {
 	while(1)
 	{
+		int32_t in;
 		if(!DSK6713_DIP_get(0))
 			wave();
 		
-		if(!DSK6713_DIP_get(1) && !DSK6713_DIP_get(2))
-		{
-			DSK6713_AIC23_read(codec,ptr);
-		}
-		
 		if(!DSK6713_DIP_get(1))
 		{
-			int32_t a;
-			if(!DSK6713_DIP_get(3))
-				a = *ptr & 0x0000FFFF;
-			else
-				a = *ptr & 0xFFFF0000;
-			while(!DSK6713_AIC23_write(codec,a));
+			DSK6713_AIC23_read(codec,&in);
+			*lptrin = ((in & 0xFFFF0000) >> 16);
+			*rptrin = (in & 0x0000FFFF);
+			inc_ring(&lringin, &lptrin);
+			inc_ring(&rringin, &rptrin);
 		}
-		inc_ring(&ring, &ptr);
+		
+		if(!DSK6713_DIP_get(2))
+		{
+			*lptrcpyo = *lptrcpyi;
+			*rptrcpyo = *rptrcpyi;
+			inc_ring(&lringin, &lptrcpyi);
+			inc_ring(&rringin, &lptrcpyi);
+			inc_ring(&lringout, &lptrcpyo);
+			inc_ring(&rringout, &lptrcpyo);
+		}
+		
+		if(!DSK6713_DIP_get(3))
+		{
+			while(!DSK6713_AIC23_write(codec,(0x00000000 | (*lptrout << 16) | *rptrout)));
+			inc_ring(&lringout, &lptrout);
+			inc_ring(&rringout, &rptrout);
+		}
 	}
 }
 
