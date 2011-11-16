@@ -467,12 +467,12 @@ void newSample()
 
 void getData(int32_t * ptr)
 {
-	while(1)
-	{
+//	while(1)
+//	{
 		if (MCBSP_rrdy(mcbspDataHandle))
 		{
 			*ptr = MCBSP_read(mcbspDataHandle);
-			break;
+//			break;
 		}
-	}
+//	}
 }

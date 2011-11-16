@@ -42,8 +42,10 @@ void test()
 		
 		if(!DSK6713_DIP_get(1) && !DSK6713_DIP_get(2))
 		{
-			DSK6713_AIC23_read(codec,ptr);
-//			getData(ptr);
+//			DSK6713_AIC23_read(codec,ptr);
+			DSK6713_LED_on(3);
+			getData(ptr);
+			DSK6713_LED_on(2);
 		}
 		
 		if(!DSK6713_DIP_get(1))
