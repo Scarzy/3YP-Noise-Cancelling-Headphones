@@ -481,3 +481,11 @@ void sendData(uint32_t * ptr)
 	asm(" nop");
 }
 
+void codec_reg_set(uint16_t num, uint16_t val)
+{
+	val &= 0x1ff;
+	while(!MCBSP_xrdy(mcbspControlHandle));
+	MCBSP_write(mcbspControlHandle, (num << 9) | val);
+	while(!MCBSP_xrdy(mcbspControlHandle));
+}
+
