@@ -1,11 +1,11 @@
 #include "sigproc.h"
 
-void cancel(void * ring1, int32_t * ptr1in, void * ring2, int32_t * ptr2in, void * res, int32_t * ptrres)
+void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
 {
 	int shift,i;
 	double cc[2*CROSS_CORR_MAX_DELAY+1];
-	int32_t * ptr1 = ptr1in;
-	int32_t * ptr2 = ptr2in;
+	int16_t * ptr1 = ptr1in;
+	int16_t * ptr2 = ptr2in;
 	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
 	shift = dpeak(cc, ((ringbuf *)ring1)->size);
 	if(shift < 0)
@@ -24,12 +24,12 @@ void cancel(void * ring1, int32_t * ptr1in, void * ring2, int32_t * ptr2in, void
 	}
 }
 
-void crosscorr(void * ring1, int32_t * ptr1in, void * ring2, int32_t * ptr2in, double * res, int length, int maxdel)
+void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int length, int maxdel)
 {
 	int del, i, j;
 	double mean1, mean2;
-	int32_t * ptr1 = ptr1in;
-	int32_t * ptr2 = ptr2in;
+	int16_t * ptr1 = ptr1in;
+	int16_t * ptr2 = ptr2in;
 	mean1 = mean(ring1, ptr1);
 	mean2 = mean(ring2, ptr2);
 	
@@ -82,11 +82,11 @@ int dpeak(double * arr, int length)
 	return pos;
 }
 
-double mean(void * ring, int32_t * ptrin)
+double mean(void * ring, int16_t * ptrin)
 {
 	int i;
 	double mean = 0;
-	int32_t * ptr = ptrin;
+	int16_t * ptr = ptrin;
 	for(i = 0; i < ((ringbuf *)ring)->size; i++)
 	{
 		mean += *ptr;

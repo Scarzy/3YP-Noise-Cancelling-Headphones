@@ -10,7 +10,10 @@
 
 #define WAVE_DEL 4096
 
-int32_t buf[BUF_SIZE];
+int16_t lbufin[BUF_SIZE];
+int16_t rbufin[BUF_SIZE];
+int16_t lbugout[BUF_SIZE];
+int16_t rbufout[BUF_SIZE];
 
 extern DSK6713_AIC23_CodecHandle codec;
 
@@ -18,7 +21,10 @@ uint32_t a_val_in;
 int16_t r_val_out, l_val_out;
 
 ringbuf ring;
-int32_t * ptr;
+int16_t * lptrin;
+int16_t * rptrin;
+int16_t * lptrout;
+int16_t * rptrout;
 
 int wave_count = 0;
 int16_t wave_del = 0;
