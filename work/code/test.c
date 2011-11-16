@@ -12,7 +12,7 @@
 
 int16_t lbufin[BUF_SIZE];
 int16_t rbufin[BUF_SIZE];
-int16_t lbugout[BUF_SIZE];
+int16_t lbufout[BUF_SIZE];
 int16_t rbufout[BUF_SIZE];
 
 extern DSK6713_AIC23_CodecHandle codec;
@@ -76,9 +76,9 @@ void test()
 			*lptrcpyo = *lptrcpyi;
 			*rptrcpyo = *rptrcpyi;
 			inc_ring(&lringin, &lptrcpyi);
-			inc_ring(&rringin, &lptrcpyi);
+			inc_ring(&rringin, &rptrcpyi);
 			inc_ring(&lringout, &lptrcpyo);
-			inc_ring(&rringout, &lptrcpyo);
+			inc_ring(&rringout, &rptrcpyo);
 		}
 		
 		if(!DSK6713_DIP_get(3))
