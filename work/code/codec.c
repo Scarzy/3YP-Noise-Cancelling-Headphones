@@ -489,3 +489,10 @@ void codec_reg_set(uint16_t num, uint16_t val)
 	while(!MCBSP_xrdy(mcbspControlHandle));
 }
 
+void codec_reset()
+{
+	while(!MCBSP_xrdy(mcbspControlHandle));
+	MCBSP_write(mcbspControlHandle, (15 << 9) | 0);
+	while(!MCBSP_xrdy(mcbspControlHandle));
+}
+
