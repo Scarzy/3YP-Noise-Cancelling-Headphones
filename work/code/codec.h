@@ -10,5 +10,6 @@
 
 void codecSetup(void);
 void getData(int32_t * ptr);
+void sendData(int32_t * ptr);
 
 #endif /* CODEC_H_ */

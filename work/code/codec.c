@@ -461,3 +461,15 @@ void getData(int32_t * ptr)
 		}
 	}
 }
+
+void sendData(int32_t * ptr)
+{
+	while(1)
+	{
+		if(MCBSP_rrdy(mcbspDataHandle))
+		{
+			MCBSP_write(mcbspDataHandle, *ptr);
+			break;
+		}
+	}
+}
