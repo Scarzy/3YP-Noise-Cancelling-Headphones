@@ -58,13 +58,13 @@ void test()
 {
 	while(1)
 	{
-		int32_t in;
+		uint32_t in, out;
 		if(!DSK6713_DIP_get(0))
 			wave();
 		
 		if(!DSK6713_DIP_get(1))
 		{
-			DSK6713_AIC23_read(codec,&in);
+			getData(&in);
 			*lptrin = ((in & 0xFFFF0000) >> 16);
 			*rptrin = (in & 0x0000FFFF);
 			inc_ring(&lringin, &lptrin);
@@ -83,7 +83,8 @@ void test()
 		
 		if(!DSK6713_DIP_get(3))
 		{
-			while(!DSK6713_AIC23_write(codec,(0x00000000 | (*lptrout << 16) | *rptrout)));
+			out = (0x00000000 | (*lptrout << 16) | *rptrout);
+			sendData(&out);
 			inc_ring(&lringout, &lptrout);
 			inc_ring(&rringout, &rptrout);
 		}
