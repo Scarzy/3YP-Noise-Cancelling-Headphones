@@ -469,14 +469,15 @@ void getData(uint32_t * ptr)
 	*ptr = MCBSP_read(mcbspDataHandle);
 }
 
-void sendData(int32_t * ptr)
+void sendData(uint32_t * ptr)
 {
-	while(1)
-	{
-		if(MCBSP_rrdy(mcbspDataHandle))
-		{
-			MCBSP_write(mcbspDataHandle, *ptr);
-			break;
-		}
-	}
+	while(!MCBSP_rrdy(mcbspDataHandle));
+	MCBSP_write(mcbspDataHandle, *ptr);
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
 }
+

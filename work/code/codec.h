@@ -9,7 +9,7 @@
 #define AIC23_CODEC_ID 0
 
 void codecSetup(void);
-void sendData(int32_t * ptr);
 void getData(uint32_t * ptr);
+void sendData(uint32_t * ptr);
 
 #endif /* CODEC_H_ */
