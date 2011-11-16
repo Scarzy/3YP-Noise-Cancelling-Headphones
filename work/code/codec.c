@@ -496,3 +496,15 @@ void codec_reset()
 	while(!MCBSP_xrdy(mcbspControlHandle));
 }
 
+void codec_config()
+{
+	int i;
+	codec_reg_set(CODEC_AIC23_POWERDOWN, aic23_config.regs[CODEC_AIC23_POWERDOWN]);
+	for(i = 0; i < CODEC_AIC23_NUMREGS; i++)
+	{
+		if(i != CODEC_AIC23_POWERDOWN)
+		{
+			codec_reg_set(i, aic23_config.regs[i]);
+		}
+	}
+}
