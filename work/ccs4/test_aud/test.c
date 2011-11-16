@@ -6,18 +6,29 @@
 #include "dsk6713_dip.h"
 #include "codec.h"
 
-#define BUF_SIZE 20000
+#define BUF_SIZE 10000
+
 #define WAVE_DEL 4096
 
-int32_t buf[BUF_SIZE];
+int16_t lbufin[BUF_SIZE];
+int16_t rbufin[BUF_SIZE];
+int16_t lbufout[BUF_SIZE];
+int16_t rbufout[BUF_SIZE];
 
 extern DSK6713_AIC23_CodecHandle codec;
 
-uint32_t a_val_in;
-int16_t r_val_out, l_val_out;
-
-ringbuf ring;
-int32_t * ptr;
+ringbuf lringin;
+ringbuf rringin;
+ringbuf lringout;
+ringbuf rringout;
+int16_t * lptrin;
+int16_t * rptrin;
+int16_t * lptrout;
+int16_t * rptrout;
+int16_t * lptrcpyi;
+int16_t * rptrcpyi;
+int16_t * lptrcpyo;
+int16_t * rptrcpyo;
 
 int wave_count = 0;
 int16_t wave_del = 0;
@@ -27,8 +38,18 @@ void wave(void);
 
 void main()
 {
-	init_ring(&ring, buf, BUF_SIZE);
-	init_ring_ptr(&ring, &ptr);
+	init_ring(&lringin, lbufin, BUF_SIZE);
+	init_ring(&rringin, rbufin, BUF_SIZE);
+	init_ring(&lringout, lbufout, BUF_SIZE);
+	init_ring(&rringout, rbufout, BUF_SIZE);
+	init_ring_ptr(&lringin, &lptrin);
+	init_ring_ptr(&rringin, &rptrin);
+	init_ring_ptr(&lringout, &lptrout);
+	init_ring_ptr(&rringout, &rptrout);
+	init_ring_ptr(&lringin, &lptrcpyi);
+	init_ring_ptr(&rringin, &rptrcpyi);
+	init_ring_ptr(&lringout, &lptrcpyo);
+	init_ring_ptr(&rringout, &rptrcpyo);
 	codecSetup();
 	test();
 }
@@ -37,30 +58,40 @@ void test()
 {
 	while(1)
 	{
+		uint32_t in, out;
 		if(!DSK6713_DIP_get(0))
-			wave();
-		
-		if(!DSK6713_DIP_get(1) && !DSK6713_DIP_get(2))
 		{
-//			DSK6713_AIC23_read(codec,ptr);
-			DSK6713_LED_on(3);
-			getData(ptr);
-			DSK6713_LED_on(2);
+			wave();
+//			getData(&in);
+//			sendData(&in);
 		}
 		
 		if(!DSK6713_DIP_get(1))
 		{
-			int32_t a;// = *ptr;
-//			int16_t l = a;
-			if(!DSK6713_DIP_get(3))
-				a = *ptr & 0x0000FFFF;
-			else
-				a = *ptr & 0xFFFF0000;
-//			int16_t r = a<<16;
-			while(!DSK6713_AIC23_write(codec,a));
-//			while(!DSK6713_AIC23_write(codec,r));
+			getData(&in);
+			*lptrin = ((in & 0xFFFF0000) >> 16);
+			*rptrin = (in & 0x0000FFFF);
+			inc_ring(&lringin, &lptrin);
+			inc_ring(&rringin, &rptrin);
 		}
-		inc_ring(&ring, &ptr);
+		
+		if(!DSK6713_DIP_get(2))
+		{
+			*lptrcpyo = *lptrcpyi;
+			*rptrcpyo = *rptrcpyi;
+			inc_ring(&lringin, &lptrcpyi);
+			inc_ring(&rringin, &rptrcpyi);
+			inc_ring(&lringout, &lptrcpyo);
+			inc_ring(&rringout, &rptrcpyo);
+		}
+		
+		if(!DSK6713_DIP_get(3))
+		{
+			out = (0x00000000 | (*lptrout << 16) | *rptrout);
+			sendData(&out);
+			inc_ring(&lringout, &lptrout);
+			inc_ring(&rringout, &rptrout);
+		}
 	}
 }
 
@@ -79,33 +110,33 @@ void wave()
         			DSK6713_LED_off(2);
         			DSK6713_LED_off(3);
         			break;
-        case 1: 	DSK6713_LED_off(0);
+		case 1: 	DSK6713_LED_off(0);
         			DSK6713_LED_on(1);
         			DSK6713_LED_off(2);
         			DSK6713_LED_off(3);
         			break;
-        case 2: 	DSK6713_LED_off(0);
+		case 2: 	DSK6713_LED_off(0);
         			DSK6713_LED_off(1);
         			DSK6713_LED_on(2);
         			DSK6713_LED_off(3);
         			break;
-        case 3: 	DSK6713_LED_off(0);
+		case 3: 	DSK6713_LED_off(0);
         			DSK6713_LED_off(1);
         			DSK6713_LED_off(2);
         			DSK6713_LED_on(3);
         			break;
-        case 4: 	DSK6713_LED_off(0);
+		case 4: 	DSK6713_LED_off(0);
         			DSK6713_LED_off(1);
         			DSK6713_LED_on(2);
         			DSK6713_LED_off(3);
         			break;
-        case 5: 	DSK6713_LED_off(0);
+		case 5: 	DSK6713_LED_off(0);
         			DSK6713_LED_on(1);
         			DSK6713_LED_off(2);
         			DSK6713_LED_off(3);
         			wave_count = 0;
         			break;
-        default: 	DSK6713_LED_off(0);
+		default: 	DSK6713_LED_off(0);
         			DSK6713_LED_off(1);
         			DSK6713_LED_off(2);
         			DSK6713_LED_off(3);

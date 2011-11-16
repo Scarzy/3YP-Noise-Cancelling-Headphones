@@ -1,6 +1,6 @@
 #include "ring.h"
 
-void inc_ring(void * ring, int32_t ** ptr)
+void inc_ring(void * ring, int16_t ** ptr)
 {
 	if(*ptr == ((ringbuf *)ring)->ring + ((ringbuf *)ring)->size - 1)
 		*ptr = ((ringbuf *)ring)->ring;
@@ -8,7 +8,7 @@ void inc_ring(void * ring, int32_t ** ptr)
 		*ptr = *ptr + 1;
 }
 
-void dec_ring(void * ring, int32_t ** ptr)
+void dec_ring(void * ring, int16_t ** ptr)
 {
 	if(*ptr == ((ringbuf *)ring)->ring)
 		*ptr = ((ringbuf *)ring)->ring + ((ringbuf *)ring)->size - 1;
@@ -16,10 +16,10 @@ void dec_ring(void * ring, int32_t ** ptr)
 		*ptr = *ptr - 1;
 }
 
-void init_ring(void *ring, int32_t * arr, int size)
+void init_ring(void *ring, int16_t * arr, int size)
 {
 	int i = 0;
-	int32_t * ptr;
+	int16_t * ptr;
 	((ringbuf *)ring)->ring = arr;
 	((ringbuf *)ring)->size = size;
 	ptr = ((ringbuf *)ring)->ring;
@@ -31,7 +31,7 @@ void init_ring(void *ring, int32_t * arr, int size)
 	}while( ptr != ((ringbuf *)ring)->ring );
 }
 
-void init_ring_ptr(void *ring, int32_t ** ptr)
+void init_ring_ptr(void *ring, int16_t ** ptr)
 {
 	*ptr = ((ringbuf *)ring)->ring;
 }

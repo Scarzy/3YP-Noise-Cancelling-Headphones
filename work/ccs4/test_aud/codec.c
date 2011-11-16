@@ -1,6 +1,19 @@
 #include "codec.h"
 #include <dsk6713_led.h>
 
+#define CODEC_AIC23_NUMREGS		10
+#define CODEC_AIC23_LEFTINVOL	0
+#define CODEC_AIC23_RIGHTINVOL	1
+#define CODEC_AIC23_LEFTHPVOL	2
+#define CODEC_AIC23_RIGHTHPVOL	3
+#define CODEC_AIC23_ANAPATH		4
+#define CODEC_AIC23_DIGPATH		5
+#define CODEC_AIC23_POWERDOWN	6
+#define CODEC_AIC23_DIGIF		7
+#define CODEC_AIC23_SAMPLERATE	8
+#define CODEC_AIC23_DIGACT		9
+#define CODEC_AIC23_RESET		15
+
 MCBSP_Handle mcbspControlHandle;
 MCBSP_Handle mcbspDataHandle;
 DSK6713_AIC23_CodecHandle codec;
@@ -432,21 +445,14 @@ void mcbspSetup()
 	mcbspDataHandle = MCBSP_open(MCBSP_DEV1, MCBSP_OPEN_RESET);
 	if(mcbspControlHandle == INV || mcbspDataHandle == INV)
 	{
-		while(1)
-		{
-			DSK6713_LED_on(0);
-			DSK6713_LED_off(1);
-			DSK6713_LED_on(2);
-			DSK6713_LED_off(3);
-		}
 		return;
 	}
 	MCBSP_config(mcbspControlHandle, &mcbsp_control_config);
 	MCBSP_config(mcbspDataHandle, &mcbsp_data_config);
 	MCBSP_start(mcbspControlHandle, MCBSP_XMIT_START | MCBSP_RCV_START | MCBSP_SRGR_START | MCBSP_SRGR_FRAMESYNC, 220);
-	DSK6713_AIC23_rset(0, DSK6713_AIC23_RESET, 0);
-
-	DSK6713_AIC23_config(AIC23_CODEC_ID, &aic23_config);
+	codec_reset();
+	
+	codec_config();
 	if (MCBSP_rrdy(mcbspDataHandle))
 		MCBSP_read(mcbspDataHandle);
 	MCBSP_start(mcbspDataHandle, MCBSP_XMIT_START | MCBSP_RCV_START | MCBSP_SRGR_START | MCBSP_SRGR_FRAMESYNC, 220);
@@ -454,25 +460,51 @@ void mcbspSetup()
 
 void codecSetup()
 {
-	//DSK6713_init();
-//	codec = DSK6713_AIC23_openCodec(AIC23_CODEC_ID, &aic23_config);
 	mcbspSetup();
-//	DSK6713_AIC23_setFreq(codec, DSK6713_AIC23_FREQ_48KHZ);
 }
 
-void newSample()
+void getData(uint32_t * ptr)
 {
-
+	while(!MCBSP_rrdy(mcbspDataHandle));
+	*ptr = MCBSP_read(mcbspDataHandle);
 }
 
-void getData(int32_t * ptr)
+void sendData(uint32_t * ptr)
 {
-//	while(1)
-//	{
-		if (MCBSP_rrdy(mcbspDataHandle))
+	while(!MCBSP_rrdy(mcbspDataHandle));
+	MCBSP_write(mcbspDataHandle, *ptr);
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
+	asm(" nop");
+}
+
+void codec_reg_set(uint16_t num, uint16_t val)
+{
+	val &= 0x1ff;
+	while(!MCBSP_xrdy(mcbspControlHandle));
+	MCBSP_write(mcbspControlHandle, (num << 9) | val);
+	while(!MCBSP_xrdy(mcbspControlHandle));
+}
+
+void codec_reset()
+{
+	while(!MCBSP_xrdy(mcbspControlHandle));
+	MCBSP_write(mcbspControlHandle, (15 << 9) | 0);
+	while(!MCBSP_xrdy(mcbspControlHandle));
+}
+
+void codec_config()
+{
+	int i;
+	codec_reg_set(CODEC_AIC23_POWERDOWN, aic23_config.regs[CODEC_AIC23_POWERDOWN]);
+	for(i = 0; i < CODEC_AIC23_NUMREGS; i++)
+	{
+		if(i != CODEC_AIC23_POWERDOWN)
 		{
-			*ptr = MCBSP_read(mcbspDataHandle);
-//			break;
+			codec_reg_set(i, aic23_config.regs[i]);
 		}
-//	}
+	}
 }
