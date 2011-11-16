@@ -1,6 +1,19 @@
 #include "codec.h"
 #include <dsk6713_led.h>
 
+#define CODEC_AIC23_NUMREGS		10
+#define CODEC_AIC23_LEFTINVOL		0
+#define CODEC_AIC23_RIGHTINVOL		1
+#define CODEC_AIC23_LEFTHPVOL		2
+#define CODEC_AIC23_RIGHTHPVOL		3
+#define CODEC_AIC23_ANAPATH		4
+#define CODEC_AIC23_DIGPATH		5
+#define CODEC_AIC23_POWERDOWN		6
+#define CODEC_AIC23_DIGIF		7
+#define CODEC_AIC23_SAMPLERATE		8
+#define CODEC_AIC23_DIGACT		9
+#define CODEC_AIC23_RESET		15
+
 MCBSP_Handle mcbspControlHandle;
 MCBSP_Handle mcbspDataHandle;
 DSK6713_AIC23_CodecHandle codec;
