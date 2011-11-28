@@ -83,7 +83,7 @@ void test()
 		
 		if(!DSK6713_DIP_get(3))
 		{
-			out = (0x00000000 | (*lptrout << 16) | *rptrout);
+			out = (0x00000000 | (*lptrout << 16) | (*rptrout & 0x0000FFFF));
 			sendData(&out);
 			inc_ring(&lringout, &lptrout);
 			inc_ring(&rringout, &rptrout);
