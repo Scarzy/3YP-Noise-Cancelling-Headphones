@@ -5,8 +5,9 @@
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
 #include "codec.h"
+#include "sigproc.h"
 
-#define BUF_SIZE 10000
+#define BUF_SIZE 5000
 
 #define WAVE_DEL 4096
 
@@ -38,6 +39,13 @@ void wave(void);
 
 void main()
 {
+	double s, sum1 = 196847297802.397, sum2 = 99572322254.73538, tmp = sum1 * sum2, tmp1;
+	tmp1 = fabs(tmp);
+	s = sqrt(tmp1);
+	DSK6713_LED_off(0);
+	DSK6713_LED_off(1);
+	DSK6713_LED_off(2);
+	DSK6713_LED_off(3);
 	init_ring(&lringin, lbufin, BUF_SIZE);
 	init_ring(&rringin, rbufin, BUF_SIZE);
 	init_ring(&lringout, lbufout, BUF_SIZE);
@@ -60,11 +68,7 @@ void test()
 	{
 		uint32_t in, out;
 		if(!DSK6713_DIP_get(0))
-		{
 			wave();
-//			getData(&in);
-//			sendData(&in);
-		}
 		
 		if(!DSK6713_DIP_get(1))
 		{
@@ -84,10 +88,22 @@ void test()
 			inc_ring(&lringout, &lptrcpyo);
 			inc_ring(&rringout, &rptrcpyo);
 		}
+		else
+		{
+			DSK6713_LED_off(0);
+			DSK6713_LED_off(1);
+			DSK6713_LED_off(2);
+			DSK6713_LED_off(3);
+			cancel(&lringin, lptrcpyi, &rringin, rptrcpyi, &lringout, lptrcpyo);
+			inc_ring(&lringin, &lptrcpyi);
+			inc_ring(&rringin, &rptrcpyi);
+			inc_ring(&lringout, &lptrcpyo);
+			inc_ring(&rringout, &rptrcpyo);
+		}
 		
 		if(!DSK6713_DIP_get(3))
 		{
-			out = (0x00000000 | (*lptrout << 16) | *rptrout);
+			out = (0x00000000 | (*lptrout << 16) | (*rptrout & 0x0000FFFF));
 			sendData(&out);
 			inc_ring(&lringout, &lptrout);
 			inc_ring(&rringout, &rptrout);

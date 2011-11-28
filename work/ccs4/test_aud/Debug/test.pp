@@ -22,6 +22,16 @@ test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000
 test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/dsk6713_led.h
 test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/dsk6713_dip.h
 test.obj: ../codec.h
+test.obj: ../sigproc.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/math.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/float.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/access.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/linkage.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/elfnames.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/mathf.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/unaccess.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/mathl.h
+test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/unaccess.h
 
 ../test.c: 
 ../ring.h: 
@@ -45,3 +55,13 @@ C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/c
 C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/dsk6713_led.h: 
 C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/dsk6713_dip.h: 
 ../codec.h: 
+../sigproc.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/math.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/float.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/access.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/linkage.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/elfnames.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/mathf.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/unaccess.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/mathl.h: 
+C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/unaccess.h: 

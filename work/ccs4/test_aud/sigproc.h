@@ -2,6 +2,7 @@
 #define __SIG_PROC_H_
 
 #include <math.h>
+#include "dsk6713_led.h"
 #include "ring.h"
 
 #define CROSS_CORR_MAX_DELAY 200
