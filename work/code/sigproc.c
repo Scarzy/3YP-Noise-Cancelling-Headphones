@@ -12,15 +12,16 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	{
 		for(i = 0; i < shift; i++)
 		{
-			inc_ring(&ring2, &ptr2);
+			inc_ring(ring2, &ptr2);
 		}
 	}
 	for(i = 0; i < ((ringbuf *)ring1)->size; i++)
 	{
 		*ptrres = ((i - shift) <= 0) ? *ptr1 : *ptr1 - *ptr2 ;
-		inc_ring(&ring1, &ptr1);
+		inc_ring(ring1, &ptr1);
+		inc_ring(res,&ptrres);
 		if(!(i < shift))
-			inc_ring(&ring2, &ptr2);
+			inc_ring(ring2, &ptr2);
 	}
 }
 
@@ -47,8 +48,8 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 			{
 				num += ((*ptr1 - mean1) * (*ptr2 - mean2));
 			}
-			inc_ring(&ring1, &ptr1);
-			inc_ring(&ring2, &ptr2);
+			inc_ring(ring1, &ptr1);
+			inc_ring(ring2, &ptr2);
 		}
 		
 		ptr1 = ptr1in;
@@ -59,8 +60,8 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 		{
 			sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));
 			sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));
-			inc_ring(&ring1, &ptr1);
-			inc_ring(&ring2, &ptr2);
+			inc_ring(ring1, &ptr1);
+			inc_ring(ring2, &ptr2);
 		}
 		s = sqrt(sum1 * sum2);
 		res[del + maxdel] = num / s;
@@ -90,7 +91,7 @@ double mean(void * ring, int16_t * ptrin)
 	for(i = 0; i < ((ringbuf *)ring)->size; i++)
 	{
 		mean += *ptr;
-		inc_ring(&ring, &ptr);
+		inc_ring(ring, &ptr);
 	}
 	return mean / ((ringbuf *)ring)->size;
 }
