@@ -1,9 +1,10 @@
 #include "sigproc.h"
 
+double cc[2*CROSS_CORR_MAX_DELAY+1];
+
 void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
 {
 	int shift,i;
-	double cc[2*CROSS_CORR_MAX_DELAY+1];
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
 	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
