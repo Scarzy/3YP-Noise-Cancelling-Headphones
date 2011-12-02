@@ -5,6 +5,7 @@
 #include "dsk6713_led.h"
 #include "dsk6713_dip.h"
 #include "codec.h"
+#include "sigproc.h"
 
 #define BUF_SIZE 10000
 
@@ -75,6 +76,14 @@ void test()
 		{
 			*lptrcpyo = *lptrcpyi;
 			*rptrcpyo = *rptrcpyi;
+			inc_ring(&lringin, &lptrcpyi);
+			inc_ring(&rringin, &rptrcpyi);
+			inc_ring(&lringout, &lptrcpyo);
+			inc_ring(&rringout, &rptrcpyo);
+		}
+		else
+		{
+			cancel(&lringin, lptrcpyi, &rringin, rptrcpyi, &lringout, lptrcpyo);
 			inc_ring(&lringin, &lptrcpyi);
 			inc_ring(&rringin, &rptrcpyi);
 			inc_ring(&lringout, &lptrcpyo);
