@@ -25,7 +25,7 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	}
 }
 
-void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int length, int maxdel)
+void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int16_t length, int16_t maxdel)
 {
 	int del, i, j;
 	double mean1, mean2;
