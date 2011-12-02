@@ -36,9 +36,9 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 	
 	for(del = -maxdel; del <= maxdel; del++)
 	{
-		int sum1, sum2;
-		double s;
-		int num = 0;
+		double sum1, sum2;
+		double s, sqrttmp0, sqrttmp1;
+		double num = 0;
 		ptr1 = ptr1in;
 		ptr2 = ptr2in;
 		for(i = 0; i < length; i++)
@@ -63,7 +63,9 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 			inc_ring(ring1, &ptr1);
 			inc_ring(ring2, &ptr2);
 		}
-		s = sqrt(sum1 * sum2);
+		sqrttmp0 = sum1 * sum2;
+		sqrttmp1 = fabs(sqrttmp0);
+		s = sqrt(sqrttmp1);
 		res[del + maxdel] = num / s;
 	}
 }
