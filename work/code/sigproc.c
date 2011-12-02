@@ -7,7 +7,7 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
 	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
-	shift = dpeak(cc, ((ringbuf *)ring1)->size);
+	shift = dpeak(cc, 2*CROSS_CORR_MAX_DELAY+1);
 	if(shift < 0)
 	{
 		for(i = 0; i < shift; i++)
@@ -34,7 +34,7 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 	mean1 = mean(ring1, ptr1);
 	mean2 = mean(ring2, ptr2);
 	
-	for(del = -maxdel; del < maxdel; del++)
+	for(del = -maxdel; del <= maxdel; del++)
 	{
 		int sum1, sum2;
 		double s;
