@@ -1,11 +1,15 @@
 #include "sigproc.h"
 
+double cc[2*CROSS_CORR_MAX_DELAY+1];
+
 void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
 {
 	int shift,i;
-	double cc[2*CROSS_CORR_MAX_DELAY+1];
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
+	double s = 0, sum1 = 196847297802.397, sum2 = 99572322254.73538, tmp = sum1 * sum2, tmp1;
+	tmp1 = fabs(tmp);
+	s = sqrt(tmp1);
 	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
 	shift = dpeak(cc, 2*CROSS_CORR_MAX_DELAY+1);
 	if(shift < 0)
@@ -19,12 +23,13 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	{
 		*ptrres = ((i - shift) <= 0) ? *ptr1 : *ptr1 - *ptr2 ;
 		inc_ring(ring1, &ptr1);
+		inc_ring(res,&ptrres);
 		if(!(i < shift))
 			inc_ring(ring2, &ptr2);
 	}
 }
 
-void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int length, int maxdel)
+void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int16_t length, int16_t maxdel)
 {
 	int del, i, j;
 	double mean1, mean2;
@@ -37,17 +42,17 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 	{
 		double sum1, sum2;
 		double s, sqrttmp0, sqrttmp1;
-		int num = 0;
+		double num = 0;
 		ptr1 = ptr1in;
 		ptr2 = ptr2in;
-		if(del == -100)
+/*		if(del == -100)
 			DSK6713_LED_on(0);
 		if(del == 0)
 			DSK6713_LED_on(1);
 		if(del == 25)
 			DSK6713_LED_on(2);
 		if(del == 26)
-			DSK6713_LED_on(3);
+			DSK6713_LED_on(3);*/
 		for(i = 0; i < length; i++)
 		{
 			j = i + del;
@@ -70,22 +75,23 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 			inc_ring(ring1, &ptr1);
 			inc_ring(ring2, &ptr2);
 		}
-		DSK6713_LED_on(0);
+//		DSK6713_LED_on(0);
 		sqrttmp0 = sum1 * sum2;
-		DSK6713_LED_on(1);
+//		DSK6713_LED_on(1);
 		sqrttmp1 = fabs(sqrttmp0);
-		DSK6713_LED_on(2);
+//		DSK6713_LED_on(2);
 		s = sqrt(sqrttmp1);
-		DSK6713_LED_on(3);
-		if(s == 0.0)
+//		DSK6713_LED_on(3);
+/*		if(s == 0.0)
 		{
 			DSK6713_LED_on(0);
 			DSK6713_LED_on(1);
 			DSK6713_LED_on(2);
 			DSK6713_LED_on(3);
-		}
+		}*/
 		res[del + maxdel] = num / s;
 	}
+//	DSK6713_LED_off(0);
 }
 
 int dpeak(double * arr, int length)

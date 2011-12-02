@@ -9,7 +9,7 @@
 
 #define BUF_SIZE 5000
 
-#define WAVE_DEL 4096
+#define WAVE_DEL 1
 
 int16_t lbufin[BUF_SIZE];
 int16_t rbufin[BUF_SIZE];
@@ -90,10 +90,10 @@ void test()
 		}
 		else
 		{
-			DSK6713_LED_off(0);
+/*			DSK6713_LED_off(0);
 			DSK6713_LED_off(1);
 			DSK6713_LED_off(2);
-			DSK6713_LED_off(3);
+			DSK6713_LED_off(3);*/
 			cancel(&lringin, lptrcpyi, &rringin, rptrcpyi, &lringout, lptrcpyo);
 			inc_ring(&lringin, &lptrcpyi);
 			inc_ring(&rringin, &rptrcpyi);
