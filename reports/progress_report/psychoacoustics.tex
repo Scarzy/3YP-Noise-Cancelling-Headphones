@@ -15,3 +15,17 @@ Echoes with the required duration or longer will be heard, and the length of the
 Clearly the amplitude of the echo also becomes significant, an echo with a noticeable delay and without any amplitude loss will be more apparent to the listener than an echo with a reduction in the amplitude.
 The length of duration required for an echo to become noticeable is approximately 10ms \cite{TimeSpaceHearing}, however there are other times which have a notable effect on the hearing and are commonly used in audio mixing.
 Some of these times can be seen in Table~\ref{tab:delaytimes}.
+
+\begin{table}[H]
+	\begin{tabular}[c]{l | l}
+		Delay Time			& Resulting Impression \\ \hline
+		0ms				& Mono source in center \\
+		0ms~\textless~x~\textless~10ms	& Sound source appears to be hard-panned \\ & to non-delayed speaker. Delay otherwise unnoticed \\
+		10ms~\textless~x~\textless~30ms	& Impression of amplification and added ``liveness'' \\
+		15ms~\textless~x~\textless~25ms	& Impression of stereo signal from mono source \\ & can be generated \\
+		30ms~\textless~x~\textless~50ms	& Delay becomes noticeable as a separate signal \\
+		\textgreater~50ms		& Obvious echo \\
+	\end{tabular}
+	\label{tab:delaytimes}
+	\caption{The effect on listener impression of sound source imaging, produced by different delay times imposed on a signal sent to left and right speakers. Based on Table 10.2 by Daniel M. Thompson \cite{UnderstandingAudio}}
+\end{table}
