@@ -29,3 +29,6 @@ Some of these times can be seen in Table~\ref{tab:delaytimes}.
 	\label{tab:delaytimes}
 	\caption{The effect on listener impression of sound source imaging, produced by different delay times imposed on a signal sent to left and right speakers. Based on Table 10.2 by Daniel M. Thompson \cite{UnderstandingAudio}}
 \end{table}
+
+This time restriction has an effect on the rate at which the data must be processed.
+Each sample must be dealt with and have the corresponding sample sent back out within the 10ms, otherwise the sound will not be cancelled, but instead produce a high frequency ringing which will annoy the user.
