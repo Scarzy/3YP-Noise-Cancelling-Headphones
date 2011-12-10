@@ -37,30 +37,3 @@ Getting the chip produced is a lot more expensive than either of the other two a
 After comparing these three options, this project will be based on a DSP.
 This is due to the larger memory capacity and flexibility in the modifications that can be made.
 The knock-on effect of this is that the software side must be highly optimised for speed, in order to counteract the slowness of the DSP. 
-
-
-
-
-Notes:
-
-DSP over FPGA:
-\begin{itemize}
-\item Larger memory for chip size (RAM would swallow basically entire chip)
-\item Greater flexibility while programming (no hardware size limitations)
-\item Pinout fixed, on reprogramming FPGA might want to change to make it physically possible, whereas DSP is fixed pinout and only code changes
-\end{itemize}
-
-FPGA over DSP:
-\begin{itemize}
-\item Potentially faster
-\item More flexible for speed considerations (can implement multiple functions at once, while DSP can only do single instruction at a time)
-\end{itemize}
-
-ASIC:
-\begin{itemize}
-\item Much faster
-\item Much more expensive
-\item Once made, that's it, no modifications, it's fixed
-\item Further work needed, possibly even as far down as transister level
-\item Much easier to make a mistake
-\end{itemize}
