@@ -12,7 +12,14 @@ Where my current method could perhaps be considered to be a bit of a ``Brute for
 
 LMS is a form of adaptive filter.
 It works by reducing the average power of the feedback signal by modifying the co-efficients in a Finite Impulse Response (FIR) filter.
-An example implementation is shown below in figure .
+An example implementation is shown below in figure~\ref{fig:lmsfilter}.
+
+\begin{figure}
+	\centering
+	\includegraphics{./img/lmsfilter.png}
+	\caption{An example setup for the use of an LMS filter in noise cancellation \cite{AdvancedDSPing}}
+	\label{fig:lmsfilter}
+\end{figure}
 
 \subsection{ICA}
 Independent Component Analysis (ICA) is a method for identifying and separating multiple sound sources without prior knowledge of what they are.
