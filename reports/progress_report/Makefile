@@ -1,6 +1,6 @@
 all: 
 	pdflatex progress.tex
-	#bibtex progress
+	bibtex progress
 	pdflatex progress.tex
 	pdflatex progress.tex
 
