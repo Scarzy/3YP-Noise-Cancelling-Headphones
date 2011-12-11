@@ -17,7 +17,8 @@ The length of duration required for an echo to become noticeable is approximatel
 Some of these times can be seen in Table~\ref{tab:delaytimes}.
 
 \begin{table}[H]
-	\begin{tabular}[c]{l | l}
+	\begin{tabular}[c]{| l | l |}
+		\hline
 		Delay Time			& Resulting Impression \\ \hline
 		0ms				& Mono source in center \\
 		0ms~\textless~x~\textless~10ms	& Sound source appears to be hard-panned \\ & to non-delayed speaker. Delay otherwise unnoticed \\
@@ -25,6 +26,7 @@ Some of these times can be seen in Table~\ref{tab:delaytimes}.
 		15ms~\textless~x~\textless~25ms	& Impression of stereo signal from mono source \\ & can be generated \\
 		30ms~\textless~x~\textless~50ms	& Delay becomes noticeable as a separate signal \\
 		\textgreater~50ms		& Obvious echo \\
+		\hline
 	\end{tabular}
 	\label{tab:delaytimes}
 	\caption{The effect on listener impression of sound source imaging, produced by different delay times imposed on a signal sent to left and right speakers. Based on Table 10.2 by Daniel M. Thompson \cite{UnderstandingAudio}}
