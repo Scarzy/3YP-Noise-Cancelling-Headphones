@@ -10,9 +10,6 @@ It will also allow for a larger choice in which DSP is used, allowing a faster, 
 \section{Algorithm}
 \subsection{LMS}
 \label{sec:LMS}
-Least Mean Squares (LMS) is an alternative method for achieving the cancellation.
-Where my current method could perhaps be considered to be a bit of a ``Brute force'' method, LMS is a cleaner, neater method.
-
 LMS is a form of adaptive filter.
 It works by reducing the average power of the feedback signal by modifying the coefficients in a Finite Impulse Response (FIR) filter.
 An example implementation is shown below in figure~\ref{fig:lmsfilter}.
@@ -30,8 +27,8 @@ This project will be feeding the inverse of the noise estimate, -\^{n}(m), to th
 \subsection{ICA}
 Independent Component Analysis (ICA) is a method for identifying and separating multiple sound sources without prior knowledge of what they are.
 ICA will allow the user to select an undesired input without having to direct a microphone to detect it.
-The ICA will separate out the sounds entering the ears and allow the user to select which one is the `nuisance' sound, this will then be fed into the cancellation algorithm to remove it from the mix.
-Certain stages in the cancellation will no longer be required for when the ICA is used, as they will have been accounted for in the ICA calculation.
+The ICA will separate out the sounds entering the ears and allow the user to select which one is the `nuisance' sound.
+This will then be fed into a modified cancellation algorithm to remove it from the mix.
 
 ICA normally requires the use of at least as many inputs as there are signal sources\cite{AdvancedDSPing}.
 Hopefully, using information from psychoacoustics, this can be circumvented from the knowledge that the inputs are directional, and accounting for the effect the head has on the signals.
