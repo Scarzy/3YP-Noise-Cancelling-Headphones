@@ -2,7 +2,8 @@
 The current algorithm employed in this project is to take the inputs from the `nuisance' source and the `heard' source, and then to compare them.
 This comparison leads to information such as any time delays between the sources being revealed.
 With this information the signal can then be shifted to account for the delays, and then the amplitude comparison is made in order to avoid over cancellation and the introduction of additional noise.
-
+\\
+\\
 The time delay detection is achieved through the use of cross-correlation between the heard and the nuisance sound.
 This results in an array of values between -1 and 1 relating to how well the two signals match at each applicable delay.
 An example of this can be seen in figure~\ref{fig:crosscorr}
@@ -19,7 +20,7 @@ When this value is at a minimum the magnitude matches that being heard, it can t
 	\label{fig:crosscorr}
 \end{figure}
 
-
+\noindent
 In its current state, the algorithm is functional both when modelled in Matlab, and on the DSP, however it is not suitably up to speed and takes far too long to process the data.
 This can be improved by using features of how the data is stored and how the calculations are achieved.
 Many of the loops over the data can be removed and replaced by a couple of simple functions, drastically reducing the time taken.
