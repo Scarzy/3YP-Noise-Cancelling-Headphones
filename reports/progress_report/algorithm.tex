@@ -6,7 +6,7 @@ With this information the signal can then be shifted to account for the delays, 
 \\
 The time delay detection is achieved through the use of cross-correlation between the heard and the nuisance sound.
 This results in an array of values between -1 and 1 relating to how well the two signals match at each applicable delay.
-An example of this can be seen in figure~\ref{fig:crosscorr}
+An example of this can be seen in figure~\ref{fig:crosscorr}.
 Peak detection can then be run on this array, with the position of the peak in the array giving the time delay between the two signals, and whether the value is positive or negative providing information relating to any phase shift experience.
 By shifting the signals to suit, and inverting if necessary, the summation of the two signals can then be correlated against the noise source.
 Only paying attention to the value at r\textsubscript{xy}[0], no additional shifting, leads to the possibility of different magnitudes of the noise signal being used to determine the magnitude of the noise being heard.
