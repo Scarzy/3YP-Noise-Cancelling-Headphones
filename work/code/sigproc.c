@@ -34,6 +34,8 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 	double mean1, mean2;
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
+	double s, sqrttmp0, sqrttmp1;
+	double sum1 = 0, sum2 = 0;
 	
 	ccmeansum1 += *ptr1;
 	inc_ring(ring1, &ptr1);
@@ -46,15 +48,23 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 	mean1 = ccmeansum1 / ((ringbuf *)ring1)->size;
 	mean2 = ccmeansum2 / ((ringbuf *)ring2)->size;
 	
+	for(i = 0; i < length; i++)
+	{
+		sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));
+		sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));
+		inc_ring(ring1, &ptr1);
+		inc_ring(ring2, &ptr2);
+	}
+	
+	sqrttmp0 = sum1 * sum2;
+	sqrttmp1 = fabs(sqrttmp0);
+	s = sqrt(sqrttmp1);
+	
 	for(del = -maxdel; del <= maxdel; del++)
 	{
-		double sum1, sum2;
-		double s, sqrttmp0, sqrttmp1;
 		double num = 0;
 		ptr1 = ptr1in;
 		ptr2 = ptr2in;
-		sum1 = 0;
-		sum2 = 0;
 		for(i = 0; i < length; i++)
 		{
 			j = i + del;
@@ -62,15 +72,10 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 			{
 				num += ((*ptr1 - mean1) * (*ptr2 - mean2));
 			}
-			sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));
-			sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));
 			inc_ring(ring1, &ptr1);
 			inc_ring(ring2, &ptr2);
 		}
-		
-		sqrttmp0 = sum1 * sum2;
-		sqrttmp1 = fabs(sqrttmp0);
-		s = sqrt(sqrttmp1);
+			
 		res[del + maxdel] = num / s;
 	}
 }
