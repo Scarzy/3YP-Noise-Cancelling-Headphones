@@ -1,0 +1,15 @@
+3YP Selective Active Noise Cancelling Headphones
+
+Author:		Thomas Scarsbrook
+Supervisor:	Steve Gunn
+Examiner:	Rob Maunder
+
+This is the files for the selective noise cancelling headphones that I am
+producing for my third year project. The headphones remove a single noise
+source from the users ears.
+
+Directory structure:
+docs - Documents sourced from other sources, stored purely for ease of reference
+management - Documents relating to the management of the project
+reports - The various reports required for the project
+work - The code and schematics etc for the production of the project
