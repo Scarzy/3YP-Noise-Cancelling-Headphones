@@ -9,8 +9,7 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	int shift,i;
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
-	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
-	shift = dpeak(cc, 2*CROSS_CORR_MAX_DELAY+1);
+	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY, &shift);
 	if(shift < 0)
 	{
 		for(i = 0; i < shift; i++)
@@ -28,7 +27,7 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	}
 }
 
-void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int16_t length, int16_t maxdel)
+void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int16_t length, int16_t maxdel, int * shift)
 {
 	int del, i, j;
 	double mean1, mean2;
@@ -36,6 +35,9 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 	int16_t * ptr2 = ptr2in;
 	double s, sqrttmp0, sqrttmp1;
 	double sum1 = 0, sum2 = 0;
+	
+	int pos = 0;
+	double max = 0;
 	
 	ccmeansum1 += *ptr1;
 	inc_ring(ring1, &ptr1);
@@ -77,21 +79,13 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 		}
 			
 		res[del + maxdel] = num / s;
-	}
-}
-
-int dpeak(double * arr, int length)
-{
-	double max = 0;
-	int i, pos = 0;
-	for(i = 0; i < length; i++)
-	{
+		
 		if(abs(arr[i]) > max)
 		{
 			max = abs(arr[i]);
 			pos = i;
 		}
 	}
-	return pos;
+	shift = pos;
 }
 
