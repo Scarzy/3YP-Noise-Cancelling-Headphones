@@ -21,7 +21,7 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	{
 		*ptrres = ((i - shift) <= 0) ? *ptr1 : *ptr1 - *ptr2 ;
 		inc_ring(ring1, &ptr1);
-		inc_ring(res,&ptrres);
+		inc_ring(res, &ptrres);
 		if(!(i < shift))
 			inc_ring(ring2, &ptr2);
 	}
