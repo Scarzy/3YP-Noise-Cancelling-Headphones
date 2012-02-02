@@ -1,6 +1,6 @@
 #include "lms.h"
 
-void build_tap()
+void build_tap(double * cc, int ccsize, double * ac, int acsize, double * tap, int taplength)
 {
 	
 }
