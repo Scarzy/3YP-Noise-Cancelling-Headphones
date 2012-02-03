@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #define MU_VALUE 0.8
+#define LEAK_FACTOR 1
 
 void build_tap(double * noiin, int noisize, double * err, double * tap, int taplength);
 void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16_t * out);
