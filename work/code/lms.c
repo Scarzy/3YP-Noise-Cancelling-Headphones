@@ -2,7 +2,11 @@
 
 void build_tap(double * noiin, int noisize, double * err, double * tap, int taplength)
 {
-	
+	int i;
+	for(i = 0; i < taplength; i++)
+	{
+		tap[i] -= MU_VALUE * noiin[i] * err;
+	}
 }
 
 void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16_t * out)
