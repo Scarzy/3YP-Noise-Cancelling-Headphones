@@ -5,7 +5,7 @@ void build_tap(double * noiin, int noisize, double * err, double * tap, int tapl
 	int i;
 	for(i = 0; i < taplength; i++)
 	{
-		tap[i] -= MU_VALUE * noiin[i] * err;
+		tap[i] = LEAK_FACTOR * tap[i] - MU_VALUE * noiin[i] * err;
 	}
 }
 
