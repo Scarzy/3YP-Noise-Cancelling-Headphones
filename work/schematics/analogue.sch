@@ -1,0 +1,61 @@
+v 20110115 2
+C 43500 45800 1 0 0 input-1.sym
+{
+T 43500 46100 5 10 0 0 0 0 1
+device=INPUT
+}
+C 43500 45300 1 0 0 input-1.sym
+{
+T 43500 45600 5 10 0 0 0 0 1
+device=INPUT
+}
+C 43500 44800 1 0 0 input-1.sym
+{
+T 43500 45100 5 10 0 0 0 0 1
+device=INPUT
+}
+C 43500 44300 1 0 0 input-1.sym
+{
+T 43500 44600 5 10 0 0 0 0 1
+device=INPUT
+}
+C 43500 43800 1 0 0 input-1.sym
+{
+T 43500 44100 5 10 0 0 0 0 1
+device=INPUT
+}
+C 43500 43300 1 0 0 input-1.sym
+{
+T 43500 43600 5 10 0 0 0 0 1
+device=INPUT
+}
+C 53300 45800 1 0 0 output-1.sym
+{
+T 53400 46100 5 10 0 0 0 0 1
+device=OUTPUT
+}
+C 53300 45300 1 0 0 output-1.sym
+{
+T 53400 45600 5 10 0 0 0 0 1
+device=OUTPUT
+}
+C 53300 44800 1 0 0 output-1.sym
+{
+T 53400 45100 5 10 0 0 0 0 1
+device=OUTPUT
+}
+C 53300 44300 1 0 0 output-1.sym
+{
+T 53400 44600 5 10 0 0 0 0 1
+device=OUTPUT
+}
+C 53300 43800 1 0 0 output-1.sym
+{
+T 53400 44100 5 10 0 0 0 0 1
+device=OUTPUT
+}
+C 53300 43300 1 0 0 output-1.sym
+{
+T 53400 43600 5 10 0 0 0 0 1
+device=OUTPUT
+}
