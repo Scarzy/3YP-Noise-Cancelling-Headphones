@@ -20,5 +20,6 @@ work - The code and schematics etc for the production of the project
 	ccs4 - The project used in CCS4 for loading onto the DSP
 	extra - Unrelated code, such as producing input sequences
 	matlab - MATLAB code to model the system
+	schematics - The schematics for the hardware side of the system
 	headphone-reverse-engineer - The reverse engineered schematic of the
 				     philips headphones
