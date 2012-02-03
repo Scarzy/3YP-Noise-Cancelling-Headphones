@@ -86,6 +86,6 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 			pos = (del + maxdel);			//Get position of peak
 		}
 	}
-	shift = pos;						//Set the peak value
+	*shift = pos;						//Set the peak value
 }
 
