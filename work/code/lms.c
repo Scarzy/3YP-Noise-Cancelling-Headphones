@@ -27,3 +27,14 @@ void gen_error(int16_t * desin, int16_t * estin, int16_t * err)
 	*err = *desin + *errin;
 }
 
+void vec_val_mu(double * acin, int acsize, double * mu)
+{
+	//Calculate eigenvalues of input signal autocorrelation
+	//Assign each mu to the eigenvalue
+	int i;
+	for(i = 0; i < TAP_LENGTH; i++)
+	{
+		mu[i] = acin[i];
+	}
+}
+
