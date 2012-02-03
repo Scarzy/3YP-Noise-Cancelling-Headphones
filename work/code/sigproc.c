@@ -80,10 +80,10 @@ void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, d
 			
 		res[del + maxdel] = num / s;
 		
-		if(abs(arr[i]) > max)
+		if(abs(res[del + maxdel]) > max)				
 		{
-			max = abs(arr[i]);
-			pos = i;
+			max = abs(res[del + maxdel]);
+			pos = (del + maxdel);
 		}
 	}
 	shift = pos;
