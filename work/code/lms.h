@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define TAP_LENGTH 10
+
 #define MU_VALUE 0.8
 #define LEAK_FACTOR 1
 
