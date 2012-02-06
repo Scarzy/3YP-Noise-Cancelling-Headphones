@@ -7,7 +7,7 @@
 #include "codec.h"
 #include "sigproc.h"
 
-#define BUF_SIZE 5000
+#define BUF_SIZE 50
 
 #define WAVE_DEL 1
 
