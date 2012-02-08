@@ -83,7 +83,7 @@ void test()
 		}
 		else
 		{
-			cancel(&lringin, lptrcpyi, &rringin, rptrcpyi, &lringout, lptrcpyo);
+			cancel(&lringin, lptrcpyi, ((in & 0xFFFF0000) >>16), &rringin, rptrcpyi, (in & 0x0000FFFF), &lringout, lptrcpyo);
 			inc_ring(&lringin, &lptrcpyi);
 			inc_ring(&rringin, &rptrcpyi);
 			inc_ring(&lringout, &lptrcpyo);
