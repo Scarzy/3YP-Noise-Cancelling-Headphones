@@ -1,0 +1,13 @@
+#Resisters
+
+#Capacitors
+c-220u, 220uF Polarised Capacitor, 493-4115-1-ND, Digikey, 1, 1411
+c-10u, 10uF Polarised Capacitor, 1658212, farnell, 5, 2012
+c-+4u7, 4.7uF Polarised Capacitor, 1961953, farnell, 10, 1206
+c-4u7, 4.7uF Capacitor, 1759427RL, farnell, 1, 0805
+c-1u, 1uF Capacitor, 1759398RL, farnell, 100, 0603
+c-0u1, 0.1uF Capacitor, 1759123RL, farnell, 1, 0603
+
+#uC
+tms320c6713bzdp300, Texas Instruments C6713 DSP, 595-320C6713BZDP300, mouser, 1, bga272
+wm8988, Wolfson uElectronics WM8988 Stereo CODEC, 1776294, farnell, 1
