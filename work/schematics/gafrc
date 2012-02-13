@@ -1,3 +1,4 @@
 (component-library "./components/sym")
+(component-library "./hierachy")
 (component-library "./")
 (source-library "./")
