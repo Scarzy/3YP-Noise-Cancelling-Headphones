@@ -1,5 +1,6 @@
 #Resisters
 r-10k, 10KΩ Resister, 1469748, farnell, 50, 0603
+r-120, 120Ω Resistor, 9337059, farnell, 50, 1206
 
 #Capacitors
 c-220u, 220uF Polarised Capacitor, 493-4115-1-ND, Digikey, 1, 1411
@@ -15,3 +16,5 @@ cn-header2x7-box,2x7 through-hole 2.5mm boxed header,8395926,farnell,1,through_h
 #uC
 tms320c6713bzdp300, Texas Instruments C6713 DSP, 595-320C6713BZDP300, mouser, 1, bga272
 wm8988, Wolfson uElectronics WM8988 Stereo CODEC, 1776294, farnell, 1
+ld1117s33, STM 3.3V Linear Regulator 1.3A, 1467779, farnell, 1
+ld1117s12, STM 1.2V Linear Regulator 1.3A, 1467778, farnell, 1
