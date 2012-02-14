@@ -9,6 +9,9 @@ c-4u7, 4.7uF Capacitor, 1759427RL, farnell, 1, 0805
 c-1u, 1uF Capacitor, 1759398RL, farnell, 100, 0603
 c-0u1, 0.1uF Capacitor, 1759123RL, farnell, 1, 0603
 
+#Connectors
+cn-header2x7-box,2x7 through-hole 2.5mm boxed header,8395926,farnell,1,through_hole
+
 #uC
 tms320c6713bzdp300, Texas Instruments C6713 DSP, 595-320C6713BZDP300, mouser, 1, bga272
 wm8988, Wolfson uElectronics WM8988 Stereo CODEC, 1776294, farnell, 1
