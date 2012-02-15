@@ -1,6 +1,7 @@
 #Resisters
 r-10k, 10KΩ Resister, 1469748, farnell, 50, 0603
 r-120, 120Ω Resistor, 9337059, farnell, 50, 1206
+r-33, 33Ω Resistor, 1500704, farnell, 5, 0805
 
 #Capacitors
 c-220u, 220uF Polarised Capacitor, 493-4115-1-ND, Digikey, 1, 1411
