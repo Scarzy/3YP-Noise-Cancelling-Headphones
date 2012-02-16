@@ -3,6 +3,8 @@ C 48700 44500 1 0 0 codec.sym
 {
 T 51000 49500 5 10 1 1 0 6 1
 refdes=U?
+T 48700 44500 5 10 0 1 0 0 1
+source=codec.sch
 }
 C 48200 49500 1 0 0 generic-power.sym
 {
@@ -74,6 +76,8 @@ C 43300 51200 1 0 0 power.sym
 {
 T 45600 53300 5 10 1 1 0 6 1
 refdes=U?
+T 43300 51200 5 10 0 1 0 0 1
+source=power.sch
 }
 C 41000 51900 1 0 0 connector2-1.sym
 {
@@ -177,6 +181,8 @@ C 48700 50900 1 0 0 dsp.sym
 {
 T 51000 54200 5 10 1 1 0 6 1
 refdes=U?
+T 48700 50900 5 10 0 1 0 0 1
+source=dsp.sch
 }
 N 51300 48500 52500 48500 4
 {
