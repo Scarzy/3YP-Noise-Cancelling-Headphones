@@ -8,7 +8,7 @@ pinnumber=2
 T 200 250 5 8 0 1 0 8 1
 pinseq=2
 T 350 300 9 8 1 1 0 0 1
-pinlabel=-ve pwr in
+pinlabel=negpwrin
 T 350 300 5 8 0 1 0 2 1
 pintype=pwr
 }
@@ -19,7 +19,7 @@ pinnumber=1
 T 200 1750 5 8 0 1 0 8 1
 pinseq=1
 T 350 1800 9 8 1 1 0 0 1
-pinlabel=+ve pwr in
+pinlabel=pospwrin
 T 350 1800 5 8 0 1 0 2 1
 pintype=pwr
 }
@@ -30,7 +30,7 @@ pinnumber=6
 T 2400 850 5 8 0 1 0 2 1
 pinseq=6
 T 2250 900 9 8 1 1 0 6 1
-pinlabel=Amp +ve
+pinlabel=Amp
 T 2250 900 5 8 0 1 0 8 1
 pintype=pwr
 }
@@ -41,7 +41,7 @@ pinnumber=5
 T 2400 1150 5 8 0 1 0 2 1
 pinseq=5
 T 2250 1200 9 8 1 1 0 6 1
-pinlabel=Codec +ve
+pinlabel=Codec
 T 2250 1200 5 8 0 1 0 8 1
 pintype=pwr
 }

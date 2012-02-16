@@ -18,14 +18,14 @@ C 49200 49600 1 0 1 in-1.sym
 T 49200 49900 5 10 0 0 0 6 1
 device=INPUT
 T 49900 49600 5 10 1 1 0 6 1
-refdes=Codec +ve
+refdes=Codec
 }
 C 52400 46900 1 0 1 in-1.sym
 {
 T 52400 47200 5 10 0 0 0 6 1
 device=INPUT
 T 52400 47200 5 10 1 1 0 6 1
-refdes=Amp +ve
+refdes=Amp
 }
 C 52400 45900 1 0 1 in-1.sym
 {
@@ -39,14 +39,14 @@ C 43400 48400 1 0 0 in-1.sym
 T 43400 48700 5 10 0 0 0 0 1
 device=INPUT
 T 43400 48700 5 10 1 1 0 0 1
-refdes=+ve pwr in
+refdes=pospwrin
 }
 C 43400 47900 1 0 0 in-1.sym
 {
 T 43400 48200 5 10 0 0 0 0 1
 device=INPUT
 T 43400 48200 5 10 1 1 0 0 1
-refdes=-ve pwr in
+refdes=negpwrin
 }
 C 51400 45400 1 0 0 gnd-1.sym
 C 44200 47400 1 0 0 gnd-1.sym
