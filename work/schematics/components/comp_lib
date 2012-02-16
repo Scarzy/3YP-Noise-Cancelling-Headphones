@@ -21,3 +21,6 @@ wm8988, Wolfson uElectronics WM8988 Stereo CODEC, 1776294, farnell, 1
 ld1117s33, STM 3.3V Linear Regulator 1.3A, 1467779, farnell, 1
 ld1117s12, STM 1.2V Linear Regulator 1.3A, 1467778, farnell, 1
 3chclk, ROHM 3 Channel Clock Generator , 1716138, farnell, 1
+
+#Crystals
+xtal-12m, 12MHz Crystal, 1652551, farnell, 1, SMD
