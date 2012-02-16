@@ -460,7 +460,7 @@ device=RESISTOR
 T 62200 74200 5 10 1 1 0 0 1
 refdes=R?
 T 62200 73700 5 10 1 1 0 0 1
-value=r-10k
+value=r-1k
 T 62000 73900 5 10 0 1 0 0 1
 footprint=0603
 }
