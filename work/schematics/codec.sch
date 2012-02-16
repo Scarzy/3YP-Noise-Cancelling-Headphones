@@ -7,6 +7,8 @@ T 45000 48950 5 10 1 1 0 0 1
 device=WM8998
 T 47800 42750 5 10 0 0 0 0 1
 footprint=QFN28_5
+T 46400 41600 5 10 1 1 0 0 1
+value=wm8988
 }
 C 40800 49000 1 0 0 generic-power.sym
 {
