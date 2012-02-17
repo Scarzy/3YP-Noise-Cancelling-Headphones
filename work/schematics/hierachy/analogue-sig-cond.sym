@@ -26,9 +26,9 @@ pintype=pwr
 P 2600 1200 2300 1200 1 0 0
 {
 T 2400 1250 5 8 1 1 0 0 1
-pinnumber=4
+pinnumber=5
 T 2400 1150 5 8 0 1 0 2 1
-pinseq=4
+pinseq=5
 T 2250 1200 9 8 1 1 0 6 1
 pinlabel=AUDOUT1
 T 2250 1200 5 8 0 1 0 8 1
@@ -55,9 +55,9 @@ source=analogue-sig-cond-amp.sch
 P 0 900 300 900 1 0 0
 {
 T 205 945 5 8 1 1 0 6 1
-pinnumber=3
+pinnumber=4
 T 200 850 5 8 0 1 0 8 1
-pinseq=3
+pinseq=4
 T 355 895 9 8 1 1 0 0 1
 pinlabel=AUDIN2
 T 350 900 5 8 0 1 0 2 1
@@ -66,9 +66,9 @@ pintype=pwr
 P 2600 900 2300 900 1 0 0
 {
 T 2400 950 5 8 1 1 0 0 1
-pinnumber=4
+pinnumber=6
 T 2400 850 5 8 0 1 0 2 1
-pinseq=4
+pinseq=6
 T 2250 900 9 8 1 1 0 6 1
 pinlabel=AUDOUT2
 T 2250 900 5 8 0 1 0 8 1
