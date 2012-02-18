@@ -79,7 +79,7 @@ device=TMS320C6713B
 T 59650 81350 5 10 1 1 0 6 1
 refdes=U?
 T 41800 61350 5 10 0 0 0 0 1
-footprint=HLQFP_208
+footprint=208_LQFP
 }
 C 38700 76500 1 0 0 generic-power.sym
 {

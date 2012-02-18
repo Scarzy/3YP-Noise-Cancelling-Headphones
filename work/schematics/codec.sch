@@ -197,7 +197,7 @@ symversion=0.1
 T 44500 45600 5 10 1 1 180 0 1
 value=c-220u
 T 44300 45600 5 10 0 1 0 0 1
-footprint=1411
+footprint=EIA3528
 }
 C 44700 45900 1 180 0 capacitor-4.sym
 {
@@ -210,7 +210,7 @@ symversion=0.1
 T 44900 45900 5 10 1 1 180 0 1
 value=c-220u
 T 44700 45900 5 10 0 1 180 0 1
-footprint=1411
+footprint=EIA3528
 }
 N 47700 44600 47400 44600 4
 N 47700 44300 47400 44300 4
@@ -240,7 +240,7 @@ symversion=0.1
 T 44500 45000 5 10 1 1 180 0 1
 value=c-10u
 T 44300 45000 5 10 0 0 0 0 1
-footprint=2012
+footprint=0805
 }
 C 44700 45300 1 180 0 capacitor-4.sym
 {
@@ -253,7 +253,7 @@ symversion=0.1
 T 44900 45300 5 10 1 1 180 0 1
 value=c-10u
 T 44700 45300 5 10 0 1 180 0 1
-footprint=2012
+footprint=0805
 }
 N 43300 44800 43400 44800 4
 N 43300 45100 43800 45100 4

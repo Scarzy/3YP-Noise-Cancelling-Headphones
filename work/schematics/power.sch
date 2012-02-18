@@ -126,7 +126,7 @@ symversion=0.1
 T 48500 48700 5 10 1 1 90 0 1
 value=c-10u
 T 48500 48800 5 10 0 1 0 0 1
-footprint=2012
+footprint=0805
 }
 C 49000 46000 1 90 0 capacitor-1.sym
 {
@@ -139,7 +139,7 @@ symversion=0.1
 T 49000 46600 5 10 1 1 90 0 1
 value=c-10u
 T 49000 46000 5 10 0 1 0 0 1
-footprint=2012
+footprint=0805
 }
 C 48400 46000 1 90 0 resistor-2.sym
 {
