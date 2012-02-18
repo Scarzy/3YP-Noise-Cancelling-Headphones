@@ -63,7 +63,7 @@ pinnumber=2
 T 200 4650 5 8 0 1 0 8 1
 pinseq=2
 T 350 4700 9 8 1 1 0 0 1
-pinlabel=+3V
+pinlabel=VDD
 T 350 4700 5 8 0 1 0 2 1
 pintype=pwr
 }
