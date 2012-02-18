@@ -508,6 +508,8 @@ T 55600 46200 5 10 0 0 270 0 1
 symversion=0.1
 T 54700 46400 5 10 1 1 270 0 1
 value=xtal-12m
+T 54900 46400 5 10 0 0 0 0 1
+footprint=ABLS12MHZ
 }
 C 54000 46300 1 0 0 capacitor-1.sym
 {
