@@ -2,7 +2,7 @@ v 20110115 2
 C 48700 44500 1 0 0 codec.sym
 {
 T 51000 49500 5 10 1 1 0 6 1
-refdes=S
+refdes=S101
 T 48700 44500 5 10 0 1 0 0 1
 source=codec.sch
 T 48700 44500 5 10 0 0 0 0 1
@@ -25,7 +25,7 @@ C 35200 48300 1 0 1 header3-1.sym
 T 34200 48950 5 10 0 0 0 6 1
 device=HEADER3
 T 34800 49600 5 10 1 1 0 6 1
-refdes=J?
+refdes=J101
 T 35200 48300 5 10 0 0 0 0 1
 footprint=CONNECTOR 3 2
 }
@@ -34,14 +34,14 @@ C 35200 49800 1 0 1 header3-1.sym
 T 34200 50450 5 10 0 0 0 6 1
 device=HEADER3
 T 34800 51100 5 10 1 1 0 6 1
-refdes=J?
+refdes=J102
 }
 C 35200 45300 1 0 1 header3-1.sym
 {
 T 34200 45950 5 10 0 0 0 6 1
 device=HEADER3
 T 34800 46600 5 10 1 1 0 6 1
-refdes=J?
+refdes=J103
 T 35200 45300 5 10 0 0 0 0 1
 footprint=CONNECTOR 3 2
 }
@@ -75,7 +75,7 @@ N 35200 45900 35800 45900 4
 C 38600 52400 1 0 0 power.sym
 {
 T 40900 54500 5 10 1 1 0 6 1
-refdes=S
+refdes=S102
 T 38600 52400 5 10 0 1 0 0 1
 source=power.sch
 T 38600 52400 5 10 0 0 0 0 1
@@ -88,7 +88,7 @@ C 36300 53100 1 0 0 connector2-1.sym
 T 36500 54100 5 10 0 0 0 0 1
 device=CONNECTOR_2
 T 36300 53900 5 10 1 1 0 0 1
-refdes=CONN?
+refdes=CONN101
 T 36300 53100 5 10 0 0 0 0 1
 footprint=CONNECTOR 2 2
 }
@@ -186,7 +186,7 @@ netname=DACDAT
 C 48700 50900 1 0 0 dsp.sym
 {
 T 51000 54200 5 10 1 1 0 6 1
-refdes=S
+refdes=S103
 T 48700 50900 5 10 0 1 0 0 1
 source=dsp.sch
 T 48700 50900 5 10 0 0 0 0 1
@@ -280,7 +280,7 @@ C 54300 51800 1 90 0 resistor-2.sym
 T 53950 52200 5 10 0 0 90 0 1
 device=RESISTOR
 T 54000 52000 5 10 1 1 90 0 1
-refdes=R?
+refdes=R101
 T 54000 52400 5 10 1 1 90 0 1
 value=r-10k
 T 54300 51800 5 10 0 1 0 0 1
@@ -313,7 +313,7 @@ C 51400 47800 1 0 0 resistor-2.sym
 T 51800 48150 5 10 0 0 0 0 1
 device=RESISTOR
 T 51200 48000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R102
 T 52200 48000 5 10 1 1 0 0 1
 value=r-33
 T 51400 47800 5 10 0 1 0 0 1
@@ -333,7 +333,7 @@ C 51400 46300 1 0 0 resistor-2.sym
 T 51800 46650 5 10 0 0 0 0 1
 device=RESISTOR
 T 51500 46500 5 10 1 1 0 0 1
-refdes=R?
+refdes=R103
 T 52000 46500 5 10 1 1 0 0 1
 value=r-10k
 T 51400 46300 5 10 0 1 0 0 1
@@ -347,7 +347,7 @@ C 54800 51800 1 90 0 resistor-2.sym
 T 54450 52200 5 10 0 0 90 0 1
 device=RESISTOR
 T 54500 52000 5 10 1 1 90 0 1
-refdes=R?
+refdes=R104
 T 54500 52400 5 10 1 1 90 0 1
 value=r-10k
 T 54800 51800 5 10 0 1 0 0 1
@@ -358,7 +358,7 @@ C 55300 51800 1 90 0 resistor-2.sym
 T 54950 52200 5 10 0 0 90 0 1
 device=RESISTOR
 T 55000 52000 5 10 1 1 90 0 1
-refdes=R?
+refdes=R105
 T 55000 52400 5 10 1 1 90 0 1
 value=r-10k
 T 55300 51800 5 10 0 1 0 0 1
@@ -369,7 +369,7 @@ C 55800 51800 1 90 0 resistor-2.sym
 T 55450 52200 5 10 0 0 90 0 1
 device=RESISTOR
 T 55500 52000 5 10 1 1 90 0 1
-refdes=R?
+refdes=R106
 T 55500 52400 5 10 1 1 90 0 1
 value=r-10k
 T 55800 51800 5 10 0 1 0 0 1
@@ -380,7 +380,7 @@ C 55800 48500 1 90 0 resistor-2.sym
 T 55450 48900 5 10 0 0 90 0 1
 device=RESISTOR
 T 55500 48700 5 10 1 1 90 0 1
-refdes=R?
+refdes=R107
 T 55500 49100 5 10 1 1 90 0 1
 value=r-10k
 T 55800 48500 5 10 0 1 0 0 1
@@ -391,7 +391,7 @@ C 55300 48500 1 90 0 resistor-2.sym
 T 54950 48900 5 10 0 0 90 0 1
 device=RESISTOR
 T 55000 48700 5 10 1 1 90 0 1
-refdes=R?
+refdes=R108
 T 55000 49100 5 10 1 1 90 0 1
 value=r-10k
 T 55300 48500 5 10 0 1 0 0 1
@@ -402,7 +402,7 @@ C 54800 48500 1 90 0 resistor-2.sym
 T 54450 48900 5 10 0 0 90 0 1
 device=RESISTOR
 T 54500 48700 5 10 1 1 90 0 1
-refdes=R?
+refdes=R109
 T 54500 49100 5 10 1 1 90 0 1
 value=r-10k
 T 54800 48500 5 10 0 1 0 0 1
@@ -413,7 +413,7 @@ C 51400 47500 1 0 0 resistor-2.sym
 T 51800 47850 5 10 0 0 0 0 1
 device=RESISTOR
 T 51200 47700 5 10 1 1 0 0 1
-refdes=R?
+refdes=R110
 T 52200 47700 5 10 1 1 0 0 1
 value=r-33
 T 51400 47500 5 10 0 1 0 0 1
@@ -424,7 +424,7 @@ C 51400 47200 1 0 0 resistor-2.sym
 T 51800 47550 5 10 0 0 0 0 1
 device=RESISTOR
 T 51200 47400 5 10 1 1 0 0 1
-refdes=R?
+refdes=R111
 T 52200 47400 5 10 1 1 0 0 1
 value=r-33
 T 51400 47200 5 10 0 1 0 0 1
@@ -435,7 +435,7 @@ C 51400 46900 1 0 0 resistor-2.sym
 T 51800 47250 5 10 0 0 0 0 1
 device=RESISTOR
 T 51200 47100 5 10 1 1 0 0 1
-refdes=R?
+refdes=R112
 T 52200 47100 5 10 1 1 0 0 1
 value=r-33
 T 51400 46900 5 10 0 1 0 0 1
@@ -444,7 +444,7 @@ footprint=0805
 C 42400 46300 1 0 0 analogue.sym
 {
 T 44700 50200 5 10 1 1 0 6 1
-refdes=S
+refdes=S104
 T 42400 46300 5 10 0 1 0 0 1
 value=nothing
 T 42400 46300 5 10 0 1 0 0 1
@@ -499,7 +499,7 @@ C 35200 46800 1 0 1 header3-1.sym
 T 34200 47450 5 10 0 0 0 6 1
 device=HEADER3
 T 34800 48100 5 10 1 1 0 6 1
-refdes=J?
+refdes=J104
 T 35200 46800 5 10 0 0 0 0 1
 footprint=CONNECTOR 3 2
 }
@@ -539,7 +539,7 @@ C 35800 46200 1 0 0 resistor-2.sym
 T 36200 46550 5 10 0 0 0 0 1
 device=RESISTOR
 T 35800 46400 5 10 1 1 0 0 1
-refdes=R?
+refdes=R113
 T 36300 46400 5 10 1 1 0 0 1
 value=r-8
 T 35800 46200 5 10 0 1 0 0 1
@@ -550,7 +550,7 @@ C 35800 45800 1 0 0 resistor-2.sym
 T 36200 46150 5 10 0 0 0 0 1
 device=RESISTOR
 T 35800 46000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R114
 T 36300 46000 5 10 1 1 0 0 1
 value=r-8
 T 35800 45800 5 10 0 1 0 0 1
@@ -581,7 +581,7 @@ C 42200 52800 1 0 0 header8-2.sym
 T 42200 54400 5 10 0 1 0 0 1
 device=HEADER8
 T 42800 54500 5 10 1 1 0 0 1
-refdes=J?
+refdes=J105
 T 42200 52800 5 10 0 1 0 0 1
 footprint=HEADER8_2
 T 42400 52600 5 10 1 1 0 0 1
@@ -608,7 +608,7 @@ C 37100 48900 1 0 0 header8-2.sym
 T 37100 50500 5 10 0 1 0 0 1
 device=HEADER8
 T 37700 50600 5 10 1 1 0 0 1
-refdes=J?
+refdes=J106
 T 37100 48900 5 10 0 1 0 0 1
 footprint=HEADER8_2
 T 37300 48700 5 10 1 1 0 0 1
@@ -619,7 +619,7 @@ C 37100 46400 1 0 0 header8-2.sym
 T 37100 48000 5 10 0 1 0 0 1
 device=HEADER8
 T 37700 48100 5 10 1 1 0 0 1
-refdes=J?
+refdes=J107
 T 37100 46400 5 10 0 1 0 0 1
 footprint=HEADER8_2
 T 37300 46200 5 10 1 1 0 0 1
@@ -630,7 +630,7 @@ C 45700 47400 1 0 0 header8-2.sym
 T 45700 49000 5 10 0 1 0 0 1
 device=HEADER8
 T 46300 49100 5 10 1 1 0 0 1
-refdes=J?
+refdes=J108
 T 45700 47400 5 10 0 1 0 0 1
 footprint=HEADER8_2
 T 45900 47200 5 10 1 1 0 0 1

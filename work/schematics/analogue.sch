@@ -72,7 +72,7 @@ refdes=LIN_W
 C 47900 43200 1 0 0 AP358SG.sym
 {
 T 50000 46400 5 10 1 1 0 6 1
-refdes=U?
+refdes=U501
 T 51400 44150 5 10 0 0 0 0 1
 device=AP368SG
 T 51400 44350 5 10 0 0 0 0 1
@@ -81,7 +81,7 @@ footprint=SSOP8
 C 47900 39300 1 0 0 AP358SG.sym
 {
 T 50000 42500 5 10 1 1 0 6 1
-refdes=U?
+refdes=U502
 T 51400 40250 5 10 0 0 0 0 1
 device=AP368SG
 T 51400 40450 5 10 0 0 0 0 1
@@ -90,7 +90,7 @@ footprint=SSOP8
 C 51900 41300 1 0 0 AP358SG.sym
 {
 T 54000 44500 5 10 1 1 0 6 1
-refdes=U?
+refdes=U503
 T 55400 42250 5 10 0 0 0 0 1
 device=AP368SG
 T 55400 42450 5 10 0 0 0 0 1
@@ -157,7 +157,7 @@ C 50700 43500 1 0 0 resistor-2.sym
 T 51100 43850 5 10 0 0 0 0 1
 device=RESISTOR
 T 50800 43700 5 10 1 1 0 0 1
-refdes=R?
+refdes=R501
 T 51200 43700 5 10 1 1 0 0 1
 value=r-10k
 T 50700 43500 5 10 0 1 0 0 1
@@ -168,7 +168,7 @@ C 50700 43100 1 0 0 resistor-2.sym
 T 51100 43450 5 10 0 0 0 0 1
 device=RESISTOR
 T 50800 43300 5 10 1 1 0 0 1
-refdes=R?
+refdes=R502
 T 51200 43300 5 10 1 1 0 0 1
 value=r-10k
 T 50700 43100 5 10 0 1 0 0 1
@@ -179,7 +179,7 @@ C 50700 42500 1 0 0 resistor-2.sym
 T 51100 42850 5 10 0 0 0 0 1
 device=RESISTOR
 T 50800 42700 5 10 1 1 0 0 1
-refdes=R?
+refdes=R503
 T 51200 42700 5 10 1 1 0 0 1
 value=r-10k
 T 50700 42500 5 10 0 1 0 0 1
@@ -190,7 +190,7 @@ C 50700 42100 1 0 0 resistor-2.sym
 T 51100 42450 5 10 0 0 0 0 1
 device=RESISTOR
 T 50800 42300 5 10 1 1 0 0 1
-refdes=R?
+refdes=R504
 T 51200 42300 5 10 1 1 0 0 1
 value=r-10k
 T 50700 42100 5 10 0 1 0 0 1
@@ -201,7 +201,7 @@ C 52700 40700 1 0 0 resistor-2.sym
 T 53100 41050 5 10 0 0 0 0 1
 device=RESISTOR
 T 52800 40900 5 10 1 1 0 0 1
-refdes=R?
+refdes=R505
 T 53200 40900 5 10 1 1 0 0 1
 value=r-10k
 T 52700 40700 5 10 0 1 0 0 1
@@ -212,7 +212,7 @@ C 52600 44900 1 0 0 resistor-2.sym
 T 53000 45250 5 10 0 0 0 0 1
 device=RESISTOR
 T 52700 45100 5 10 1 1 0 0 1
-refdes=R?
+refdes=R506
 T 53100 45100 5 10 1 1 0 0 1
 value=r-10k
 T 52600 44900 5 10 0 1 0 0 1
@@ -249,7 +249,7 @@ C 51100 41700 1 0 0 resistor-2.sym
 T 51500 42050 5 10 0 0 0 0 1
 device=RESISTOR
 T 51200 41900 5 10 1 1 0 0 1
-refdes=R?
+refdes=R507
 T 51600 41900 5 10 1 1 0 0 1
 value=r-10k
 T 51100 41700 5 10 0 1 0 0 1
@@ -260,7 +260,7 @@ C 51100 42800 1 0 0 resistor-2.sym
 T 51500 43150 5 10 0 0 0 0 1
 device=RESISTOR
 T 51200 43000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R508
 T 51600 43000 5 10 1 1 0 0 1
 value=r-10k
 T 51100 42800 5 10 0 1 0 0 1
@@ -282,7 +282,7 @@ C 47600 44500 1 90 0 resistor-2.sym
 T 47250 44900 5 10 0 0 90 0 1
 device=RESISTOR
 T 47400 44600 5 10 1 1 90 0 1
-refdes=R?
+refdes=R509
 T 47400 45000 5 10 1 1 90 0 1
 value=r-10k
 T 47600 44500 5 10 0 1 0 0 1
@@ -296,7 +296,7 @@ C 47600 40600 1 90 0 resistor-2.sym
 T 47250 41000 5 10 0 0 90 0 1
 device=RESISTOR
 T 47400 40700 5 10 1 1 90 0 1
-refdes=R?
+refdes=R510
 T 47400 41100 5 10 1 1 90 0 1
 value=r-10k
 T 47600 40600 5 10 0 1 0 0 1
@@ -376,7 +376,7 @@ N 45300 44700 45600 44700 4
 C 47700 50500 1 0 0 analogue-sig-cond.sym
 {
 T 50000 52300 5 10 1 1 0 6 1
-refdes=S
+refdes=S501
 T 47700 50500 5 10 0 1 0 0 1
 value=nothing
 T 47700 50500 5 10 0 1 0 0 1
@@ -414,7 +414,7 @@ N 56000 48400 56000 49800 4
 C 53300 48700 1 0 0 AP358SG.sym
 {
 T 55400 51900 5 10 1 1 0 6 1
-refdes=U?
+refdes=U504
 T 56800 49650 5 10 0 0 0 0 1
 device=AP368SG
 T 56800 49850 5 10 0 0 0 0 1
@@ -450,7 +450,7 @@ N 42400 44100 42400 43800 4
 C 47700 47900 1 0 0 analogue-sig-cond.sym
 {
 T 50000 49700 5 10 1 1 0 6 1
-refdes=S
+refdes=S502
 T 47700 47900 5 10 0 1 0 0 1
 value=nothing
 T 47700 47900 5 10 0 1 0 0 1
@@ -461,7 +461,7 @@ source=analogue-sig-cond-amp.sch
 C 42700 46400 1 0 0 analogue-sig-cond.sym
 {
 T 45000 48200 5 10 1 1 0 6 1
-refdes=S
+refdes=S503
 T 42700 46400 5 10 0 1 0 0 1
 value=nothing
 T 42700 46400 5 10 0 1 0 0 1
@@ -472,7 +472,7 @@ source=analogue-sig-cond-amp.sch
 C 42700 43800 1 0 0 analogue-sig-cond.sym
 {
 T 45000 45600 5 10 1 1 0 6 1
-refdes=S
+refdes=S504
 T 42700 43800 5 10 0 1 0 0 1
 value=nothing
 T 42700 43800 5 10 0 1 0 0 1
@@ -483,7 +483,7 @@ source=analogue-sig-cond-amp.sch
 C 42700 41300 1 0 0 analogue-sig-cond.sym
 {
 T 45000 43100 5 10 1 1 0 6 1
-refdes=S
+refdes=S505
 T 42700 41300 5 10 0 1 0 0 1
 value=nothing
 T 42700 41300 5 10 0 1 0 0 1
@@ -494,7 +494,7 @@ source=analogue-sig-cond-amp.sch
 C 42700 38700 1 0 0 analogue-sig-cond.sym
 {
 T 45000 40500 5 10 1 1 0 6 1
-refdes=S
+refdes=S506
 T 42700 38700 5 10 0 1 0 0 1
 value=nothing
 T 42700 38700 5 10 0 1 0 0 1

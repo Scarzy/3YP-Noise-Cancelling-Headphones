@@ -42,7 +42,7 @@ C 46600 45200 1 0 0 resistor-2.sym
 T 47000 45550 5 10 0 0 0 0 1
 device=RESISTOR
 T 46700 45000 5 10 1 1 0 0 1
-refdes=R?
+refdes=R601
 T 47100 45000 5 10 1 1 0 0 1
 value=r-8k2
 T 46600 45200 5 10 0 1 0 0 1
@@ -53,7 +53,7 @@ C 48000 44100 1 90 0 capacitor-1.sym
 T 47300 44300 5 10 0 0 90 0 1
 device=CAPACITOR
 T 47500 44300 5 10 1 1 90 0 1
-refdes=C?
+refdes=C601
 T 47100 44300 5 10 0 0 90 0 1
 symversion=0.1
 T 48000 44700 5 10 1 1 90 0 1
