@@ -18,6 +18,7 @@ c-8p, 8pF Ceramic Capacitor, 1759051, farnell, 0603
 
 #Connectors
 cn-header2, 2Way header 1 row header,1248140,farnell,10,through_hole
+cn-header2x4,2x4 through-hole 2.54mm header,1668491,farnell,1,through_hole
 cn-header2x7-box,2x7 through-hole 2.5mm boxed header,8395926,farnell,1,through_hole
 
 #uC
