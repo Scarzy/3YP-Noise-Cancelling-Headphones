@@ -2,9 +2,13 @@ v 20110115 2
 C 48700 44500 1 0 0 codec.sym
 {
 T 51000 49500 5 10 1 1 0 6 1
-refdes=U?
+refdes=S
 T 48700 44500 5 10 0 1 0 0 1
 source=codec.sch
+T 48700 44500 5 10 0 0 0 0 1
+device=none
+T 48700 44500 5 10 0 0 0 0 1
+value=nothing
 }
 C 48200 49500 1 0 0 generic-power.sym
 {
@@ -75,9 +79,13 @@ netname=ROUT
 C 43300 51200 1 0 0 power.sym
 {
 T 45600 53300 5 10 1 1 0 6 1
-refdes=U?
+refdes=S
 T 43300 51200 5 10 0 1 0 0 1
 source=power.sch
+T 43300 51200 5 10 0 0 0 0 1
+device=none
+T 43300 51200 5 10 0 0 0 0 1
+value=nothing
 }
 C 41000 51900 1 0 0 connector2-1.sym
 {
@@ -180,9 +188,13 @@ netname=DACDAT
 C 48700 50900 1 0 0 dsp.sym
 {
 T 51000 54200 5 10 1 1 0 6 1
-refdes=U?
+refdes=S
 T 48700 50900 5 10 0 1 0 0 1
 source=dsp.sch
+T 48700 50900 5 10 0 0 0 0 1
+value=nothing
+T 48700 50900 5 10 0 0 0 0 1
+device=none
 }
 N 51300 48500 52500 48500 4
 {
@@ -434,7 +446,13 @@ footprint=0805
 C 44200 46300 1 0 0 analogue.sym
 {
 T 46500 50200 5 10 1 1 0 6 1
-refdes=U?
+refdes=S
+T 44200 46300 5 10 0 1 0 0 1
+value=nothing
+T 44200 46300 5 10 0 1 0 0 1
+device=none
+T 44200 46300 5 10 0 0 0 0 1
+source=analogue.sch
 }
 C 43700 50200 1 0 0 generic-power.sym
 {
