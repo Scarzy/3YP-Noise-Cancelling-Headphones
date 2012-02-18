@@ -35,6 +35,10 @@ T 34200 50450 5 10 0 0 0 6 1
 device=HEADER3
 T 34800 51100 5 10 1 1 0 6 1
 refdes=J102
+T 35200 49800 5 10 0 0 0 0 1
+footprint=ST_JACK
+T 34400 50000 5 10 1 1 90 0 1
+value=cn-st-jack
 }
 C 35200 45300 1 0 1 header3-1.sym
 {
