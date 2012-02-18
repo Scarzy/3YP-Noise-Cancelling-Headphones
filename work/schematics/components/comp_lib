@@ -1,9 +1,10 @@
 #Resisters
 r-10k, 10KΩ Resister, 1469748, farnell, 50, 0603
+r-8k2, 8.2KΩ Resistor, 9334904, farnell, 50, 0805
 r-1k, 1KΩ Resistor, 9332383, farnell, 50, 0805
 r-120, 120Ω Resistor, 9337059, farnell, 50, 1206
 r-33, 33Ω Resistor, 1500704, farnell, 5, 0805
-r-8, 8 Resistor, 1577385, farnell, 10, 0805
+r-8, 8Ω Resistor, 1577385, farnell, 10, 0805
 
 #Capacitors
 c-220u, 220uF Polarised Capacitor, 493-4115-1-ND, Digikey, 1, 1411
@@ -12,6 +13,7 @@ c-+4u7, 4.7uF Polarised Capacitor, 1961953, farnell, 10, 1206
 c-4u7, 4.7uF Capacitor, 1759427RL, farnell, 1, 0805
 c-1u, 1uF Capacitor, 1759398RL, farnell, 100, 0603
 c-0u1, 0.1uF Capacitor, 1759123RL, farnell, 1, 0603
+c-1n, 1nF Capacitor, 1759088, farnell, 100, 0603
 c-8p, 8pF Ceramic Capacitor, 1759051, farnell, 0603
 
 #Connectors
