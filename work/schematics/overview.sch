@@ -583,7 +583,7 @@ device=HEADER8
 T 42800 54500 5 10 1 1 0 0 1
 refdes=J?
 T 42200 52800 5 10 0 1 0 0 1
-footprint=JUMPER8
+footprint=HEADER8_2
 T 42400 52600 5 10 1 1 0 0 1
 value=cn-header2x4
 }
@@ -610,7 +610,7 @@ device=HEADER8
 T 37700 50600 5 10 1 1 0 0 1
 refdes=J?
 T 37100 48900 5 10 0 1 0 0 1
-footprint=JUMPER8
+footprint=HEADER8_2
 T 37300 48700 5 10 1 1 0 0 1
 value=cn-header2x4
 }
@@ -621,7 +621,7 @@ device=HEADER8
 T 37700 48100 5 10 1 1 0 0 1
 refdes=J?
 T 37100 46400 5 10 0 1 0 0 1
-footprint=JUMPER8
+footprint=HEADER8_2
 T 37300 46200 5 10 1 1 0 0 1
 value=cn-header2x4
 }
@@ -632,7 +632,7 @@ device=HEADER8
 T 46300 49100 5 10 1 1 0 0 1
 refdes=J?
 T 45700 47400 5 10 0 1 0 0 1
-footprint=JUMPER8
+footprint=HEADER8_2
 T 45900 47200 5 10 1 1 0 0 1
 value=cn-header2x4
 }

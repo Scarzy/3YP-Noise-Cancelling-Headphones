@@ -462,7 +462,7 @@ refdes=R?
 T 62200 73700 5 10 1 1 0 0 1
 value=r-1k
 T 62000 73900 5 10 0 1 0 0 1
-footprint=0603
+footprint=0805
 }
 C 63000 74300 1 0 0 generic-power.sym
 {
