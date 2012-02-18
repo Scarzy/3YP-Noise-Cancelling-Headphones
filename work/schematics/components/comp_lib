@@ -3,6 +3,7 @@ r-10k, 10KΩ Resister, 1469748, farnell, 50, 0603
 r-8k2, 8.2KΩ Resistor, 9334904, farnell, 50, 0805
 r-1k, 1KΩ Resistor, 9332383, farnell, 50, 0805
 r-120, 120Ω Resistor, 9337059, farnell, 50, 1206
+r-55, 55 Resistor, 1500641, farnell, 5, 0603
 r-33, 33Ω Resistor, 1500704, farnell, 5, 0805
 r-8, 8Ω Resistor, 1577385, farnell, 10, 0805
 
@@ -32,3 +33,6 @@ ap358sg, Dual OPAMP, 1825347, farnell, 1, SOP8
 
 #Crystals
 xtal-12m, 12MHz Crystal, 1652551, farnell, 1, SMD
+
+#LEDs
+led-red-0603,LED 0603 RED,1465988,farnell,10,0603
