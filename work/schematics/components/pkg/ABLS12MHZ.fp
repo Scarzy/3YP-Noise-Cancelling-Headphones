@@ -8,7 +8,7 @@ Element["" "ABLS 12MHz Crystal SMD pads" "" "abls12mhz" 0 0 0 0 0 100 ""]
 		2.1mm 2000 4600 "1" "1" "square"]
 	Pad[ 9.35mm  2.35mm
 	    12.85mm  2.35mm
-		2.1mm 2000 4600 "1" "1" "square"]
+		2.1mm 2000 4600 "2" "2" "square"]
 
 	# Outline
 	# ElementLine [ x1 y1 x2 y2 w ]
