@@ -9,15 +9,15 @@ Element["" "Pads to solder the headphone connections to" "" "hp_conn" 0 0 0 0 0 
 	Pad[ 7.00mm  2.50mm
 	     7.00mm  2.50mm
 		3mm 2000 4600 "2" "2" "square"]
-	Pad[12.50mm  2.50mm
-	    12.50mm  2.50mm
+	Pad[11.50mm  2.50mm
+	    11.50mm  2.50mm
 		3mm 2000 4600 "3" "3" "square"]
 
 	# Outline
 	# ElementLine [ x1 y1 x2 y2 w ]
-	ElementLine[0mm 0mm 15mm 0mm 0.25mm]
-	ElementLine[15mm 0mm 15mm 5mm 0.25mm]
-	ElementLine[15mm 5mm 0mm 5mm 0.25mm]
+	ElementLine[0mm 0mm 14mm 0mm 0.25mm]
+	ElementLine[14mm 0mm 14mm 5mm 0.25mm]
+	ElementLine[14mm 5mm 0mm 5mm 0.25mm]
 	ElementLine[0mm 5mm 0mm 0mm 0.25mm]
 )
 
