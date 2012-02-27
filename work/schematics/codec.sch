@@ -6,7 +6,7 @@ refdes=U401
 T 45000 48950 5 10 1 1 0 0 1
 device=WM8998
 T 47800 42750 5 10 0 0 0 0 1
-footprint=QFN28_5
+footprint=QFN28_4
 T 46400 41600 5 10 1 1 0 0 1
 value=wm8988
 }
@@ -395,7 +395,7 @@ refdes=U402
 T 59000 44750 5 10 0 0 0 0 1
 device=BU2796
 T 59000 44950 5 10 0 0 0 0 1
-footprint=QFN20_5
+footprint=QFN20_4
 T 55800 48300 5 10 1 1 0 0 1
 value=bu2796
 }
