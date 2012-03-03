@@ -8,7 +8,7 @@ r-33, 33Ω Resistor, 1500704, farnell, 5, 0805
 r-8, 8Ω Resistor, 1577385, farnell, 10, 0805
 
 #Capacitors
-c-220u, 220uF Polarised Capacitor, 493-4115-1-ND, Digikey, 1, EIA3528
+c-220u, 220uF Polarised Capacitor, 1865004, farnell, 5, 1210
 c-10u, 10uF Polarised Capacitor, 1658212, farnell, 5, 0805
 c-+4u7, 4.7uF Polarised Capacitor, 1961953, farnell, 10, 1206
 c-4u7, 4.7uF Capacitor, 1759427RL, farnell, 1, 0805
@@ -25,7 +25,7 @@ cn-st-jack, Stereo 3.5mm jack, 1217016, farnell, 1, through_hole
 
 #uC
 tms320c6713bzdp300, Texas Instruments C6713 DSP, 595-320C6713BZDP300, mouser, 1, bga272
-tms320c6713bpyp200, Texas Instruments C6713 DSP, 595-S320C6713BPYP200, mouser, 1, HLQFP208
+tms320c6713bpyp200, Texas Instruments C6713 DSP, 1214441, farnell, 1, HLQFP208
 wm8988, Wolfson uElectronics WM8988 Stereo CODEC, 1776294, farnell, 1, QFN28
 ld1117s33, STM 3.3V Linear Regulator 1.3A, 1467779, farnell, 1, SOT223
 ld1117s12, STM 1.2V Linear Regulator 1.3A, 1467778, farnell, 1, SOT223
