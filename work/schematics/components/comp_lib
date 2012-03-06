@@ -1,0 +1,39 @@
+#Resisters
+r-10k, 10KΩ Resister, 1469748, farnell, 50, 0603
+r-8k2, 8.2KΩ Resistor, 9334904, farnell, 50, 0805
+r-1k, 1KΩ Resistor, 9332383, farnell, 50, 0805
+r-120, 120Ω Resistor, 9337059, farnell, 50, 1206
+r-55, 55 Resistor, 1500641, farnell, 5, 0603
+r-33, 33Ω Resistor, 1500704, farnell, 5, 0805
+r-8, 8Ω Resistor, 1577385, farnell, 10, 0805
+
+#Capacitors
+c-220u, 220uF Polarised Capacitor, 1865004, farnell, 5, 1210
+c-10u, 10uF Polarised Capacitor, 1658212, farnell, 5, 0805
+c-+4u7, 4.7uF Polarised Capacitor, 1961953, farnell, 10, 1206
+c-4u7, 4.7uF Capacitor, 1759427RL, farnell, 1, 0805
+c-1u, 1uF Capacitor, 1759398RL, farnell, 100, 0603
+c-0u1, 0.1uF Capacitor, 1759123RL, farnell, 1, 0603
+c-1n, 1nF Capacitor, 1759088, farnell, 100, 0603
+c-8p, 8pF Ceramic Capacitor, 1759051, farnell, 0603
+
+#Connectors
+cn-header2, 2Way header 1 row header,1248140,farnell,10,through_hole
+cn-header2x4,2x4 through-hole 2.54mm header,1668491,farnell,1,through_hole
+cn-header2x7-box,2x7 through-hole 2.5mm boxed header,8395926,farnell,1,through_hole
+cn-st-jack, Stereo 3.5mm jack, 1217016, farnell, 1, through_hole
+
+#uC
+tms320c6713bzdp300, Texas Instruments C6713 DSP, 595-320C6713BZDP300, mouser, 1, bga272
+tms320c6713bpyp200, Texas Instruments C6713 DSP, 1214441, farnell, 1, HLQFP208
+wm8988, Wolfson uElectronics WM8988 Stereo CODEC, 1776294, farnell, 1, QFN28
+ld1117s33, STM 3.3V Linear Regulator 1.3A, 1467779, farnell, 1, SOT223
+ld1117s12, STM 1.2V Linear Regulator 1.3A, 1467778, farnell, 1, SOT223
+bu2796, ROHM 3 Channel Clock Generator , 1716138, farnell, 1, QFN20
+ap358sg, Dual OPAMP, 1825347, farnell, 1, SOP8
+
+#Crystals
+xtal-12m, 12MHz Crystal, 1652551, farnell, 1, SMD
+
+#LEDs
+led-red-0603,LED 0603 RED,1465988,farnell,10,0603

@@ -1,0 +1,5 @@
+schematics overview.sch
+output-name overview
+elements-dir ./components/pkg
+elements-dir /usr/share/pcb/m4/
+elements-dir /usr/share/gEDA/sym/memory/
