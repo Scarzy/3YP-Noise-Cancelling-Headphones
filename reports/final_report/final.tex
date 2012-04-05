@@ -1,17 +1,11 @@
-\documentclass{ecsproject}
-
-\authors{Thomas Scarsbrook}
-\supervisor{Steve Gunn}
-\examiner{Rob Maunder}
-\title{Selective Noise Cancelling Headphones}
-\degree{MEng Electronic Engineering with Mobile and Secure Systems}
-\date{\today}
+\documentclass[a4paper, 12pt]{report}
 
 \begin{document}
-\maketitle
+\input{frontpage}
 
-\chapter*{Acknowledgements}
-\input{acknowledgements}
+\abstract{\input{abstract}}
+\addcontentsline{toc}{section}{Abstract}
+\setcounter{page}{2}
 
 \tableofcontents
 \addcontentsline{toc}{section}{Contents}
@@ -21,6 +15,10 @@
 
 \listoftables
 \addcontentsline{toc}{section}{List of Tables}
+
+\chapter*{Acknowledgements}
+\input{acknowledgements}
+\addcontentsline{toc}{section}{Acknowledgements}
 
 This is text \cite{EMHeadsets}
 This is other text \cite{EMNoiseCancel}
