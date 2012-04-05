@@ -3,6 +3,16 @@ Independent Component Analysis (ICA) is a method for separating different signal
 \section{Methodology}
 
 \section{Limitations}
+ICA has some limitations which must be met.
+Some of these limitations would result in this algorithm being unsuitable for this project, though these limitations could potentially be circumvented through knowing the circumstances of use.
 
-\section{Non-Use}
+Under normal circumstances ICA requires at least as many sensors as signal sources.
+Without this there isn't enough statistical variation for the different signals to be separated out.
+This project only allows for two inputs, one in each ear, which would result in the use of ICA only working for 2 sound sources in the room, which is unlikely to occur, making the use of ICA pointless.
+In order to solve this problem certain information about the location and construction of the headphones can be utilised.
+The headphones are positioned inside the ear with the microphones pointing outwards.
+The ear is shaped in order to direct sound inside the ear, also the microphones are rather directional resulting in 
 
+\section{Implementation}
+In the final project ICA was not implemented.
+This was largely due to the unexpected length of time taken in implementing the noise cancellation algorithm.
