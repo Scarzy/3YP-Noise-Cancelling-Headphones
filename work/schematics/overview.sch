@@ -640,3 +640,16 @@ footprint=HEADER8_2
 T 45900 49200 5 10 1 1 180 6 1
 value=cn-header2x4
 }
+C 34100 41100 1 0 0 title-A2.sym
+T 54300 41200 9 10 1 0 0 0 1
+Thomas Scarsbrook
+T 54300 41500 9 10 1 0 0 0 1
+F0
+T 50400 41500 9 10 1 0 0 0 1
+overview.sch
+T 50400 41200 9 10 1 0 0 0 1
+1
+T 51900 41200 9 10 1 0 0 0 1
+7
+T 50400 41800 9 10 1 0 0 0 1
+Selective Noise Cancelling Headphones
