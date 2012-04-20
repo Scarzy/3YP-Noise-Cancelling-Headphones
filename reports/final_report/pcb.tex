@@ -1,8 +1,25 @@
-\section{PCB}
+\section{Hardware}
 
 There are two parts to this project, the software, algorithmic side of things, and the hardware on which this algorithm runs.
 Here the details about the design and production of the PCB will be discussed, and explanations of why certain decisions were made.
 
 \subsection{Schematic}
+Before producing the PCB design the system was designed in gEDA Schematic software.
+In order to keep the design easy to maintain hierachy was used, and the system split into multiple sections.
+These sections are discussed below.
+
+\subsubsection{DSP}
+At the heart of the project is the digital signal processor.
+
+\subsubsection{Codec}
+The DSP is unable to read analogue signals, and therefore requires the analogue signals from the microphones involved to be sampled by an external device.
+This is where the codec comes in.
+
+\subsubsection{Analogue}
+Before the codec the signal needs some conditioning.
+If any signal received were to be passed into the codec it could contain components at too high a frequency, these need to be removed to prevent aliasing.
+
+\subsubsection{Power}
+One key part of any electronic system is it needs some form of power supply, and this project is no exception.
 
 \subsection{PCB}
