@@ -203,6 +203,6 @@ power.sch
 T 47000 44100 9 10 1 0 0 0 1
 Power supply for Selective Noise Cancelling Headphones
 T 48500 43500 9 10 1 0 0 0 1
-7
+6
 T 46900 43500 9 10 1 0 0 0 1
 3

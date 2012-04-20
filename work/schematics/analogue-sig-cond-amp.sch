@@ -72,9 +72,9 @@ Signal Conditioner for Selective Noise Cancelling Headphones
 T 45200 42100 9 10 1 0 0 0 1
 analogue-sig-cond-amp.sch
 T 45200 41800 9 10 1 0 0 0 1
-7
+6
 T 46700 41800 9 10 1 0 0 0 1
-7
+6
 T 49100 41800 9 10 1 0 0 0 1
 Thomas Scarsbrook
 T 49100 42100 9 10 1 0 0 0 1
