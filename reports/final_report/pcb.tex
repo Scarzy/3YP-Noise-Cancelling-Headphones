@@ -8,6 +8,13 @@ Before producing the PCB design the system was designed in gEDA Schematic softwa
 In order to keep the design easy to maintain hierachy was used, and the system split into multiple sections.
 These sections are discussed below.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/overview.png}
+	\caption{The top level schematic}
+	\label{fig:overviewsch}
+\end{figure}
+
 \subsubsection{DSP}
 At the heart of the project is the digital signal processor.
 
@@ -15,11 +22,61 @@ At the heart of the project is the digital signal processor.
 The DSP is unable to read analogue signals, and therefore requires the analogue signals from the microphones involved to be sampled by an external device.
 This is where the codec comes in.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/codec.png}
+	\caption{The schematic for the codec}
+	\label{fig:codecsch}
+\end{figure}
+
 \subsubsection{Analogue}
 Before the codec the signal needs some conditioning.
 If any signal received were to be passed into the codec it could contain components at too high a frequency, these need to be removed to prevent aliasing.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/analogue.png}
+	\caption{The schematic of the analogue portion of the project}
+	\label{fig:analoguesch}
+\end{figure}
+
+This portion of the design is then further split into two parts, the instrumentation amplifier and the signal conditioning.
+The instrumentation amplifier takes in the noise and the optional demanded signal, and sums the two together.
+This choice of amplifier was based on a few requirements.
+The inputs from the microphones on the headphones require the amplifier to have a large input impedance.
+Using a naive summing amplifier would result in a much lower input impedance due to the mixing resistors.
+In contrast, the demanded input is likely to be from an MP3 player or similar, which will provide a low output impedance due to being designed to connect direct to, and drive headphones.
+As such this input does not require the same high impedance from the amplifier, however the signal is not harmed by it.
+Providing this high impedance also allows microphones to be connected and still serve equally well.
+The second requirement of the amplifier is that it must sum the signals together with minimal distortion to the heard signal.
+Adding distortion would result in sub-optimal cancellation, due to the actual heard signal not being known.
+The instrumentation amplifier is a difference amplifier, as such one of its input is affected by a phase shift of 180$^{\circ}$.
+As the demanded signal has no specific requirement for phase being maintained, this signal is the one that gets inverted.
+
+Signal conditioning is required in order to prevent aliasing occurring when the input signals are sampled.
+In order to accomplish this a naive low-pass filter was used, as show in figure \ref{fig:sigcondsch}.
+This design was chosen due to its simplicity to implement and minimal power draw, whilst still maintaining a high input impedance and suitable roll-off.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/analogue-sig-cond-amp.png}
+	\caption{The signal conditioning amplifier schematic}
+	\label{fig:sigcondsch}
+\end{figure}
+
+This design was tested through the use of a signal generator and digital oscilloscope.
+The results can be seen below.
+
 \subsubsection{Power}
 One key part of any electronic system is it needs some form of power supply, and this project is no exception.
+
+Multiple voltage rails were required, due to the DSP requiring a core voltage level as well as a second level for I/O.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/power.png}
+	\caption{The schematic of the power regulation for the projects PCB}
+	\label{fig:powersch}
+\end{figure}
 
 \subsection{PCB}
