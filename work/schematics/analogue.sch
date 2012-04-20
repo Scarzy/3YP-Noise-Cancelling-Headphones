@@ -502,3 +502,16 @@ device=none
 T 42700 38700 5 10 0 1 0 0 1
 source=analogue-sig-cond-amp.sch
 }
+C 35800 37600 1 0 0 title-A2.sym
+T 52100 38300 9 10 1 0 0 0 1
+Analogue side of Selective Noise Cancelling Headphones
+T 56000 38000 9 10 1 0 0 0 1
+F0
+T 56000 37700 9 10 1 0 0 0 1
+Thomas Scarsbrook
+T 52100 38000 9 10 1 0 0 0 1
+analogue.sch
+T 52100 37700 9 10 1 0 0 0 1
+5
+T 53600 37700 9 10 1 0 0 0 1
+7

@@ -66,3 +66,16 @@ N 47800 45300 47800 45000 4
 C 47700 43500 1 0 0 gnd-1.sym
 N 47800 43800 47800 44100 4
 N 47500 45300 48100 45300 4
+C 41200 41700 1 0 0 title-A.sym
+T 45200 42400 9 10 1 0 0 0 1
+Signal Conditioner for Selective Noise Cancelling Headphones
+T 45200 42100 9 10 1 0 0 0 1
+analogue-sig-cond-amp.sch
+T 45200 41800 9 10 1 0 0 0 1
+7
+T 46700 41800 9 10 1 0 0 0 1
+7
+T 49100 41800 9 10 1 0 0 0 1
+Thomas Scarsbrook
+T 49100 42100 9 10 1 0 0 0 1
+F0
