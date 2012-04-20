@@ -650,6 +650,6 @@ overview.sch
 T 50400 41200 9 10 1 0 0 0 1
 1
 T 51900 41200 9 10 1 0 0 0 1
-7
+6
 T 50400 41800 9 10 1 0 0 0 1
 Selective Noise Cancelling Headphones
