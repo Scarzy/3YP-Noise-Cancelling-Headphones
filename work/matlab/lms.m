@@ -1,6 +1,6 @@
-function [ out ] = lms( in, mu, len, des)
+function [ out ] = my_lms( in, len, des)
 
-out = zeros([1 len]);
+out = zeros([1 length(in)]);
 
 weights = zeros([1 len]);
 mu = 0.8*ones([1 len]);
@@ -13,9 +13,9 @@ for i = 1:length(in)
 	for j = 1:len
 		out(i) = out(i) + (vals(j) * weights(j));
 	end
-	err = des(i) + out(i);
+	err = des(i) - out(i);
 	for j = 1:len
-		weights(j) = weights(j) - mu(j)*in(i)*err;
+		weights(j) = weights(j) + 2*mu(j)*vals(j)*err;
 	end
 end
 
