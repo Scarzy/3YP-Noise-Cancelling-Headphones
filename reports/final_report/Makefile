@@ -7,6 +7,6 @@ all: final.tex sources.bib
 FILES := final.tex sources.bib
 
 clean:
-	rm -rf *.pdf *aux *.log *.dvi *.out *.bbl *.blg
+	rm -rf *.pdf *aux *.log *.dvi *.out *.bbl *.blg *.lof *.lot *.toc
 
 .PHONY: all
