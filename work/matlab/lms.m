@@ -3,7 +3,8 @@ function [ out ] = my_lms( in, len, des)
 out = zeros([1 length(in)]);
 
 weights = zeros([1 len]);
-mu = 0.8*ones([1 len]);
+mu = 0.0005*ones([1 len]);
+ff = 0.8*ones([1 len]);
 
 vals = zeros([1 len]);
 
@@ -15,7 +16,7 @@ for i = 1:length(in)
 	end
 	err = des(i) - out(i);
 	for j = 1:len
-		weights(j) = weights(j) + 2*mu(j)*vals(j)*err;
+		weights(j) = ff(j)*weights(j) + mu(j)*vals(j)*err;
 	end
 end
 
