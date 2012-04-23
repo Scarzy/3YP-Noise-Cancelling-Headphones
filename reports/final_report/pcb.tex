@@ -83,6 +83,7 @@ The results can be seen below.
 \subsubsection{Power}
 One key part of any electronic system is it needs some form of power supply, and this project is no exception.
 Multiple voltage rails were required, due to the DSP requiring a core voltage level as well as a second level for I/O.
+The voltage level required by the codec and the amplifiers was the same as the one required by the DSP I/O, simplifying the design.
 
 \begin{figure}[H]
 	\centering
@@ -90,5 +91,38 @@ Multiple voltage rails were required, due to the DSP requiring a core voltage le
 	\caption{The schematic of the power regulation for the projects PCB}
 	\label{fig:powersch}
 \end{figure}
+
+\noindent In order to account for this two voltage regulators were obtained, one providing the 3.3V required by the DSP I/O and other circuitry, and the other providing the 1.2V required by the DSP core.
+Both of these regulators were capable of providing 1.2A, which is in excess of the current requirements of the devices.
+An LED was connected to the 3.3V rail to show when power was being provided, regardless of state of the rest of the system.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| l | c |}
+		\hline
+		\multicolumn{2}{|l|}{3.3V rail}\\
+		\hline
+		Component	& Draw (mA)	\\
+		\hline
+		DSP I/O		& 75	\\
+		Codec		& 35.1	\\
+		Clock Generator	& 160.6	\\
+		Amplifiers	& 2	\\
+		\hline
+		Total		& 272.7	\\
+		\hline
+		\hline
+		\multicolumn{2}{|l|}{1.2V rail}\\
+		\hline
+		Component	& Draw (mA)	\\
+		\hline
+		DSP core	& 625	\\
+		\hline
+		Total		& 625	\\
+		\hline
+	\end{tabular}	
+	\caption{The current requirements of the various components in the circuits}
+	\label{tab:pcbcurrentdraw}
+\end{table}
 
 \subsection{PCB}
