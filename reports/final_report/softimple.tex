@@ -1,3 +1,28 @@
 \section{Software}
+The algorithmic side of the system was implemented in the C programming language, due to the amount of control it provided and the fact that the available compilers required C.
+
+\subsubsection{Ring Buffers}
+
+\begin{itemize}
+\item Ring buffers
+	\begin{itemize}
+	\item ADV.
+	\item Optimisation of sums, like mean
+	\item Not needing to worry about location in array, just use ptr
+	\item Easy to implement
+	\item DIS.
+	\item Complexity in implementation
+	\item Extra computation required
+	\end{itemize}
+\item Isolating codec comms from algorithm
+\item 
+\end{itemize}
+
 \subsection{Correlation}
+
+After writing the code for the correlation algorithm, a problem was discovered.
+The algorithm for cross-correlation requires the use of the mean in the calculation.
+Whilst the mean could be calculated easily due to the 
+
 \subsection{LMS}
+
