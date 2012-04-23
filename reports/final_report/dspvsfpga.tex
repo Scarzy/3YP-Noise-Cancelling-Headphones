@@ -2,18 +2,21 @@
 There are many alternative ways this system could be implemented, and various different pieces of hardware that could support it.
 Three of these are a Digital Signal Processor (DSP), a Field-Programmable Gate Array (FPGA), and an Application Specific Integrated Circuit (ASIC).
 Each of these have their own benefits and downsides.
-
+\\
+\\
 Some considerations need to be taken into account while comparing these various approaches.
 As mentioned previously, there is a very short period of time in which the processing can be achieved, therefore the device must be able to operate at a suitably high speed.
 Also the algorithm will almost certainly still be being developed alongside the hardware, as such for development purposes it needs to be easily configurable.
-
+\\
+\\
 The DSP is in essence a standard processor just with a couple of optimisations for data processing. 
 As such it operates like a standard processor, instructions are loaded from memory and executed one by one, and all the I/O are fixed.
 This single string method has some rather significant effects on the speed, as the chip is highly synchronous, relying on the clock pulse before any action is achieved and there can be no parallelisation between tasks.
 This means that the speed of processing is highly dependent on the clock speed.
 However, the fact that the I/O pins are in a fixed location gives it a huge advantage over alternatives, in that it can be put on a PCB and the code being run can be changed drastically without ever requiring to modify the PCB.
 The code can also be modified whilst the chip is in the circuit, allowing the algorithm to be worked on alongside the PCB being produced rather than requiring the PCB to be produced later on.
-
+\\
+\\
 On the other hand, FPGAs are just large blocks of programmable logic.
 This makes the FPGA operate significantly faster than the DSP as operations can now be easily run in parallel and are less dependant on the clock.
 Also, similarly to the DSP, the FPGA can be reprogrammed in circuit.
@@ -24,7 +27,8 @@ While a constraint file can be used to define which pins achieve what functional
 The signal passing through any extra logic introduces an additional delay in the processing too, reducing the speed benefit.
 Another downside is that the algorithm requires storing of value in memory, and creating a RAM segment will use a huge portion of the available logic.
 They are also a lot more power hungry.
-
+\\
+\\
 ASICs, when designed well, are amazingly fast.
 They give an incredible amount of control over the speed that can be achieved and the techniques that can be employed.
 They also have minimal power usage as there is no unnecessary circuitry.
@@ -33,7 +37,8 @@ This approach is not feasible for this project as, although it would work brilli
 Also the layout requires in-depth knowledge of how each of the functions are to be processed.
 This results in the design being a lot more error prone.
 Getting the chip produced is a lot more expensive than either of the other two alternatives, and once it is produced it is impossible to make changes without going through the entire cycle again.
-
+\\
+\\
 After comparing these three options, this project will be based on a DSP.
 This is due to the larger memory capacity and flexibility in the modifications that can be made.
 The knock-on effect of this is that the software side must be highly optimised for speed, in order to counteract the slowness of the DSP. 

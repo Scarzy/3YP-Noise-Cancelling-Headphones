@@ -28,7 +28,8 @@ This allows the configuration of the codec to be set easily, along with the acqu
 Secondly the codec provides two stereo inputs, which is what is required for this project, one for the noise signal, one for the heard/demanded signal.
 On top of this the codec has a output with a headphone driver, meaning that no further electronics is required between the codec and the headphones, so impedance matching is not an issue.
 Finally, the codec supported sampling frequencies suitable for the full spectrum of human hearing, meaning high frequency components would not evade being cancelled.
-
+\\
+\\
 However, the codec could not function purely by itself, it requires some surrounding electronics.
 Some basic resistors and capacitors are required on the codecs I/O ports, but the most significant piece of supporting electronics it required was a clock.
 This clock was required so it could generate the appropriate timings for the sampling frequencies and the communications with the DSP.
@@ -51,7 +52,7 @@ If any signal received were to be passed into the codec it could contain compone
 	\label{fig:analoguesch}
 \end{figure}
 
-This portion of the design is then further split into two parts, the instrumentation amplifier and the signal conditioning.
+\noindent This portion of the design is then further split into two parts, the instrumentation amplifier and the signal conditioning.
 The instrumentation amplifier takes in the noise and the optional demanded signal, and sums the two together.
 This choice of amplifier was based on a few requirements.
 The inputs from the microphones on the headphones require the amplifier to have a large input impedance.
@@ -63,7 +64,8 @@ The second requirement of the amplifier is that it must sum the signals together
 Adding distortion would result in sub-optimal cancellation, due to the actual heard signal not being known.
 The instrumentation amplifier is a difference amplifier, as such one of its input is affected by a phase shift of 180$^{\circ}$.
 As the demanded signal has no specific requirement for phase being maintained, this signal is the one that gets inverted.
-
+\\
+\\
 Signal conditioning is required in order to prevent aliasing occurring when the input signals are sampled.
 In order to accomplish this a naive low-pass filter was used, as show in figure \ref{fig:sigcondsch}.
 This design was chosen due to its simplicity to implement and minimal power draw, whilst still maintaining a high input impedance and suitable roll-off.
@@ -75,12 +77,11 @@ This design was chosen due to its simplicity to implement and minimal power draw
 	\label{fig:sigcondsch}
 \end{figure}
 
-This design was tested through the use of a signal generator and digital oscilloscope.
+\noindent This design was tested through the use of a signal generator and digital oscilloscope.
 The results can be seen below.
 
 \subsubsection{Power}
 One key part of any electronic system is it needs some form of power supply, and this project is no exception.
-
 Multiple voltage rails were required, due to the DSP requiring a core voltage level as well as a second level for I/O.
 
 \begin{figure}[H]
