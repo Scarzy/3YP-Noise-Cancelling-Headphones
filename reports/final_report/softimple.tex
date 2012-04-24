@@ -3,6 +3,28 @@ The algorithmic side of the system was implemented in the C programming language
 
 \subsubsection{Ring Buffers}
 
+Some data needed to be stored in the DSP for the algorithm to work, whether the correlation method or the LMS method.
+There are a few ways to achieve this.
+One option is an array.
+This would give the advantage of a simple system, whereby the latest value is loaded into the array.
+The issue then arises on how to determine the location in the array to load the value, and how to maintain a consistent amount of storage.
+If there's no wrapping around at the end of the array, then one of two options are available.
+Either the new value is entered at the beginning of the array, and all other values get shifted along.
+This method is very heavy on resources as it requires all the values in the arrays to be moved for each new sample.
+The alternative is that the amount of data available for each sample varies, dropping down to just a single sample at times during the analysis.
+This latter method is basically unacceptable for this project, it would result in the algorithm being unable to respond at portions of the time.
+Alternatively the option of wrapping round at the end of the array, this is the first step towards a ring buffer.
+Wrapping around at the end of an array removes the need to shift all values along upon receiving a new sample, it also prevents varying available data sizes.
+However it then introduces an issue of keeping track of the location in the array and how to deal with the wrap-around.
+Multiple variables would have to be stored and whenever a piece of code works with the array it would have to keep track of the wrapping around, introducing a large margin for error in coding.
+\\
+\\
+To eliminate this, a ring buffer struct was developed.
+This allowed the required variables to be linked directly with the array being dealt with, and shifting through the array could now be done with a standard function that only required a single argument.
+The result of using ring buffers was that the code became simpler to write and deal with, reducing room for error, however this came at a cost.
+Using a simple array based method would have resulted in minimal computational effort in shifting through the array, with ring buffers more effort was required, slowing down the overall operation.
+Thanks to the speed of the DSP the number of clock cycles this would cost was minimal, and as such ring buffers were used for the remainder of the project.
+
 \begin{itemize}
 \item Ring buffers
 	\begin{itemize}
