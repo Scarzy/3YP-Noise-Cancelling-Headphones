@@ -47,6 +47,23 @@ The DSP just followed its programming and continued, overflowing and overwriting
 This resulted in unexpected crashes on both the DSP and its debugger, which just looked like the code had frozen.
 When tested in a linux terminal, the memory overflow was detected and indicated as a segmentation fault with a complete stack trace, allowing the bug to be very easily traced.
 
+\subsubsection{Self Written}
+In this project none of the C code used was taken from an available library or provided by anyone not involved in this project.
+Some of the matlab code written during the modelling used inbuilt functions to begin with, in order to produce proof of concept, however then was re-written to remove these external functions.
+\\
+\\
+There were multiple advantages to writing all the code.
+One of these was the advantage of using the desirable data structures, in particular the ring buffers.
+While many libraries available deal with ranges of data, they generally expect arrays and do not provide the capability to deal with the ring buffers used in the rest of the project.
+This would result in having to resort to the alternatives, resulting in serious losses to functionality.
+\\
+\\
+Of course, no advantages come for free, and as such there were multiple disadvantages to this approach.
+The most obvious one being that all the code had to be written and tested, whereas this would have been done extensively with any available libraries.
+On top of this, libraries are available for the DSP which achieve a variety of functions, and have had the assembly code hand optimised by the manufacturer, Texas Instruments (TI).
+These optimisations were lost, resulting in slightly slower code.
+However many of these libraries were incompatible with the data structures used by the rest of the system, so the losses in optimisations here were made up for through optimisation in other ways, as previously discussed.
+
 \begin{itemize}
 \item Ring buffers
 	\begin{itemize}
