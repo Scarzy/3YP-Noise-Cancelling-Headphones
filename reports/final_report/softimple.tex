@@ -1,5 +1,15 @@
 \section{Software}
+Many decisions were made in the implementation of the algorithms in this project.
+Some of these decisions affected just the correlation method, some just the LMS method, and some that affected the project regardless of methodology.
+Here these decisions are discussed, starting with the decisions that were method independent, then covering each of the method specific ones in turn.
+
+\subsubsection{Language}
+
 The algorithmic side of the system was implemented in the C programming language, due to the amount of control it provided and the fact that the available compilers required C.
+This gave a large degree of control to the various peripherals built into the DSP, specifically a nice interface to the McBSP registers for communication with the codec, and the GPIO port for using the debugging LEDs.
+The disadvantage this introduced was that built in data types and the available functions that could be acted upon them were a bit more restrictive than those used in the modelling with matlab.
+As such the desired structs and functionality for the ring buffers (discussed below) had to be designed and developed manually.
+This also affected the algorithms themselves, as each value had to be dealt with individually, whereas matlab could perform matrix based operations.
 
 \subsubsection{Ring Buffers}
 
