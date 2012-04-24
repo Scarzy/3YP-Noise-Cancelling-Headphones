@@ -64,36 +64,6 @@ On top of this, libraries are available for the DSP which achieve a variety of f
 These optimisations were lost, resulting in slightly slower code.
 However many of these libraries were incompatible with the data structures used by the rest of the system, so the losses in optimisations here were made up for through optimisation in other ways, as previously discussed.
 
-\begin{itemize}
-\item Ring buffers
-	\begin{itemize}
-	\item ADV.
-	\item Optimisation of sums, like mean
-	\item Not needing to worry about location in array, just use ptr
-	\item Easy to implement
-	\item DIS.
-	\item Complexity in implementation
-	\item Extra computation required
-	\end{itemize}
-\item Isolating codec comms from algorithm
-	\begin{itemize}
-	\item ADV.
-	\item Simplicity of changing codec interface
-	\item Ease of testing
-	\item DIS.
-	\item Multiple files
-	\end{itemize}
-\item Self writing all code
-	\begin{itemize}
-	\item ADV.
-	\item Suited own data structures
-	\item Allowed optimisations to suit structures
-	\item DIS.
-	\item Everything had to be written
-	\item Lack of some optimisations
-	\end{itemize}
-\end{itemize}
-
 \subsection{Correlation}
 
 After writing the code for the correlation algorithm, a problem was discovered.
