@@ -126,17 +126,82 @@ An LED was connected to the 3.3V rail to show when power was being provided, reg
 \end{table}
 
 \subsection{PCB}
-The PCB was designed in gEDA PCB.
+Various things had to be taken into consideration for the PCB design.
+The PCB was designed in gEDA PCB, as I had used the software previously.
 
-\begin{itemize}
-	\item Two ground planes
-	\item Decoupling capacitors
-	\item Two layers
-	\item QFP instead of BGA
-	\item Segmentation
-	\item Debug Headers
-	\item Audio I/O
-\end{itemize}
+\subsubsection{Coupling}
+For starters the high frequency switching involved in the digital portion of the system could introduce a lot of noise which could distort the signal from the analogue portion.
+This would largely be seen as current being drawn along the ground plane, introducing a rapidly changing voltage gradient across it.
+While this isn't as much of an issue for the digital portion, as there are margins around each voltage level, the analogue portion would suffer significantly, especially if the noise is introduced after the signal conditioning stage.
+In order to mitigate this, the analogue circuitry has a separate ground plane to the digital.
+Obviously these two ground planes still need to be connected to the same external connection, so they connect at this point, meaning minimal chance of currents flowing through the other portion of the system.
+These separate plane can be seen in figures \ref{fig:pcbtop} and \ref{fig:pcbbottom}.
+The digital ground planes are the red and light green planes respectively, whilst the analogue grounds are grey and dark green.
+\\
+\\
+In order to place the analogue circuitry on its own ground plane, it had to be segregated from the rest of the circuitry.
+This style was maintained with the rest of the layout, where circuits with different functions were kept separated from the rest.
+Power kept separate from the DSP, kept separate from the codec, etc.
+An additional benefit arose from this, where signals travelling between parts of the system were travelling a short distance reducing the effect of noise.
+An example of this is the clock generator feeding the codec.
+The 12MHz signal it provides would generate a large amount of noise, however as it is kept in a segment with the codec IC itself the signal has a very short distance to travel.
+As such this signal did not interfere with other signals as there was no need for it to pass near them.
+Also there was a portion of ground plane between it and other signals, preventing it from passing over.
+\\
+\\
+Another way to help mitigate the noise effects is to place decoupling capacitors across the power rails near each IC.
+This is something that is required with the digital systems as well as the analogue circuitry, as they are still susceptible to this noise effect albeit less so than the analogue.
+Some of these decoupling capacitors can be seen around the codec and clock generator, however the more obvious ones are those around the DSP.
+Due to its size and complexity the DSP requires more decoupling than the rest of the circuitry.
+Multiple sizes of capacitors were used around the DSP.
+In opposing corners of the DSP a 10$\mu$F capacitor was placed to remove lower frequency components and to give a reasonable power storage against drops.
+Then around the edge of the DSP, right next to the pins that required them, smaller 1$\mu$F capacitors were placed to remove high frequency components right at the power entry.
+
+
+\subsubsection{Layers and Packaging}
+There are various different packages available for the components to be used on the PCB, and which packages are used affect the construction of the PCB.
+The first, basic decision to be made was whether to use surface mount components, or through hole components.
+Due to the low power nature of this system this choice was remarkable simple.
+Using through hole components would require more physical space above and below the PCB surface than surface mount components, and would be more bulky width ways.
+Also the location of the pin holes would have taken more space than the surface mount pads, as they require space on both sides of the PCB.
+Finally some components are limited in what packages they are available in.
+For example the DSP was only available in surface mount packages.
+As such there was no benefit to using through hole components, therefore surface mount ones were chosen.
+\\
+\\
+The DSP was only available in two varieties of packaging, Quad Flat Package (QFP) or Ball Grid Array (BGA).
+These packagings had an effect on not only the footprint required, but also pin availability and the speed the DSP could run at.
+BGA had 272 pads arranged in a ring, 4 pads wide, around the underneath edge of the IC.
+In order to connect to all these pads multiple levels were required, most likely requiring power and ground to be carried on separate layers on the PCB.
+Increasing the PCB to 4 layers to allow for this would drastically increase the cost of the PCB, ~\pounds180 rather than the ~\pounds80 paid.
+Routing the connections in between the pads and locating the decoupling capacitors would have been rather difficult.
+Also there is then an issue in terms of production.
+A BGA package requires soldering onto the board in an oven.
+On the plus side, in this package the DSP was available in speeds up to 300MHz.
+\\
+\\
+On the other hand QFP has all the pins located across the four sides of the IC, and therefore only provides 208 pins due to the reduced area to connect with.
+However all the pins of the package could be physically accessed externally, meaning that routing around them becomes much easier, also only a single layer is required to mount the device.
+Soldering the package to the board becomes an easier task too, and a standard soldering iron can be used.
+QFP loses out on the speed side though, the only speed available in a QFP package is 200MHz.
+\\
+\\
+Taking these into account it was decided to use the QFP package in this project.
+While fewer pins are available to the user, none of the pins that became unavailable were required by this project, as such the loss of them was not an issue.
+The slower speed was a greater factor, however it was outweighed by the cost of manufacture that the BGA would have required, and testability.
+Due to the fact that all the pins of the QFP package were physically accessible by the user, testing would be easier as they can be probed, whereas the BGA package does not allow this.
+\\
+\\
+In order to reduce the size of the board required, and to ease routing, and aid the placement of decoupling capacitors near the power connections, a two layer PCB was used.
+This second layer allowed the decoupling capacitors to be placed directly beneath the pins they would connect to, reducing the distance from the pins and therefore reducing the amount of noise that could appear on the line.
+However the more significant advantage was the ability for tracks that would otherwise conflict pass over each other.
+
+\subsubsection{Debugging Headers}
+Due to the fact this system was under development, the PCB would require vigorous testing after production.
+In order to aid this testing a load of headers were placed between sections of the system, thus allowing the sections to be tested in isolation.
+Not only could the output of a system be measured without the following stage affecting it, but also the input could be assigned manually without the preceding stage interfering.
+Key placements of these headers were between the power and any other portion of the system, between the audio connections and the rest of the system, and on the interface between the analogue and digital portions of the system.
+
 
 \begin{figure}[H]
 	\centering
