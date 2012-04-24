@@ -33,6 +33,19 @@ Therefore, in order to determine the mean and additional variable could be store
 As a result calculating the mean is reduced to a single addition, single subtraction, single division, and a single shift through the buffer, rather than an addition and shift for each value in the buffer, followed by a division.
 This is a huge time saving, and as the number of clock cycles is heavily restricted a saving this large is a real advantage.
 
+\subsubsection{Code Isolation}
+In order to ease the writing and testing of the code, separate parts of the code were written in separate files, with minimal requirements from other files.
+All the code that interfaced with external devices, such as the code relating to the codec communications, was especially separated out, with only functions
+to get and send data used externally.
+This gave the advantage that all the algorithmic code was cross platform, enabling it to be tested on normal computer systems.
+Of course to test it on a normal computer system, the I/O calls and the codec interface were no longer valid, so had to be mimicked.
+This mimicking was achieved through a minimalistic block of code which simply read from a file and wrote to the console.
+\\
+\\
+This ability to test it cross platform proved especially useful when a ring buffer pointer was not being shifted through the buffer correctly, resulting in a memory leakage.
+The DSP just followed its programming and continued, overflowing and overwriting program memory.
+This resulted in unexpected crashes on both the DSP and its debugger, which just looked like the code had frozen.
+When tested in a linux terminal, the memory overflow was detected and indicated as a segmentation fault with a complete stack trace, allowing the bug to be very easily traced.
 
 \begin{itemize}
 \item Ring buffers
