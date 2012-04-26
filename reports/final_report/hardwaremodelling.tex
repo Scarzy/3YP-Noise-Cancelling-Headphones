@@ -7,7 +7,17 @@ codec.
 \subsection{Signal Conditioning}
 Models of the signal conditioning were created in OrCAD in order to check that
 the break frequency and roll off were suitable.
-The result of this modelling can be seen in figure \ref{fig:sigcondmodel}
+The design of this circuitry will be discussed later, in section
+\ref{sec:imple:hard:sch}, only the modelling of it will be covered here.
+The result of this modelling can be seen in figure \ref{fig:sigcondmodel}.
+\\
+\\
+This graph shows that the signal conditioning amplifier has a break frequency
+of ***Hz.
+This is ideal for the function it will be providing, as it is just below the
+boundary of human hearing, meaning that all audible frequencies will reach 
+the codec for sampling, while frequencies that would produce aliasing are
+nullified.
 
 \begin{figure}[H]
 	\centering
