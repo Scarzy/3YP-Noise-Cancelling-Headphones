@@ -153,4 +153,34 @@ This would serve the purpose of removing the ripples on the signal and keep it w
 \end{figure}
 
 \subsubsection{Analogue}
+The frequency response of the signal conditioning amplifier was tested, to check it would provide the correct reduction.
+Figure \ref{tab:analoguetestconditions} shows the power configurations used.
+A sine wave at 5.03V peak to peak was applied at the input of one of the signal conditioners, and an oscilloscope probe connected to the output.
+The frequency of the input sine wave was then changed and the output peak to peak voltage measured at each frequency.
+This resulted in the graph shown by figure \ref{fig:sigcondtest}.
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| l | l | c |}
+		\hline
+		\multicolumn{2}{|l|}{Factor}		& Value	\\
+		\hline
+		\multirow{4}{*}{J105}	& $DV_{dd}$	& -		\\
+					& $CV_{dd}$	& -		\\
+					& Codec		& -		\\
+					& Amp		& Connected	\\
+		\hline
+	\end{tabular}
+	\caption{Conditions for testing the signal conditioning amplifier}
+	\label{tab:analoguetestconditions}
+\end{table}
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[width=\textwidth]{./img/sigcondtest.png}
+	\caption{The frequency response of the signal conditioning amplifier}
+	\label{fig:sigcondtest}
+\end{sidewaysfigure}
+
+\noindent This graph shows that the response of the amplifier matches the simulation (figure \ref{fig:sigcondmodel}).
+Therefore the signal conditioning amplifier performs as expected.
