@@ -1,1 +1,34 @@
 \section{Alternatives}
+
+There are many varieties of noise cancelling headphones available on the market, and many different methods are employed in order to achieve the cancellation.
+Noise cancelling headphones have been in production for years due to the demand to reduce the surrounding sounds, for example to protect paramedics hearing whilst in an ambulance \cite{EMHeadsets}, or to improve music quality.
+
+\subsection{Methods}
+Out of all the methods of achieving noise cancellation, the most primitive is to use Ear Canal Headphones (ECH).
+These physically isolate the eardrum from the external noise sources.
+The advantages of this method are that no electronic parts are required, as all the attenuation is achieved passively, however this dulls out all noise and can result in the user being apparently deaf.
+\\
+\\
+The majority of methods use active noise cancelling (ANC), whereby some electronics are used to cancel out the noise.
+These devices come in a variety of forms, and may be capable of just cancelling certain parts of the frequency spectrum rather than all sounds.
+In \cite{EMHeadsets} it is possible to see the use of a DSP in order to achieve cancelling on a specific range of noise signals.
+Another way to implement semi-selective noise cancellation is to identify types of sound
+\\
+\\
+Such methods are limited in their capabilities as additional phase shifts or attenuations can be caused by the construction of the headphones.
+One way to deal with this is to introduce a second microphone \cite{2SensorANCAlg} in order to provide feedback.
+\\
+\\
+One major issue with ANC is the stability of the control system.
+It is very easy to create a situation whereby the algorithm is unstable, or the cancellation achieved is suboptimal.
+Sources \cite{AuralEnvironmentAdjANC} and \cite{ANCOptimalControlInf} look at two methods in which to combat this.
+
+\subsection{Differences to this Project}
+All of these methodologies take in the noise source that is reaching the users ear and apply a cancellation signal to remove all of the sound.
+Some of the more advanced methods use a second sound input, which is essentially feedback, allowing the cancellation to be increase in optimality.
+None of these methods allow for only a single component to be cancelled, the cancelling signal is produced for all sound reaching the ear.
+This project aims to address this, and provide this ability in order to achieve all the benefits of the alternative methods without removing sounds that are required.
+Furthermore, this project aims to achieve this without feedback, in order to allow ear bud style headphones to be used to increase convenience to the user.
+Extra processing is required for the detection of one signal inside the heard sounds, however allows for the methodology to be used in circumstances where feedback may not be possible.
+One such circumstance could be where the cancellation is attempted remotely, without any contact with the user.
+This could be something like reducing the noise sounds from speakers in a theater entrance, allowing the box office attendants and late arrivals to communicate with each other, while not having to wear headsets.
