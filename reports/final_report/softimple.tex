@@ -99,4 +99,26 @@ The other option would be to optimise the code by as many means possible, by loo
 To a certain degree both methods were used to speed up the system, however were not effective enough.
 
 \subsection{LMS}
-
+\label{ssec:implelms}
+The LMS code acted in three stages; calculate output, generate feedback, update weights.
+The first of these stages, calculating the output, involved iterating over a loop summing up the various taps.
+The weights were stored in an array, and matched against the values in the ring buffer by producing a new pointer for it, and shifting it round backwards.
+After multiplying respective weights and stored values, the output of this filter is then played out through the headphones.
+\\
+\\
+The seconds stage involved the generation of a virtual feedback value to be used for the final stage.
+The generation of this assumed that the sounds reaching the external microphone of the headphones were the same as those reaching the eardrum.
+This assumption was slightly dangerous as it did not account for the demanded sound signal, which would be reaching the eardrum also.
+\\
+\\
+The final stage involved updating the array of weights to optimise the cancellation, based on the feedback.
+The algorithm for calculating the updated weights works on the basis of minimising the power of the virtual feedback signal.
+At this point the assumption made in the second stage is validated.
+As different signals are superimposed together the overall power of the summed signal changes, therefore summing the demanded signal onto the heard signal would cause the power to shift.
+If the demanded signal happened to be that of the noise signal then the power of the summed signal would be increased.
+Because this summed signal correlates well with the noise signal, the LMS filter will update to double the value they'd otherwise be at in order to reduce to the minimum power level.
+This will cancel not only the noise that reaches the ear, but also the demanded signal, the result of which will be that the user will temporarily be unable to hear the demanded signal.
+A similar effect could be observed if the demanded signal happened to be the inverse of the noise signal, the difference being that the filter weights will be updated to zero.
+The user will experience the same 'deaf' effect.
+By keeping the demanded signal out of this virtual feedback loop it is guaranteed that the demanded signal will not be cancelled out, as only components in the heard signal will be acted upon.
+Once the updated weights have been calculated and stored in the array the loop repeats.
