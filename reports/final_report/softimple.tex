@@ -122,3 +122,8 @@ A similar effect could be observed if the demanded signal happened to be the inv
 The user will experience the same 'deaf' effect.
 By keeping the demanded signal out of this virtual feedback loop it is guaranteed that the demanded signal will not be cancelled out, as only components in the heard signal will be acted upon.
 Once the updated weights have been calculated and stored in the array the loop repeats.
+\\
+\\
+As I write this I discover a serious design flaw in the summation of the heard and demanded signals before sampling.
+The justification for virtual feedback is nullified by the fact that the demanded signal is added to the heard signal before sampling.
+The solution would be to put the instrumentation amplifier in the output feed.
