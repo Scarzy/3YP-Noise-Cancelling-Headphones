@@ -19,6 +19,9 @@ These sections are discussed below.
 \subsubsection{DSP}
 At the heart of the project is the digital signal processor.
 This is the part that achieves all the calculations required by the cancelling algorithm.
+The DSP chosen for this project was the Texas Instruments TMS320C6713.
+It was chosen as it had the desired interfaces required for communication with the codec, and was powerful enough to support the desired algorithms
+Another important factor used in the decision was that a development board for this DSP could be acquired, allowing the testing of code without requiring the PCB being produced.
 Due to the complexity of the design, the DSP required two separate voltage levels, one for the core logic and one for the I/O, and required connectivity to them at multiple points around the device.
 A significant number of decoupling capacitors were required at these power connections, in order to prevent noise from disrupting correct operation.
 These capacitors can be seen in figure \ref{fig:dspdecouplingcaps}.
