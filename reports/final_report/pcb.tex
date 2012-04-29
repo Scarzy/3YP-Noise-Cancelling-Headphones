@@ -19,6 +19,59 @@ These sections are discussed below.
 \subsubsection{DSP}
 At the heart of the project is the digital signal processor.
 This is the part that achieves all the calculations required by the cancelling algorithm.
+Due to the complexity of the design, the DSP required two separate voltage levels, one for the core logic and one for the I/O, and required connectivity to them at multiple points around the device.
+A significant number of decoupling capacitors were required at these power connections, in order to prevent noise from disrupting correct operation.
+These capacitors can be seen in figure \ref{fig:dspdecouplingcaps}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/signal_conditioning_sim.pdf}
+	\caption{Decoupling capacitors for the DSP}
+	\label{fig:dspdecouplingcaps}
+\end{figure}
+
+\noindent It is rather difficult to tell how code is operating on a DSP, due to the fact that the internals cannot be probed.
+This becomes harder when debugging, as the code could be causing the DSP to crash.
+If this were to happen then it has the potential to cause any debugging software to crash also, preventing the use of a stack trace.
+As a way to circumvent this issue, a couple of LEDs were added to the DSP, connected to the general purpose I/O pins.
+These could then be used for debugging, and potentially to display details to the user in a final product.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/dsp_LEDs.pdf}
+	\caption{Debugging LEDs for the DSP}
+	\label{fig:dspdebugleds}
+\end{figure}
+
+\noindent In order to program and debug the DSP a JTAG header was set up.
+The header used was compatible with the standard Texas Instruments 14 pin JTAG connector, to enable use of standard programming tools.
+The pin layout for this header can be seen in table \ref{tab:jtagpinout}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| c | l |}
+		\hline
+		Pin	& Function	\\
+		\hline
+		1	& TMS		\\
+		2	& nTRST		\\
+		3	& TDI		\\
+		4	& GND		\\
+		5	& $DV_{dd}$	\\
+		6	& KEY		\\
+		7	& TDO		\\
+		8	& GND		\\
+		9	& RTCK		\\
+		10	& GND		\\
+		11	& TCK		\\
+		12	& GND		\\
+		13	& EMU0		\\
+		14	& EMU1		\\
+		\hline
+	\end{tabular}
+	\caption{JTAG pin assignments used}
+	\label{tab:jtagpinout}
+\end{table}
 
 \subsubsection{Codec}
 The DSP is unable to read analogue signals, and therefore requires the analogue signals from the microphones involved to be sampled by an external device.
