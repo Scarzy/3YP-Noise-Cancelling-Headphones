@@ -1,0 +1,17 @@
+\section{Further Work}
+
+If this project were to be continued, there are a few features that could be looked into.
+Some of these affect the hardware, others affect the algorithmic side, and can largely be treated independently.
+\\
+\\
+The PCB has a few flaws.
+One of these problems is the current inability to program the device.
+Development of a programming method would be advantageous, allowing the algorithms to be tested thoroughly.
+Another change that would be ideal would be to remove the instrumentation amplifier in the analogue portion of the system.
+I would also recommend a change of the DSP used in the project, the C6713 has a few interesting quirks including occasionally reseting if the code acts unexpectedly even if all reset features, such as the watchdog timer, are disabled.
+Finding one with a lower power draw would be preferable, as the device is required to be portable, therefore a long battery life is required.
+\\
+\\
+On the algorithmic side of the setup, LMS implementation could be furthered.
+Also experimenting with the use of Independent Component Analysis on the device, in order to remove the need for an external sensor to provide the noise input.
+This is covered more in appendix \ref{appendix:ica}.
