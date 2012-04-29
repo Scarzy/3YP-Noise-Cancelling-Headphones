@@ -75,28 +75,16 @@ These optimisations were lost, resulting in slightly slower code.
 However many of these libraries were incompatible with the data structures used by the rest of the system, so the losses in optimisations here were made up for through optimisation in other ways, as previously discussed.
 
 \subsection{Correlation}
-
-After writing the code for the correlation algorithm, a problem was discovered.
-The algorithm for cross-correlation requires the use of the mean in the calculation.
-Whilst the mean could be calculated easily due to the advantages provided through the use of ring buffers, there was additional issues with the inserting this mean at the correct point in the calculation.
-The entire buffer had to be iterated through after the calculation of the mean, and a calculation performed at each step.
-This second calculation was more intensive than the calculation of the mean would have been.
-This produced a severe draw on the processing power of the DSP, and resulted in the system taking approximately 7 seconds between each sample.
-As the codec operated at 48KHz, this meant that the code was operating about three hundred thousand times too slow.
+The correlation code was implemented in two phases.
+Initially the code was written in a bloated manner, where the code was written to be ultimately functional and match the algorithm rather than optimal.
+Once this code was achieved and tested for functionality it was rewritten to be more optimal.
+This re-writing was based around merging loops through the data that were capable of being run side by side.
 \\
 \\
-Two options presented themselves in order to reduce this issue.
-Firstly the length of the buffers could be reduced.
-This would have been a simple fix, and would have drastically speeded up the algorithm.
-On the flip side of the coin however, reducing the buffer size by enough to produce a suitably fast algorithm would have removed so much information than would have been desirable for accurate cancelling.
-Another effect of shortening the buffers would be that the headphones could no longer deal with as long a difference between the heard signal and the noise signal.
-As a result, the cancelling effect would be reduced.
-\\
-\\
-The other option would be to optimise the code by as many means possible, by looking for loopholes in how the algorithm iterates through the loops.
-\\
-\\
-To a certain degree both methods were used to speed up the system, however were not effective enough.
+The cross correlation is determined of the two signals, and then this value is stored in an array.
+The peak of this array was then detected.
+An array was used here rather than a ring buffer as all the values would change on each new sample, as all the values are dependant on the mean.
+Therefore the advantages of a ring buffer are nullified.
 
 \subsection{LMS}
 \label{ssec:implelms}
