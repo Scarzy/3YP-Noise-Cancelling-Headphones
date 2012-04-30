@@ -1,7 +1,7 @@
 \section{Alternatives}
 
 There are many varieties of noise cancelling headphones available on the market, and many different methods are employed in order to achieve the cancellation.
-Noise cancelling headphones have been in production for years due to the demand to reduce the surrounding sounds, for example to protect paramedics hearing whilst in an ambulance \cite{EMHeadsets}, or to improve music quality.
+Noise cancelling headphones have been in production for years due to the demand to reduce the surrounding sounds, for example to protect paramedics' hearing whilst in an ambulance \cite{EMHeadsets}, or to improve music quality.
 
 \subsection{Methods}
 Out of all the methods of achieving noise cancellation, the most primitive is to use Ear Canal Headphones (ECH).
@@ -9,7 +9,7 @@ These physically isolate the eardrum from the external noise sources.
 The advantages of this method are that no electronic parts are required, as all the attenuation is achieved passively, however this dulls out all noise and can result in the user being apparently deaf.
 \\
 \\
-The majority of methods use active noise cancelling (ANC), whereby some electronics are used to cancel out the noise.
+The majority of methods use Active Noise Cancelling (ANC), whereby some electronics are used to cancel out the noise.
 These devices come in a variety of forms, and may be capable of just cancelling certain parts of the frequency spectrum rather than all sounds.
 ANC technology produces a cancelling signal of the same amplitude to the noise, however with a phase shift of 180$^{\circ}$.
 When superimposed on the sound reaching the ear, this anti-phase signal causes the noise to be cancelled away, as such the user does not hear it.
@@ -21,10 +21,10 @@ One system that uses such an implementation is covered in section \ref{sec:phili
 \\
 Such methods are limited in their capabilities as additional phase shifts or attenuations can be caused by the construction of the headphones.
 One option for accounting for this is to use a feedback sensor instead of feed-forward.
-This prevents over cancellation and accounts for any multipath traits the noise might exhibit.
+This prevents over-cancellation and accounts for any multipath traits the noise might exhibit.
 The issue with such a design is that they remove all sound, and it is not possible to then introduce an additional, desired sound, potentially from an MP3 player or similar.
 Sounds from the desired source will be detected at the feedback microphone, along with the noise sounds, and a cancelling signal designed to cancel both the noise and the desired signals will be produced.
-Therefore, this design is suitable for ear defenders for workers in a factory, however would not be suitable for a pilot requiring to hear the radio over the engine noise.
+Therefore, as an example, this design is suitable for ear-defenders for workers in a factory, but not for a pilot requiring to hear the radio over the engine noise.
 \\
 \\
 Another way to deal with this is to introduce a second microphone \cite{EMNoiseCancel,2SensorANCAlg} in order that both feed-forward and feedback can be provided.
@@ -33,29 +33,29 @@ This allows the cancelling to be achieved stably, without cancelling the desired
 \\
 \\
 \nocite{*}
-In \cite{EMHeadsets} it is possible to see the use of a DSP in order to achieve cancelling, where only a specific range of noise signals are attenuated.
-This method employs signal conditioning filters to remove frequencies outside the range of the noise signal.
-This is made possible by prior knowledge of the type of noise signal.
-It is known that the siren is between $400-800Hz$, and as such only sounds inside this frequency range require cancellation.
-Because of this a low power DSP is possible, along with a lower sampling rate, allowing a longer battery life for the supporting circuitry.
-One notable feature with the design in \cite{EMHeadsets} is that there is no feed-forward, the system is based purely around feedback.
-As a result only the sound actually reaching the users ear is cancelled, rather than a prediction from a feed-forward mechanism.
-Furthermore the system is more stable.
-The methodology used here is to use the DSP to implement a LMS adaptive filter, taking the filtered feedback signal as an input.
-\\
-\\
 One major issue with ANC is the stability of the control system.
 It is very easy to create a situation whereby the algorithm is unstable, or the cancellation achieved is suboptimal.
 Sources \cite{AuralEnvironmentAdjANC} and \cite{ANCOptimalControlInf} look at two methods in which to combat this.
+\\
+\\
+In \cite{EMHeadsets} it is possible to see the use of a Digital Signal Processor (DSP) in order to achieve cancelling, where only a specific range of noise signals are attenuated.
+This method employs signal conditioning filters to remove frequencies outside the range of the noise signal.
+This is made possible by prior knowledge of the type of noise signal.
+In this case, it is known that the siren is between $400-800Hz$, and as such only sounds inside this frequency range require cancellation.
+This fact allows for the use of a low power DSP, along with a lower sampling rate, allowing a longer battery life for the supporting circuitry.
+One notable feature with the design in \cite{EMHeadsets} is that there is no feed-forward; the system is based purely around feedback.
+As a result only the sound actually reaching the users ear is cancelled, rather than a prediction from a feed-forward mechanism.
+Additionally the system is more stable.
+The methodology used here is to use the DSP to implement a Least Mean Square (LMS) adaptive filter, taking the filtered feedback signal as an input.
 
 \subsection{Differences to this Project}
-All of these methodologies take in the noise source that is reaching the users ear and apply a cancellation signal to remove all of the sound.
-Some of the more advanced methods use a second sound input, which is essentially feedback, allowing the cancellation to be increase in optimality.
-None of these methods allow for only a single component to be cancelled, the cancelling signal is produced for all sound reaching the ear.
+All of these methodologies take in the noise source that is reaching the users' ear and apply a cancellation signal to remove all of the sound.
+Some of the more advanced methods use a second sound input, which is essentially feedback, allowing the cancellation to be increased in optimality.
+None of these methods allow for only a single component to be cancelled - the cancelling signal is produced for all sound reaching the ear.
 This project aims to address this, and provide this ability in order to achieve all the benefits of the alternative methods without removing sounds that are required.
-Furthermore, this project aims to achieve this without feedback, in order to allow ear bud style headphones to be used to increase convenience to the user.
-Extra processing is required for the detection of one signal inside the heard sounds, however allows for the methodology to be used in circumstances where feedback may not be possible.
-Also, the lack of feedback allows for the demanded signal to be guaranteed.
+Also, this project aims to achieve this without feedback, in order to allow ear bud style headphones to be used to increase convenience to the user.
+Extra processing is required for the detection of one signal inside the heard sounds, however it allows for the methodology to be used in circumstances where feedback may not be possible.
+Furthermore, the lack of feedback allows for the demanded signal to be guaranteed.
 The reasoning for this is covered in section \ref{text:virtualfeedbackassumption}.
 One such circumstance could be where the cancellation is attempted remotely, without any contact with the user.
 This could be something like reducing the noise sounds from speakers in a theatre entrance, allowing the box office attendants and late arrivals to communicate with each other, while not having to wear headsets.
