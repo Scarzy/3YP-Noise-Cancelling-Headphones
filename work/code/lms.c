@@ -1,11 +1,13 @@
 #include "lms.h"
 
-void build_tap(double * noiin, int noisize, double * err, double * tap, int taplength)
+void build_tap(void * ring, int16_t * ptrin, double * err, double * tap, int taplength, double * norm)
 {
+	int16_t * ptr = ptrin;
 	int i;
-	for(i = 0; i < taplength; i++)
+	for(i = taplength - 1; i >= 0; i--)
 	{
-		tap[i] = LEAK_FACTOR * tap[i] - MU_VALUE * noiin[i] * err;
+		tap[i] = LEAK_FACTOR * tap[i] + (MU_VALUE * noiin[i] * *err / *norm);
+		dec_ring(ring, &ptr);
 	}
 }
 
@@ -22,19 +24,21 @@ void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16
 	*out = sum;
 }
 
-void gen_error(int16_t * desin, int16_t * estin, int16_t * err)
+void gen_error(int16_t * desin, int16_t * estin, double * err)
 {
-	*err = *desin + *errin;
+	*err = *desin - *errin;
 }
 
-void vec_val_mu(double * acin, int acsize, double * mu)
+void calc_norm(void ring, int16_t * ptrin, double * normout)
 {
-	//Calculate eigenvalues of input signal autocorrelation
-	//Assign each mu to the eigenvalue
+	int16_t * ptr = ptrin;
+	double sum = 0;
 	int i;
-	for(i = 0; i < TAP_LENGTH; i++)
+	for(i = tap_length - 1; i >= 0; i--)
 	{
-		mu[i] = acin[i];
+		sum += (*ptr * *ptr);
+		dec_ring(ring, &ptr);
 	}
+	*normout = sum;
 }
 
