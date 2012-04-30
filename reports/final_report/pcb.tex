@@ -20,9 +20,10 @@ These sections are discussed below.
 At the heart of the project is the Digital Signal Processor.
 This is the part that achieves all the calculations required by the cancelling algorithm.
 The DSP chosen for this project was the Texas Instruments TMS320C6713.
-It was chosen as it had the desired interfaces required for communication with the codec, and was powerful enough to support the desired algorithms
+It was chosen as it had the desired interfaces required for communication with the codec, and was powerful enough to support the desired algorithms.
 Another important factor used in the decision was that a development board for this DSP could be acquired, allowing the testing of code without requiring the PCB being produced.
-Due to the complexity of the design, the DSP required two separate voltage levels, one for the core logic and one for the I/O, and required connectivity to them at multiple points around the device.
+Due to the complexity of the design, the DSP required two separate voltage levels, one for the core logic and one for the I/O.
+Connectivity was required to them at multiple points around the device.
 A significant number of decoupling capacitors were required at these power connections, in order to prevent noise from disrupting correct operation.
 These capacitors can be seen in figure \ref{fig:dspdecouplingcaps}.
 
@@ -184,7 +185,7 @@ An LED was connected to the 3.3V rail to show when power was being provided, reg
 
 \subsection{PCB}
 Various things had to be taken into consideration for the PCB design.
-The PCB was designed in gEDA PCB, as I had used the software previously.
+The PCB was designed in gEDA PCB, due to previous experience with this software.
 
 \subsubsection{Coupling}
 For starters the high frequency switching involved in the digital portion of the system could introduce a lot of noise which could distort the signal from the analogue portion.
@@ -198,7 +199,7 @@ The digital ground planes are the red and light green planes respectively, whils
 \\
 In order to place the analogue circuitry on its own ground plane, it had to be segregated from the rest of the circuitry.
 This style was maintained with the rest of the layout, where circuits with different functions were kept separated from the rest.
-Power kept separate from the DSP, kept separate from the codec, etc.
+Power kept separate from the DSP, the DSP kept separate from the codec, etc.
 An additional benefit arose from this, where signals travelling between parts of the system were travelling a short distance reducing the effect of noise.
 An example of this is the clock generator feeding the codec.
 The 12MHz signal it provides would generate a large amount of noise, however as it is kept in a segment with the codec IC itself the signal has a very short distance to travel.
@@ -249,7 +250,7 @@ The slower speed was a greater factor, however it was outweighed by the cost of 
 Due to the fact that all the pins of the QFP package were physically accessible by the user, testing would be easier as they can be probed, whereas the BGA package does not allow this.
 \\
 \\
-In order to reduce the size of the board required, and to ease routing, and aid the placement of decoupling capacitors near the power connections, a two layer PCB was used.
+In order to reduce the size of the board required, to ease routing, and aid the placement of decoupling capacitors near the power connections, a two layer PCB was used.
 This second layer allowed the decoupling capacitors to be placed directly beneath the pins they would connect to, reducing the distance from the pins and therefore reducing the amount of noise that could appear on the line.
 However the more significant advantage was the ability for tracks that would otherwise conflict pass over each other.
 
