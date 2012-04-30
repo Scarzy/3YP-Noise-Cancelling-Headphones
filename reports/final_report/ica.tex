@@ -5,17 +5,17 @@ It is a possible solution to the cocktail party problem.
 \section{Methodology}
 
 ICA works on a few assumptions.
-Firstly that the signals are non-Guassian, with at most one exception.
-This is because Guassian signals are symmetrical, and do not contain matrix statistics of order higher than second order.
-As such, two Guassian signals are non-separable.
+Firstly that the signals are non-Gaussian, with at most one exception.
+This is because Gaussian signals are symmetrical, and do not contain matrix statistics of order higher than second order.
+As such, two Gaussian signals are non-separable.
 Secondly that all the signals are statistically independent, and finally that the number of signal sources is less than or equal to the number of sensors.
 \\
 \\
-The aim of any ICA algorithm is to find a demixing matrix W which, when multiplied by the input vector from the sensors, produces a vector containing the values emitted by the various sources.
+The aim of any ICA algorithm is to find a de-mixing matrix W which, when multiplied by the input vector from the sensors, produces a vector containing the values emitted by the various sources.
 There are various ways to achieve this.
 One of these is where the W for the next time frame is dependent on the gradient of the contrast function.
 This function, also known as the divergence, determines how different two matrices are to each other.
-Taking the previous values of W, and adding on the gradient values attenuated by a adaption step size, allows a new version of W to be produced, which homes in on an optimal demixing matrix separating out the different sources.
+Taking the previous values of W, and adding on the gradient values attenuated by a adaptation step size, allows a new version of W to be produced, which homes in on an optimal de-mixing matrix separating out the different sources.
 
 \section{Limitations}
 ICA has some limitations which must be met.
