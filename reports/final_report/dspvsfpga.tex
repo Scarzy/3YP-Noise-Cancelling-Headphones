@@ -11,7 +11,7 @@ Also the algorithm was still be being developed alongside the hardware, as such 
 \\
 The DSP is in essence a standard processor just with a couple of optimisations for data processing. 
 As such it operates like a standard processor, instructions are loaded from memory and executed one by one, and all the I/O are fixed.
-This single thread method has some rather significant effects on the speed, as the chip is highly synchronous, relying on the clock pulse before any action is achieved and there can be no parallelisation between tasks.
+This single thread method has some rather significant effects on the speed, as the chip is highly synchronous, relying on the clock pulse before any action is achieved and there can be no parallelism between tasks.
 This means that the speed of processing is highly dependent on the clock frequency.
 However, the fact that the I/O pins are in a fixed location gives it a huge advantage over alternatives, in that it can be put on a PCB and the code being run can be changed drastically without ever requiring to modify the PCB.
 The code can also be modified whilst the chip is in the circuit, allowing the algorithm to be worked on alongside the PCB being produced rather than requiring the PCB to be produced later on.

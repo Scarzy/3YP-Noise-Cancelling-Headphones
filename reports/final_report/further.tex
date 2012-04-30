@@ -7,7 +7,7 @@ Some of these affect the hardware, others affect the algorithmic side, and can l
 The PCB has a few flaws.
 One of these problems is the current inability to program the device.
 Development of a programming method would be advantageous, allowing the algorithms to be tested thoroughly.
-I would also recommend a change of the DSP used in the project, the C6713 has a few interesting quirks including occasionally reseting if the code acts unexpectedly even if all reset features, such as the watchdog timer, are disabled.
+I would also recommend a change of the DSP used in the project, the C6713 has a few interesting quirks including occasionally resetting if the code acts unexpectedly even if all reset features, such as the watchdog timer, are disabled.
 Finding one with a lower power draw would be preferable, as the device is required to be portable, therefore a long battery life is required.
 \\
 \\
@@ -25,6 +25,6 @@ The reason this was not accounted for in this project was due to a design error 
 \label{text:virtualfeedbackassumption}
 \\
 \\
-On the algorithmic side of the setup, LMS implementation could be furthered.
+On the algorithmic side of the set-up, LMS implementation could be furthered.
 Also experimenting with the use of Independent Component Analysis on the device, in order to remove the need for an external sensor to provide the noise input.
 This is covered more in appendix \ref{appendix:ica}.
