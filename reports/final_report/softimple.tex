@@ -39,9 +39,9 @@ Thanks to the speed of the DSP the number of clock cycles this would cost was mi
 The use of ring buffers provided other advantages.
 After implementing the different algorithms optimisation was required, and the ring buffers assisted with that greatly.
 For example, when calculating the mean of the data in the buffer, it is known that the next sample in the buffer, regardless of position in the buffer, is the oldest sample.
-Therefore, in order to determine the mean and additional variable could be stored holding the sum of the values in the buffer, and on a new sample the oldest sample can be subtracted, the new value added, and then a single division made.
+Therefore, in order to determine the mean an additional variable could be stored holding the sum of the values in the buffer, and on a new sample the oldest sample can be subtracted, the new value added, and then a single division made.
 As a result calculating the mean is reduced to a single addition, single subtraction, single division, and a single shift through the buffer, rather than an addition and shift for each value in the buffer, followed by a division.
-This is a huge time saving, and as the number of clock cycles is heavily restricted a saving this large is a real advantage.
+This is a huge time saver, and as the number of clock cycles is heavily restricted a saving this large is a real advantage.
 
 \subsubsection{Code Isolation}
 In order to ease the writing and testing of the code, separate parts of the code were written in separate files, with minimal requirements from other files.
@@ -88,8 +88,8 @@ Therefore the advantages of a ring buffer are nullified.
 
 \subsection{LMS}
 \label{ssec:implelms}
-The LMS code acted in three stages; calculate output, generate feedback, update weights.
-The first of these stages, calculating the output, involved iterating over a loop summing up the various taps.
+The LMS code acted in three stages; calculate output, generate feedback, and update weights.
+The first of these stages, calculating the output, involved iterating over a loop summing up the various tapped values.
 The weights were stored in an array, and matched against the values in the ring buffer by producing a new pointer for it, and shifting it round backwards.
 After multiplying respective weights and stored values, the output of this filter is then played out through the headphones.
 \\

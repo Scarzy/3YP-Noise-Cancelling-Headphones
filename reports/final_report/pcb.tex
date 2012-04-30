@@ -1,12 +1,12 @@
 \section{Hardware}
 
-There are two parts to this project, the software, algorithmic side of things, and the hardware on which this algorithm runs.
+There are two parts to this project; the algorithmic side of things, and the hardware on which this algorithm runs.
 Here the details about the design and production of the PCB will be discussed, and explanations of why certain decisions were made.
 
 \subsection{Schematic}
 \label{sec:imple:hard:sch}
 Before producing the PCB design the system was designed in gEDA Schematic software.
-In order to keep the design easy to maintain hierarchy was used, and the system split into multiple sections.
+In order to keep the design easy to maintain a hierarchy was used, and the system split into multiple sections.
 These sections are discussed below.
 
 \begin{figure}[H]
@@ -17,7 +17,7 @@ These sections are discussed below.
 \end{figure}
 
 \subsubsection{DSP}
-At the heart of the project is the digital signal processor.
+At the heart of the project is the Digital Signal Processor.
 This is the part that achieves all the calculations required by the cancelling algorithm.
 The DSP chosen for this project was the Texas Instruments TMS320C6713.
 It was chosen as it had the desired interfaces required for communication with the codec, and was powerful enough to support the desired algorithms
@@ -46,7 +46,7 @@ These could then be used for debugging, and potentially to display details to th
 	\label{fig:dspdebugleds}
 \end{figure}
 
-\noindent In order to program and debug the DSP a JTAG header was set up.
+\noindent In order to program and debug the DSP, a JTAG header was set up.
 The header used was compatible with the standard Texas Instruments 14 pin JTAG connector, to enable use of standard programming tools.
 The pin layout for this header can be seen in table \ref{tab:jtagpinout}.
 
@@ -82,8 +82,8 @@ This is where the codec comes in.
 Wolfson Microelectronics WM8988 was chosen for four reasons.
 Firstly it supports a communication protocol supported by the McBSP system on the DSP.
 This allows the configuration of the codec to be set easily, along with the acquisition and outputting of audio samples.
-Secondly the codec provides two stereo inputs, which is what is required for this project, one for the noise signal, one for the heard/demanded signal.
-On top of this the codec has a output with a headphone driver, meaning that no further electronics is required between the codec and the headphones, so impedance matching is not an issue.
+Secondly the codec provides two stereo inputs, which is what is required for this project; one for the noise signal, one for the heard/demanded signal.
+On top of this the codec has an output with a headphone driver, meaning that no further electronics is required between the codec and the headphones, so impedance matching is not an issue.
 Finally, the codec supported sampling frequencies suitable for the full spectrum of human hearing, meaning high frequency components would not evade being cancelled.
 \\
 \\
@@ -100,7 +100,7 @@ This clock was required so it could generate the appropriate timings for the sam
 
 \subsubsection{Analogue}
 Before the codec the signal needs some conditioning.
-If any signal received were to be passed into the codec it could contain components at too high a frequency, these need to be removed to prevent aliasing.
+If any signal received were to be passed into the codec it could contain components at too high a frequency; these need to be removed to prevent aliasing.
 
 \begin{figure}[H]
 	\centering
@@ -109,7 +109,7 @@ If any signal received were to be passed into the codec it could contain compone
 	\label{fig:analoguesch}
 \end{figure}
 
-\noindent This portion of the design is then further split into two parts, the instrumentation amplifier and the signal conditioning.
+\noindent This portion of the design is then further split into two parts; the instrumentation amplifier, and the signal conditioning.
 The instrumentation amplifier takes in the noise and the optional demanded signal, and sums the two together.
 This choice of amplifier was based on a few requirements.
 The inputs from the microphones on the headphones require the amplifier to have a large input impedance.
@@ -119,7 +119,7 @@ As such this input does not require the same high impedance from the amplifier, 
 Providing this high impedance also allows microphones to be connected and still serve equally well.
 The second requirement of the amplifier is that it must sum the signals together with minimal distortion to the heard signal.
 Adding distortion would result in sub-optimal cancellation, due to the actual heard signal not being known.
-The instrumentation amplifier is a difference amplifier, as such one of its input is affected by a phase shift of 180$^{\circ}$.
+The instrumentation amplifier is a difference amplifier, as such one of its inputs is affected by a phase shift of 180$^{\circ}$.
 As the demanded signal has no specific requirement for phase being maintained, this signal is the one that gets inverted.
 \\
 \\
@@ -218,7 +218,7 @@ Then around the edge of the DSP, right next to the pins that required them, smal
 \subsubsection{Layers and Packaging}
 There are various different packages available for the components to be used on the PCB, and which packages are used affect the construction of the PCB.
 The first, basic decision to be made was whether to use surface mount components, or through hole components.
-Due to the low power nature of this system this choice was remarkable simple.
+Due to the low power nature of this system this choice was remarkably simple.
 Using through hole components would require more physical space above and below the PCB surface than surface mount components, and would be more bulky width ways.
 Also the location of the pin holes would have taken more space than the surface mount pads, as they require space on both sides of the PCB.
 Finally some components are limited in what packages they are available in.
@@ -255,7 +255,7 @@ However the more significant advantage was the ability for tracks that would oth
 
 \subsubsection{Debugging Headers}
 Due to the fact this system was under development, the PCB would require vigorous testing after production.
-In order to aid this testing a load of headers were placed between sections of the system, thus allowing the sections to be tested in isolation.
+In order to aid this testing a number of headers were placed between sections of the system, thus allowing the sections to be tested in isolation.
 Not only could the output of a system be measured without the following stage affecting it, but also the input could be assigned manually without the preceding stage interfering.
 Key placements of these headers were between the power and any other portion of the system, between the audio connections and the rest of the system, and on the interface between the analogue and digital portions of the system.
 

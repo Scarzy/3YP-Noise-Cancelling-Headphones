@@ -22,11 +22,11 @@ When the two signals were mixed, if the amplitude of the mixed signals was diffe
 
 \subsection{LMS}
 The LMS algorithm was modelled in two ways.
-Firstly an inbuilt toolbox of Matlab was used, in order to provide a model to test this projects code against.
+Firstly an inbuilt toolbox of Matlab was used, in order to provide a model to test this projects' code against.
 This filter successfully cancelled out one signal from another, as can be seen in figure \ref{fig:modellmscancel}.
 For this test a simple sine wave was generated and used as both the noise and the heard signals.
 The LMS filter length being set at 50.
-The output shown is the result of virtual feedback, and represents what would be actually reaching the users ear.
+The output shown is the result of virtual feedback, and represents what would be actually reaching the users' ear.
 
 \begin{figure}[H]
 	\centering
@@ -39,7 +39,7 @@ The output shown is the result of virtual feedback, and represents what would be
 However the cancellation achieved is acceptably significant, and would notably improve the users audio experience.
 \\
 \\
-LMS filters can be of range of lengths, however some will produce a better cancellation signal.
+LMS filters can be a range of lengths, however some will produce a better cancellation signal.
 The two music files were used, and filtered at various filter lengths in order to determine the optimal filter length.
 Figure \ref{fig:modellmsfiltlen} shows the peak SNR values of the error feedback signal, and clearly shows that optimal cancellation can be achieved with a filter length of 50.
 

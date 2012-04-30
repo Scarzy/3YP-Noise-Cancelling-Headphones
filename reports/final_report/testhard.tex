@@ -116,11 +116,10 @@ In order to test this the conditions shown in table \ref{tab:dsptestconditions} 
 \end{table}
 
 \noindent The conclusion of this test was simply that there were no short circuits, as the power supply did not current limit.
-TODO: Get JTAG chip details, proof of JTAG functionality.
 
 \subsubsection{Codec}
 Unfortunately, without being able to program the DSP it is not possible to configure the codec to interact.
-However, there is a second part to that circuit that can be tested, the clock generator.
+However, there is a second part to that circuit that can be tested; the clock generator.
 In order to test this, the codec circuitry was powered up by setting the headers as shown in table \ref{tab:codectestconditions}.
 
 \begin{table}[H]
@@ -139,7 +138,7 @@ In order to test this, the codec circuitry was powered up by setting the headers
 	\label{tab:codectestconditions}
 \end{table}
 
-\noindent When tested the output of the clock generator produced the waveform in figure \ref{fig:codec12Mclk}.
+\noindent When tested, the output of the clock generator produced the waveform in figure \ref{fig:codec12Mclk}.
 This shows that the clock generator was producing a $12MHz$ square wave signal as desired.
 This signal was between $0-3.3V$ as required by the codec inputs, however reached $5V_{pk-pk}$ which would not have been acceptable by the codec.
 In order to resolve this issue a small capacitor could be placed in parallel with the output of the clock generator.
