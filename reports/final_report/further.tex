@@ -7,9 +7,22 @@ Some of these affect the hardware, others affect the algorithmic side, and can l
 The PCB has a few flaws.
 One of these problems is the current inability to program the device.
 Development of a programming method would be advantageous, allowing the algorithms to be tested thoroughly.
-Another change that would be ideal would be to remove the instrumentation amplifier in the analogue portion of the system.
 I would also recommend a change of the DSP used in the project, the C6713 has a few interesting quirks including occasionally reseting if the code acts unexpectedly even if all reset features, such as the watchdog timer, are disabled.
 Finding one with a lower power draw would be preferable, as the device is required to be portable, therefore a long battery life is required.
+\\
+\\
+Another change that would be ideal would be to remove the instrumentation amplifier in the analogue portion of the system.
+This could be achieved by using a codec capable of more inputs, and would guarantee the demanded signal being heard.
+As different signals are superimposed together the overall power of the summed signal changes, therefore summing the demanded signal onto the heard signal would cause the power to shift.
+If the demanded signal happened to be that of the noise signal then the power of the summed signal would be increased.
+Because this summed signal correlates well with the noise signal, the LMS filter will update to double the value they'd otherwise be at in order to reduce to the minimum power level.
+This will cancel not only the noise that reaches the ear, but also the demanded signal, the result of which will be that the user will temporarily be unable to hear the demanded signal.
+A similar effect could be observed if the demanded signal happened to be the inverse of the noise signal, the difference being that the filter weights will be updated to zero.
+The user will experience the same 'deaf' effect.
+Using a separate input channel on the codec will allow for the demanded signal being kept out the feedback loop.
+By keeping the demanded signal out of this virtual feedback loop it is guaranteed that the demanded signal will not be cancelled out, as only components in the heard signal will be acted upon.
+The reason this was not accounted for in this project was due to a design error while producing the schematics for the PCB.
+\label{text:virtualfeedbackassumption}
 \\
 \\
 On the algorithmic side of the setup, LMS implementation could be furthered.
