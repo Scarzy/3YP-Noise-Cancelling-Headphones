@@ -77,7 +77,6 @@ void test()
 			*rptrin = (in & 0x0000FFFF);
 			
 			apply_tap(&lringin, lptrin, lmstaps, TAP_LENGTH, &lmsout, &lmsnorm, rptrin, &lmserr);
-			build_tap(&lringin, lptrin, &lmserr, lmstaps, TAP_LENGTH, &lmsnorm);
 			
 			out = (0x00000000 /*| (lmsout << 16)*/ | ((int16_t)floor(lmsout) & 0x0000FFFF));
 			sendData(&out);
