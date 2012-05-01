@@ -2,7 +2,6 @@
 #define RING_H_
 
 #include <stdint.h>
-#include <tistdtypes.h>
 
 typedef struct {
 	int16_t * ring;

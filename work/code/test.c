@@ -1,9 +1,7 @@
 #include "ring.h"
+#include <stdio.h>
+#include "lms.h"
 #include <stdint.h>
-#include <dsk6713.h>
-#include <dsk6713_aic23.h>
-#include "dsk6713_led.h"
-#include "dsk6713_dip.h"
 #include "codec.h"
 #include "sigproc.h"
 
@@ -16,7 +14,6 @@ int16_t rbufin[BUF_SIZE];
 int16_t lbufout[BUF_SIZE];
 int16_t rbufout[BUF_SIZE];
 
-extern DSK6713_AIC23_CodecHandle codec;
 
 ringbuf lringin;
 ringbuf rringin;
@@ -30,6 +27,8 @@ int16_t * lptrcpyi;
 int16_t * rptrcpyi;
 int16_t * lptrcpyo;
 int16_t * rptrcpyo;
+
+double lmstaps[TAP_LENGTH];
 
 int wave_count = 0;
 int16_t wave_del = 0;
@@ -52,6 +51,7 @@ void main()
 	init_ring_ptr(&lringout, &lptrcpyo);
 	init_ring_ptr(&rringout, &rptrcpyo);
 	codecSetup();
+	init_taps(lmstaps,TAP_LENGTH);
 	test();
 }
 
@@ -59,43 +59,29 @@ void test()
 {
 	while(1)
 	{
-		uint32_t in, out;
+		int16_t lmsout;
+		double lmsnorm, lmserr;
+		int32_t in, out;
 		if(!DSK6713_DIP_get(0))
 			wave();
 		
 		if(!DSK6713_DIP_get(1))
 		{
+//			printf("looping\n");
 			getData(&in);
 			*lptrin = ((in & 0xFFFF0000) >> 16);
 			*rptrin = (in & 0x0000FFFF);
+			
+			apply_tap(&lringin, lptrin, lmstaps, TAP_LENGTH, &lmsout);
+			calc_norm(&lringin, lptrin, TAP_LENGTH, &lmsnorm);
+			gen_error(rptrin, &lmsout, &lmserr);
+			build_tap(&lringin, lptrin, &lmserr, lmstaps, TAP_LENGTH, &lmsnorm);
+			
+			out = (0x00000000 /*| (lmsout << 16)*/ | ((int16_t)floor(lmsout) & 0x0000FFFF));
+			sendData(&out);
+			
 			inc_ring(&lringin, &lptrin);
 			inc_ring(&rringin, &rptrin);
-		}
-		
-		if(!DSK6713_DIP_get(2))
-		{
-			*lptrcpyo = *lptrcpyi;
-			*rptrcpyo = *rptrcpyi;
-			inc_ring(&lringin, &lptrcpyi);
-			inc_ring(&rringin, &rptrcpyi);
-			inc_ring(&lringout, &lptrcpyo);
-			inc_ring(&rringout, &rptrcpyo);
-		}
-		else
-		{
-			cancel(&lringin, lptrcpyi, &rringin, rptrcpyi, &lringout, lptrcpyo);
-			inc_ring(&lringin, &lptrcpyi);
-			inc_ring(&rringin, &rptrcpyi);
-			inc_ring(&lringout, &lptrcpyo);
-			inc_ring(&rringout, &rptrcpyo);
-		}
-		
-		if(!DSK6713_DIP_get(3))
-		{
-			out = (0x00000000 | (*lptrout << 16) | (*rptrout & 0x0000FFFF));
-			sendData(&out);
-			inc_ring(&lringout, &lptrout);
-			inc_ring(&rringout, &rptrout);
 		}
 	}
 }
