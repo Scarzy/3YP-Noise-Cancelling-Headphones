@@ -209,3 +209,33 @@ The instrumentation amplifier was not populated due to a footprint error, theref
 
 \section{LMS}
 \label{ssec:testSWlms}
+\subsubsection{Linux}
+A sine wave was generated taking only integer values between $0$ and $2000$.
+This was to emulate the effect of the codec, which returns only integer values.
+The codec code was replaced in order to read in each of these values in turn, and to return them in such a way that they could be treated as both the noise signal and the heard signal.
+\\
+\\
+The code was then run.
+As each output value was calculated it was saved to a file, allowing the values to be loaded into Matlab.
+These output values could then be plotted.
+The code was run twice, once saving the output, and again saving the error.
+The results of each of these can be seen in figures \ref{fig:testlmslinuxout} and \ref{fig:testlmslinuxerr} respectively.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/lms_linux_out.png}
+	\caption{The LMS Output from Linux terminal simulation}
+	\label{fig:testlmslinuxout}
+\end{figure}
+
+\noindent These figures show that the LMS code is functioning as desired, reaching an attenuation of $17dB$.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/lms_linux_err.png}
+	\caption{The LMS Error from Linux terminal simulation}
+	\label{fig:testlmslinuxerr}
+\end{figure}
+
+\subsubsection{DSP}
+
