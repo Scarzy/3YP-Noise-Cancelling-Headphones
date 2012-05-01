@@ -1,0 +1,112 @@
+\section{Problems}
+\label{ssec:testHWprobs}
+Unfortunately, at the point of testing a few issues became apparent.
+The first of these was a footprint error.
+Due to an error in design the footprint for the OP-AMPs was set to TSOP8, whereas the actual footprint of the component was SOP8.
+These footprints are so significantly different there was no way to make the components use the footprint, as such they were unpopulated.
+An alternative was sourced, however time and cost constraints prevented them actually being put to use.
+\\
+\\
+The next problem to be discovered was that the fact that the DSP had no on-board flash had not been accounted for.
+This was not a major issue as the DSP is capable of running from code in the RAM.
+However, actually programming the flash was also an issue.
+Both urJTAG and OpenOCD were experimented with, neither with much success.
+After a short amount of time it was decided that fighting with the programming capabilities were secondary to getting the algorithm working, and as time was limited it was decided to leave the programming, and come back to it at a later date if time presented itself.
+\\
+\\
+To begin with there was also a short in the power management section.
+This was discovered to be a misinterpretation of the pin out of the voltage regulators, resulting in the output voltage being connected directly to the ground plane through the additional pin.
+This issue was solved by removing the tracks between the pad for that pin, and the ground plane.
+
+\section{Test Conditions}
+The test conditions as shown in table \ref{tab:testconditions} were used for all the tests unless otherwise stated.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| l | l | c |}
+		\hline
+		\multicolumn{2}{|l|}{Factor}		& Value	\\
+		\hline
+		\multicolumn{2}{|l|}{Voltage}		& 5.00V	\\
+		\multicolumn{2}{|l|}{Current Limit}	& 800mA	\\
+		\hline
+		\multirow{4}{*}{J105}	& $DV_{dd}$	& Unconnected	\\
+					& $CV_{dd}$	& Unconnected	\\
+					& Codec		& Unconnected	\\
+					& Amp		& Unconnected	\\
+		\hline
+		\multirow{4}{*}{J106}	& Right		& Unconnected	\\
+					& Middle Right	& Unconnected	\\
+					& Middle Left	& Unconnected	\\
+					& Left		& Unconnected	\\
+		\hline
+		\multirow{4}{*}{J107}	& Right		& Unconnected	\\
+					& Middle Right	& Unconnected	\\
+					& Middle Left	& Unconnected	\\
+					& Left		& Unconnected	\\
+		\hline
+		\multirow{4}{*}{J108}	& Right		& Unconnected	\\
+					& Middle Right	& Unconnected	\\
+					& Middle Left	& Unconnected	\\
+					& Left		& Unconnected	\\
+		\hline
+		\multicolumn{2}{|l|}{CONN401}		& Unconnected	\\
+		\hline
+	\end{tabular}
+	\caption{The conditions used in testing}
+	\label{tab:testconditions}
+\end{table}
+
+\subsection{DSP}
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| l | l | c |}
+		\hline
+		\multicolumn{2}{|l|}{Factor}		& Value	\\
+		\hline
+		\multirow{4}{*}{J105}	& $DV_{dd}$	& Connected	\\
+					& $CV_{dd}$	& Connected	\\
+					& Codec		& -		\\
+					& Amp		& -		\\
+		\hline
+	\end{tabular}
+	\caption{Conditions for testing the DSP}
+	\label{tab:dsptestconditions}
+\end{table}
+
+\subsection{Codec}
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| l | l | c |}
+		\hline
+		\multicolumn{2}{|l|}{Factor}		& Value	\\
+		\hline
+		\multirow{4}{*}{J105}	& $DV_{dd}$	& -		\\
+					& $CV_{dd}$	& -		\\
+					& Codec		& Connected	\\
+					& Amp		& -		\\
+		\hline
+	\end{tabular}
+	\caption{Conditions for testing the Codec}
+	\label{tab:codectestconditions}
+\end{table}
+
+
+\subsection{Analogue}
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| l | l | c |}
+		\hline
+		\multicolumn{2}{|l|}{Factor}		& Value	\\
+		\hline
+		\multirow{4}{*}{J105}	& $DV_{dd}$	& -		\\
+					& $CV_{dd}$	& -		\\
+					& Codec		& -		\\
+					& Amp		& Connected	\\
+		\hline
+	\end{tabular}
+	\caption{Conditions for testing the signal conditioning amplifier}
+	\label{tab:analoguetestconditions}
+\end{table}
+
+
