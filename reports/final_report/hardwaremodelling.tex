@@ -27,7 +27,7 @@ nullified.
 \end{figure}
 
 \subsection{Summing Amplifier}
-A model of the summing amplifier was produced to check that it would function
+A model of the summing (or instrumentation) amplifier was produced to check that it would function
 as desired.
 As the amplifier being used was not originally conceived for the use to which
 it is put to in this project, modelling was even more important to check that
@@ -35,3 +35,18 @@ it would function as desired.
 Although the produced amplifier would operate on two channels, as these channels
 are identical, only one was simulated.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/instrumentationamp.pdf}
+	\caption{The output from the instrumentation amplifier from two identical sine waves}
+	\label{fig:instramp}
+\end{figure}
+
+\noindent Figures \ref{fig:instramp} and \ref{fig;instrampbeat} show that the summing amplifier will correctly sum the two signals together, with one of the signals experiencing a 180$^{\circ}$ phase shift.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/instrumentationamp_dig.pdf}
+	\caption{The output from the instrumentation amplifier from two digital signals}
+	\label{fig:instrampbeat}
+\end{figure}
