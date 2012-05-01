@@ -5,8 +5,8 @@ Although it was not possible to test the algorithmic on the hardware produced fo
 \subsection{Correlation}
 After writing the code for the correlation algorithm, a problem was discovered.
 The algorithm for cross-correlation requires the use of the mean in the calculation.
-Whilst the mean could be calculated easily due to the advantages provided through the use of ring buffers, there was additional issues with the inserting this mean at the correct point in the calculation.
-The entire buffer had to be iterated through after the calculation of the mean, and a calculation performed at each step.
+Whilst the mean could be calculated easily due to the advantages provided through the use of ring buffers, there were additional issues with inserting this mean at the correct point in the calculation.
+The entire buffer had to be iterated through after the calculation of the mean, with a calculation performed at each step.
 This second calculation was more intensive than the calculation of the mean would have been.
 This produced a severe draw on the processing power of the DSP, and resulted in the system taking approximately 7 seconds between each sample.
 As the codec operated at 48KHz, this meant that the code was operating about \emph{three hundred thousand} times too slow.

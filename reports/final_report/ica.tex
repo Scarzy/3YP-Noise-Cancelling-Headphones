@@ -8,7 +8,8 @@ ICA works on a few assumptions.
 Firstly that the signals are non-Gaussian, with at most one exception.
 This is because Gaussian signals are symmetrical, and do not contain matrix statistics of order higher than second order.
 As such, two Gaussian signals are non-separable.
-Secondly that all the signals are statistically independent, and finally that the number of signal sources is less than or equal to the number of sensors.
+Secondly that all the signals are statistically independent.
+Finally that the number of signal sources is less than or equal to the number of sensors.
 \\
 \\
 The aim of any ICA algorithm is to find a de-mixing matrix W which, when multiplied by the input vector from the sensors, produces a vector containing the values emitted by the various sources.
@@ -37,4 +38,4 @@ If such a variation can be determined, then the signals should be separable with
 
 \section{Implementation}
 In the final project ICA was not implemented.
-This was largely due to the unexpected length of time taken in implementing the noise cancellation algorithm.
+This was largely due to the unexpectedly long length of time taken in implementing the noise cancellation algorithm.
