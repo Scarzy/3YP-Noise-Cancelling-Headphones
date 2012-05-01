@@ -36,3 +36,4 @@ The branches of interest are:
 	hw-ini - Contains the files relating to the hardware design.
 		 This branch has been merged into master.
 	lms    - Contains the files relating to the LMS algorithm.
+	lms_linux - Contains the LMS files used in the linux simulation
