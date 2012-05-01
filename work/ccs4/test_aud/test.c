@@ -7,7 +7,7 @@
 #include "codec.h"
 #include "sigproc.h"
 
-#define BUF_SIZE 50
+#define BUF_SIZE 10000
 
 #define WAVE_DEL 1
 
@@ -39,13 +39,6 @@ void wave(void);
 
 void main()
 {
-	double s, sum1 = 196847297802.397, sum2 = 99572322254.73538, tmp = sum1 * sum2, tmp1;
-	tmp1 = fabs(tmp);
-	s = sqrt(tmp1);
-	DSK6713_LED_off(0);
-	DSK6713_LED_off(1);
-	DSK6713_LED_off(2);
-	DSK6713_LED_off(3);
 	init_ring(&lringin, lbufin, BUF_SIZE);
 	init_ring(&rringin, rbufin, BUF_SIZE);
 	init_ring(&lringout, lbufout, BUF_SIZE);
@@ -90,11 +83,7 @@ void test()
 		}
 		else
 		{
-/*			DSK6713_LED_off(0);
-			DSK6713_LED_off(1);
-			DSK6713_LED_off(2);
-			DSK6713_LED_off(3);*/
-			cancel(&lringin, lptrcpyi, &rringin, rptrcpyi, &lringout, lptrcpyo);
+			cancel(&lringin, lptrcpyi, ((in & 0xFFFF0000) >>16), &rringin, rptrcpyi, (in & 0x0000FFFF), &lringout, lptrcpyo);
 			inc_ring(&lringin, &lptrcpyi);
 			inc_ring(&rringin, &rptrcpyi);
 			inc_ring(&lringout, &lptrcpyo);

@@ -2,16 +2,14 @@
 
 double cc[2*CROSS_CORR_MAX_DELAY+1];
 
-void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
+double ccmeansum1, ccmeansum2;
+
+void cancel(void * ring1, int16_t * ptr1in, uint16_t update1, void * ring2, int16_t * ptr2in, uint16_t update2, void * res, int16_t * ptrres)
 {
 	int shift,i;
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
-	double s = 0, sum1 = 196847297802.397, sum2 = 99572322254.73538, tmp = sum1 * sum2, tmp1;
-	tmp1 = fabs(tmp);
-	s = sqrt(tmp1);
-	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
-	shift = dpeak(cc, 2*CROSS_CORR_MAX_DELAY+1);
+	crosscorr(ring1, ptr1, update1, ring2, ptr2, update2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY, &shift);
 	if(shift < 0)
 	{
 		for(i = 0; i < shift; i++)
@@ -23,102 +21,71 @@ void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void
 	{
 		*ptrres = ((i - shift) <= 0) ? *ptr1 : *ptr1 - *ptr2 ;
 		inc_ring(ring1, &ptr1);
-		inc_ring(res,&ptrres);
+		inc_ring(res, &ptrres);
 		if(!(i < shift))
 			inc_ring(ring2, &ptr2);
 	}
 }
 
-void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int16_t length, int16_t maxdel)
+void crosscorr(void * ring1, int16_t * ptr1in, uint16_t update1, void * ring2, int16_t * ptr2in, uint16_t update2, double * res, int16_t length, int16_t maxdel, int * shift)
 {
 	int del, i, j;
 	double mean1, mean2;
-	int16_t * ptr1 = ptr1in;
+	int16_t * ptr1 = ptr1in;				//Set the pointers for use to the input value
 	int16_t * ptr2 = ptr2in;
-	mean1 = mean(ring1, ptr1);
-	mean2 = mean(ring2, ptr2);
+	double s, sqrttmp0, sqrttmp1;
+	double sum1 = 0, sum2 = 0;
 	
-	for(del = -maxdel; del <= maxdel; del++)
-	{
-		double sum1, sum2;
-		double s, sqrttmp0, sqrttmp1;
-		double num = 0;
-		ptr1 = ptr1in;
-		ptr2 = ptr2in;
-/*		if(del == -100)
-			DSK6713_LED_on(0);
-		if(del == 0)
-			DSK6713_LED_on(1);
-		if(del == 25)
-			DSK6713_LED_on(2);
-		if(del == 26)
-			DSK6713_LED_on(3);*/
-		for(i = 0; i < length; i++)
-		{
-			j = i + del;
-			if(!( (j < 0) || (j >= length) ))
-			{
-				num += ((*ptr1 - mean1) * (*ptr2 - mean2));
-			}
-			inc_ring(ring1, &ptr1);
-			inc_ring(ring2, &ptr2);
-		}
-		
-		ptr1 = ptr1in;
-		ptr2 = ptr2in;
-		sum1 = 0;
-		sum2 = 0;
-		for(i = 0; i < length; i++)
-		{
-			sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));
-			sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));
-			inc_ring(ring1, &ptr1);
-			inc_ring(ring2, &ptr2);
-		}
-//		DSK6713_LED_on(0);
-		sqrttmp0 = sum1 * sum2;
-//		DSK6713_LED_on(1);
-		sqrttmp1 = fabs(sqrttmp0);
-//		DSK6713_LED_on(2);
-		s = sqrt(sqrttmp1);
-//		DSK6713_LED_on(3);
-/*		if(s == 0.0)
-		{
-			DSK6713_LED_on(0);
-			DSK6713_LED_on(1);
-			DSK6713_LED_on(2);
-			DSK6713_LED_on(3);
-		}*/
-		res[del + maxdel] = num / s;
-	}
-//	DSK6713_LED_off(0);
-}
-
-int dpeak(double * arr, int length)
-{
+	int pos = 0;
 	double max = 0;
-	int i, pos = 0;
-	for(i = 0; i < length; i++)
+	
+	ccmeansum1 -= *ptr1;					//Subtract the oldest value from the meansum
+	*ptr1 = update1;					//Bring the pointed to value up to date
+	ccmeansum1 += *ptr1;					//Add the latest value
+	
+	ccmeansum2 -= *ptr2;					//Subtract the oldest value from the meansum
+	*ptr2 = update2;					//Bring the pointed to value up to date
+	ccmeansum2 += *ptr2;					//Add the latest value
+	
+	mean1 = ccmeansum1 / ((ringbuf *)ring1)->size;		//Divide the meansum down to get the mean
+	mean2 = ccmeansum2 / ((ringbuf *)ring2)->size;		//Divide the meansum down to get the mean
+	
+	for(i = 0; i < length; i++)				//Loop for the number of resultant values, generating normalising factor
 	{
-		if(abs(arr[i]) > max)
+		sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));	//Add the latest summation value
+		sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));	
+		inc_ring(ring1, &ptr1);				//Increment round the rings
+		inc_ring(ring2, &ptr2);
+	}
+	
+	sqrttmp0 = sum1 * sum2;					//Multiply the two summations together
+	sqrttmp1 = fabs(sqrttmp0);				//Acquire the absolute value of the multiplication (sanity checking)
+	s = sqrt(sqrttmp1);					//Squareroot the value, s is now the normalising factor
+	
+	for(del = -maxdel; del <= maxdel; del++)		//Loop for all required delays
+	{
+		double num = 0;
+		ptr1 = ptr1in;					//Reset the ring pointer
+		ptr2 = ptr2in;
+		for(i = 0; i < length; i++)			//Loop for length of buffer
 		{
-			max = abs(arr[i]);
-			pos = i;
+			j = i + del;				//Calculate position of j
+			if(!( (j < 0) || (j >= length) ))	//If j is in usable bounds
+			{
+				num += ((*ptr1 - mean1) * (*ptr2 - mean2));	//Add up the summation
+			}
+			inc_ring(ring1, &ptr1);			//Increment round the rings
+			inc_ring(ring2, &ptr2);
+		}
+			
+		res[del + maxdel] = num / s;			//Assign the normalised value
+		
+		if(abs(res[del + maxdel]) > max)		//Detect if a new peak
+		{
+			max = abs(res[del + maxdel]);		//Get height of peak
+			pos = (del + maxdel);			//Get position of peak
 		}
 	}
-	return pos;
-}
-
-double mean(void * ring, int16_t * ptrin)
-{
-	int i;
-	double mean = 0;
-	int16_t * ptr = ptrin;
-	for(i = 0; i < ((ringbuf *)ring)->size; i++)
-	{
-		mean += *ptr;
-		inc_ring(ring, &ptr);
-	}
-	return mean / ((ringbuf *)ring)->size;
+	*shift = pos;						//Set the peak value
 }
 

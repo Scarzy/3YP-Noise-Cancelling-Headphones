@@ -31,6 +31,7 @@
 <listOptionValue builtIn="false" value="&quot;_DEBUG&quot;"/>
 </option>
 <option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.compilerID.MEM_MODEL__CONST.141097288" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.compilerID.MEM_MODEL__CONST" value="com.ti.ccstudio.buildDefinitions.C6000_7.0.compilerID.MEM_MODEL__CONST.data" valueType="enumerated"/>
+<option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.compilerID.OPT_FOR_SPEED.144168643" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.compilerID.OPT_FOR_SPEED" value="com.ti.ccstudio.buildDefinitions.C6000_7.0.compilerID.OPT_FOR_SPEED.3" valueType="enumerated"/>
 </tool>
 <tool id="com.ti.ccstudio.buildDefinitions.C6000_7.0.exe.linkerDebug.488830935" name="C6000 Linker" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.exe.linkerDebug">
 <option id="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.OUTPUT_FILE.1224140670" superClass="com.ti.ccstudio.buildDefinitions.C6000_7.0.linkerID.OUTPUT_FILE" value="&quot;test_aud.out&quot;" valueType="string"/>
