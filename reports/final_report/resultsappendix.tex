@@ -19,6 +19,7 @@ This was discovered to be a misinterpretation of the pin out of the voltage regu
 This issue was solved by removing the tracks between the pad for that pin, and the ground plane.
 
 \section{Test Conditions}
+\label{ssec:testHWconds}
 The test conditions as shown in table \ref{tab:testconditions} were used for all the tests unless otherwise stated.
 
 \begin{table}[H]
@@ -109,4 +110,99 @@ The test conditions as shown in table \ref{tab:testconditions} were used for all
 	\label{tab:analoguetestconditions}
 \end{table}
 
+\section{Results}
+\label{ssec:testHWresults}
+\subsubsection{Power}
+This circuitry was tested by connecting a bench power supply to the voltage inputs, and measuring the output voltage from the regulators using a digital oscilloscope.
+Table \ref{tab:powisotest} shows the results.
+The voltage level on the external side of the header was also tested, to check that power wasn't being shorted across.
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}[c]{| l | c | c |}
+		\hline
+		Conn		& VR Out (V)	& SC Pin (mV)	\\
+		\hline
+		$DV_{dd}$	& 3.28		& 190		\\
+		$CV_{dd}$	& 1.21		& 37		\\
+		Codec		& 3.28		& 34		\\
+		Amp		& 3.28		& 32		\\
+		\hline
+	\end{tabular}
+	\caption{The voltages provided by the power circuitry}
+	\label{tab:powisotest}
+\end{table}
+
+\noindent These results show that the desired voltages were produced.
+There was clearly some noise on the external side of the system, however this was low enough to not power up any of the devices.
+\\
+\\
+Another important part of this test was the LED to indicate when the system was powered.
+For as long as power was provided to the system this LED stayed lit, as desired.
+
+
+\subsubsection{DSP}
+One test that was possible was simply to power up the DSP, both core and I/O, and check that there were no short circuits.
+The conclusion of this test was simply that there were no short circuits, as the power supply did not current limit.
+\\
+\\
+Another possible test was the functionality of the JTAG port.
+This was tested by attempting to read the device ID over JTAG.
+Two functions were run under urJTAG, the first being an attempt to detect the JTAG chain, the second to fetch and recognise the ID code.
+\\
+\\
+The result from running `detect' is show below:
+\\
+\\
+\emph{
+\indent jtag$>$ detect	\\
+\indent IR  length: 46	\\
+\indent Chain length: 1	\\
+\indent Device Id: 0 (0x0000000000000000)	\\
+\indent chain.c(149) Part 0 without active instruction	\\
+\indent chain.c(200) Part 0 without active instruction	\\
+\indent chain.c(149) Part 0 without active instruction	\\
+}
+
+\noindent As the IR length documented for this DSP is 46, this shows a valid detection of the device in the chain, however detection of the ID code failed.
+A similar effect is seen from the result of `idcode':
+\\
+\\
+\emph{
+\indent jtag$>$ idcode	\\
+\indent Reading 0 bytes if idcode	\\
+\indent Read 00000000 00000000 00000000 00000000	\\
+}
+
+\noindent This shows that the device ID was undetectable.
+\subsubsection{Codec}
+When tested, the output of the clock generator produced the waveform in figure \ref{fig:codec12Mclk}.
+This shows that the clock generator was producing a $12MHz$ square wave signal as desired.
+This signal was between $0-3.3V$ as required by the codec inputs, however reached $5V_{pk-pk}$ which would not have been acceptable by the codec.
+In order to resolve this issue a small capacitor could be placed in parallel with the output of the clock generator.
+This would serve the purpose of removing the ripples on the signal and keep it within the bounds required by the codec.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{./img/codec_12M_clk.png}
+	\caption{Output waveform of the clock generator}
+	\label{fig:codec12Mclk}
+\end{figure}
+
+\subsubsection{Analogue}
+A sine wave at 5.03V peak to peak was applied at the input of one of the signal conditioners, and an oscilloscope probe connected to the output.
+The frequency of the input sine wave was then changed and the output peak to peak voltage measured at each frequency.
+This resulted in the graph shown by figure \ref{fig:sigcondtest}.
+
+\begin{sidewaysfigure}
+	\centering
+	\includegraphics[width=\textwidth]{./img/sigcondtest.png}
+	\caption{The frequency response of the signal conditioning amplifier}
+	\label{fig:sigcondtest}
+\end{sidewaysfigure}
+
+\noindent This graph shows that the response of the amplifier matches the simulation (figure \ref{fig:sigcondmodel}).
+Therefore the signal conditioning amplifier performs as expected.
+\\
+\\
+The instrumentation amplifier was not populated due to a footprint error, therefore it was not tested.
