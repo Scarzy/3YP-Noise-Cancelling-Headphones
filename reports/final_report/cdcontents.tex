@@ -1,0 +1,46 @@
+3YP Selective Active Noise Cancelling Headphones
+\\
+\\
+Author:		Thomas Scarsbrook\\
+Supervisor:	Steve Gunn\\
+Examiner:	Rob Maunder\\
+\\
+\\
+These are the files for the selective noise cancelling headphones that I am
+producing for my third year project. The headphones remove a single noise
+source from the users ears.
+\\
+\\
+Directory structure:\\
+docs - Documents sourced from other sources, stored purely for ease of reference\\
+management - Documents relating to the management of the project\\
+reports - The various reports required for the project\\
+\indent	project\_brief - The project brief LaTeX files\\
+\indent	progress\_report - The progress report LaTeX files\\
+\indent	final\_report - The final report LaTeX files\\
+work - The code and schematics etc for the production of the project\\
+\indent	code - The C code for the DSP\\
+\indent	ccs4 - The project used in CCS4 for loading onto the DSP\\
+\indent	extra - Unrelated code, such as producing input sequences\\
+\indent	matlab - MATLAB code to model the system\\
+\indent	schematics - The schematics for the hardware side of the system\\
+\indent	headphone-reverse-engineer - The reverse engineered schematic of the\\
+\indent	\indent			     philips headphones
+\\
+\\
+Please note that this project is spread across multiple branches. In order to\\
+view all relevant files you will have to switch branches at times.\\
+Branches can be switched using the following command:
+\\
+\\
+\emph{$>$ git checkout $<branch>$}
+\\
+\\
+The branches of interest are:\\
+\indent	master - Contains the majority of the work.\\
+\indent	\indent	 This is where to find the correlation algorithm code,\\
+\indent	\indent	all reports, and hardware details.\\
+\indent	hw-ini - Contains the files relating to the hardware design.\\
+\indent	\indent	 This branch has been merged into master.\\
+\indent	lms    - Contains the files relating to the LMS algorithm.\\
+\indent	lms\_linux - Contains the LMS files used in the linux simulation
