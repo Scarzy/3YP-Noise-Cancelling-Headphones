@@ -20,34 +20,24 @@ void build_tap(void * ring, int16_t * ptrin, double * err, double * tap, int tap
 	}
 }
 
-void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16_t * out)
+void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16_t * out, double * normout)
 {
 	int16_t * ptr = ptrin;
 	int16_t sum = 0;
+	double normsum;
 	int i;
 	for(i = tap_length - 1; i >= 0; i--)
 	{
 		sum += tap[i] * *ptr;
+		normsum += (*ptr * *ptr);
 		dec_ring(ring, &ptr);
 	}
 	*out = sum;
+	*normout = normsum;
 }
 
 void gen_error(int16_t * desin, int16_t * estin, double * err)
 {
 	*err = *desin - *estin;
-}
-
-void calc_norm(void * ring, int16_t * ptrin, int tap_length, double * normout)
-{
-	int16_t * ptr = ptrin;
-	double sum = 0;
-	int i;
-	for(i = tap_length - 1; i >= 0; i--)
-	{
-		sum += (*ptr * *ptr);
-		dec_ring(ring, &ptr);
-	}
-	*normout = sum;
 }
 
