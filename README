@@ -23,3 +23,16 @@ work - The code and schematics etc for the production of the project
 	schematics - The schematics for the hardware side of the system
 	headphone-reverse-engineer - The reverse engineered schematic of the
 				     philips headphones
+
+Please note that this project is spread across multiple branches. In order to
+view all relevant files you will have to switch branches at times.
+Branches can be switched using the following command:
+
+% git checkout <branch>
+
+The branches of interest are:
+	master - Contains the majority of the work.
+		 This is where to find the correlation algorithm code, all reports, and hardware details.
+	hw-ini - Contains the files relating to the hardware design.
+		 This branch has been merged into master.
+	lms    - Contains the files relating to the LMS algorithm.
