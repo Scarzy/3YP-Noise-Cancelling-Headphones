@@ -20,7 +20,7 @@ void build_tap(void * ring, int16_t * ptrin, double * err, double * tap, int tap
 	}
 }
 
-void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16_t * out, double * normout)
+void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16_t * out, double * normout, int16_t * desin, double * err)
 {
 	int16_t * ptr = ptrin;
 	int16_t sum = 0;
@@ -34,10 +34,6 @@ void apply_tap(void * ring, int16_t * ptrin, double * tap, int tap_length, int16
 	}
 	*out = sum;
 	*normout = normsum;
-}
-
-void gen_error(int16_t * desin, int16_t * estin, double * err)
-{
-	*err = *desin - *estin;
+	*err = *desin - *out;
 }
 
