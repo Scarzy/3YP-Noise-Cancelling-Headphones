@@ -89,6 +89,14 @@ void test()
 			inc_ring(&lringin, &lptrin);
 			inc_ring(&rringin, &rptrin);
 		}
+		else
+		{
+			getData(&in);
+			in &= 0x0000FFFF;
+			*rptrin = in;
+			inc_ring(&rringin,&rptrin);
+			sendData(&in);
+		}
 	}
 }
 
