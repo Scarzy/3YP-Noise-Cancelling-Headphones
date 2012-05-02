@@ -23,7 +23,7 @@ Either the new value is entered at the beginning of the array, and all other val
 This method is very heavy on resources as it requires all the values in the arrays to be moved for each new sample.
 The alternative is that the amount of data available for each sample varies, dropping down to just a single sample at times during the analysis.
 This latter method is basically unacceptable for this project, it would result in the algorithm being unable to respond at portions of the time.
-Alternatively the option of wrapping round at the end of the array, this is the first step towards a ring buffer.
+Alternatively there is the option of wrapping round at the end of the array, this is the first step towards a ring buffer.
 Wrapping around at the end of an array removes the need to shift all values along upon receiving a new sample, it also prevents varying available data sizes.
 However it then introduces an issue of keeping track of the location in the array and how to deal with the wrap-around.
 Multiple variables would have to be stored and whenever a piece of code works with the array it would have to keep track of the wrapping around, introducing a large margin for error in coding.

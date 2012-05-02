@@ -193,6 +193,10 @@ This would serve the purpose of removing the ripples on the signal and keep it w
 A sine wave at 5.03V peak to peak was applied at the input of one of the signal conditioners, and an oscilloscope probe connected to the output.
 The frequency of the input sine wave was then changed and the output peak to peak voltage measured at each frequency.
 This resulted in the graph shown by figure \ref{fig:sigcondtest}.
+This graph shows that the response of the amplifier matches the simulation (figure \ref{fig:sigcondmodel}).
+Therefore the signal conditioning amplifier performs as expected.
+\\
+\\
 
 \begin{sidewaysfigure}
 	\centering
@@ -201,11 +205,7 @@ This resulted in the graph shown by figure \ref{fig:sigcondtest}.
 	\label{fig:sigcondtest}
 \end{sidewaysfigure}
 
-\noindent This graph shows that the response of the amplifier matches the simulation (figure \ref{fig:sigcondmodel}).
-Therefore the signal conditioning amplifier performs as expected.
-\\
-\\
-The instrumentation amplifier was not populated due to a footprint error, therefore it was not tested.
+\noindent The instrumentation amplifier was not populated due to a footprint error, therefore it was not tested.
 
 \section{LMS}
 \label{ssec:testSWlms}
@@ -239,6 +239,6 @@ The results of each of these can be seen in figures \ref{fig:testlmslinuxout} an
 
 \subsubsection{DSP}
 The code was loaded onto the DSP evaluation board.
-Like the correlation method, the code did not run fast enough, reaching a frequecy of approximately 7.5KHz.
+Like the correlation method, the code did not run fast enough, reaching a frequency of approximately $7.5KHz$.
 This is approximately 6 times too slow.
 

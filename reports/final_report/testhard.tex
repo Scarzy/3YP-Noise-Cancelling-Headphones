@@ -4,7 +4,7 @@ After production, the PCB was tested to check it matched the required design.
 Some problems were discovered before and during testing, these are discussed in appendix \ref{ssec:testHWprobs}.
 
 \subsection{Results}
-Despite the aforementioned problems in production, many parts of the PCB could still be tested.
+Despite the problems in production, many parts of the PCB could still be tested.
 Test conditions used are stated in appendix \ref{ssec:testHWconds}.
 This section only covers the basic results from the testing, a more detailed analysis is in appendix \ref{ssec:testHWresults}.
 
@@ -14,7 +14,8 @@ The voltages provided by the regulators, and the LED status were checked.
 This section of the circuitry functioned correctly.
 
 \subsubsection{DSP}
-As discussed in section \ref{ssec:testHWprobs} the DSP was not programmable by the end of the project, this limited the testability of the supporting circuitry.
+As discussed in appendix \ref{ssec:testHWprobs} the DSP was not programmable by the end of the project, this limited the testability of the supporting circuitry.
+Attempts were made to confirm the JTAG functionality of the DSP, however they were largely unsuccessful.
 \subsubsection{Codec}
 Unfortunately, without being able to program the DSP it is not possible to configure the codec to interact.
 However, there is a second part to that circuit that can be tested; the clock generator.

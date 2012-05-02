@@ -8,6 +8,7 @@ Here the details about the design and production of the PCB will be discussed, a
 Before producing the PCB design the system was designed in gEDA Schematic software.
 In order to keep the design easy to maintain a hierarchy was used, and the system split into multiple sections.
 These sections are discussed below.
+A3 copies of all the schematics may be found in appendix \ref{appendix:schematics}.
 
 \begin{figure}[H]
 	\centering
@@ -88,7 +89,7 @@ On top of this the codec has an output with a headphone driver, meaning that no 
 Finally, the codec supported sampling frequencies suitable for the full spectrum of human hearing, meaning high frequency components would not evade being cancelled.
 \\
 \\
-However, the codec could not function purely by itself, it requires some surrounding electronics.
+However, the codec could not function purely by itself, it required some surrounding electronics.
 Some basic resistors and capacitors are required on the codecs I/O ports, but the most significant piece of supporting electronics it required was a clock.
 This clock was required so it could generate the appropriate timings for the sampling frequencies and the communications with the DSP.
 
@@ -134,9 +135,6 @@ This design was chosen due to its simplicity to implement and minimal power draw
 	\caption{The signal conditioning amplifier schematic}
 	\label{fig:sigcondsch}
 \end{figure}
-
-\noindent This design was tested through the use of a signal generator and digital oscilloscope.
-The results can be seen below.
 
 \subsubsection{Power}
 One key part of any electronic system is it needs some form of power supply, and this project is no exception.
@@ -252,7 +250,7 @@ Due to the fact that all the pins of the QFP package were physically accessible 
 \\
 In order to reduce the size of the board required, to ease routing, and aid the placement of decoupling capacitors near the power connections, a two layer PCB was used.
 This second layer allowed the decoupling capacitors to be placed directly beneath the pins they would connect to, reducing the distance from the pins and therefore reducing the amount of noise that could appear on the line.
-However the more significant advantage was the ability for tracks that would otherwise conflict pass over each other.
+However the more significant advantage was the ability for tracks that would otherwise conflict to pass over each other.
 
 \subsubsection{Debugging Headers}
 Due to the fact this system was under development, the PCB would require vigorous testing after production.
