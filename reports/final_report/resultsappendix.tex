@@ -112,7 +112,7 @@ The test conditions as shown in table \ref{tab:testconditions} were used for all
 
 \section{Results}
 \label{ssec:testHWresults}
-\subsubsection{Power}
+\subsection{Power}
 This circuitry was tested by connecting a bench power supply to the voltage inputs, and measuring the output voltage from the regulators using a digital oscilloscope.
 Table \ref{tab:powisotest} shows the results.
 The voltage level on the external side of the header was also tested, to check that power wasn't being shorted across.
@@ -141,7 +141,7 @@ Another important part of this test was the LED to indicate when the system was 
 For as long as power was provided to the system this LED stayed lit, as desired.
 
 
-\subsubsection{DSP}
+\subsection{DSP}
 One test that was possible was simply to power up the DSP, both core and I/O, and check that there were no short circuits.
 The conclusion of this test was simply that there were no short circuits, as the power supply did not current limit.
 \\
@@ -175,7 +175,7 @@ A similar effect is seen from the result of `idcode':
 }
 
 \noindent This shows that the device ID was undetectable.
-\subsubsection{Codec}
+\subsection{Codec}
 When tested, the output of the clock generator produced the waveform in figure \ref{fig:codec12Mclk}.
 This shows that the clock generator was producing a $12MHz$ square wave signal as desired.
 This signal was between $0-3.3V$ as required by the codec inputs, however reached $5V_{pk-pk}$ which would not have been acceptable by the codec.
@@ -189,7 +189,7 @@ This would serve the purpose of removing the ripples on the signal and keep it w
 	\label{fig:codec12Mclk}
 \end{figure}
 
-\subsubsection{Analogue}
+\subsection{Analogue}
 A sine wave at 5.03V peak to peak was applied at the input of one of the signal conditioners, and an oscilloscope probe connected to the output.
 The frequency of the input sine wave was then changed and the output peak to peak voltage measured at each frequency.
 This resulted in the graph shown by figure \ref{fig:sigcondtest}.
@@ -209,7 +209,7 @@ Therefore the signal conditioning amplifier performs as expected.
 
 \section{LMS}
 \label{ssec:testSWlms}
-\subsubsection{Linux}
+\subsection{Linux}
 A sine wave was generated taking only integer values between $0$ and $2000$.
 This was to emulate the effect of the codec, which returns only integer values.
 The codec code was replaced in order to read in each of these values in turn, and to return them in such a way that they could be treated as both the noise signal and the heard signal.
@@ -237,7 +237,7 @@ The results of each of these can be seen in figures \ref{fig:testlmslinuxout} an
 	\label{fig:testlmslinuxerr}
 \end{figure}
 
-\subsubsection{DSP}
+\subsection{DSP}
 The code was loaded onto the DSP evaluation board.
 Like the correlation method, the code did not run fast enough, reaching a frequency of approximately $7.5KHz$.
 This is approximately 6 times too slow.
