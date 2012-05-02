@@ -8,9 +8,9 @@
 #include "codec.h"
 #include "sigproc.h"
 
-#define BUF_SIZE 10000
+#define BUF_SIZE 20000
 
-#define WAVE_DEL 4096
+#define WAVE_DEL 1
 
 int16_t lbufin[BUF_SIZE];
 int16_t rbufin[BUF_SIZE];
