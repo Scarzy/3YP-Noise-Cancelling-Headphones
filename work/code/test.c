@@ -44,16 +44,8 @@ void main()
 {
 	init_ring(&lringin, lbufin, BUF_SIZE);
 	init_ring(&rringin, rbufin, BUF_SIZE);
-	init_ring(&lringout, lbufout, BUF_SIZE);
-	init_ring(&rringout, rbufout, BUF_SIZE);
 	init_ring_ptr(&lringin, &lptrin);
 	init_ring_ptr(&rringin, &rptrin);
-	init_ring_ptr(&lringout, &lptrout);
-	init_ring_ptr(&rringout, &rptrout);
-	init_ring_ptr(&lringin, &lptrcpyi);
-	init_ring_ptr(&rringin, &rptrcpyi);
-	init_ring_ptr(&lringout, &lptrcpyo);
-	init_ring_ptr(&rringout, &rptrcpyo);
 	codecSetup();
 	init_taps(lmstaps,TAP_LENGTH);
 	test();
