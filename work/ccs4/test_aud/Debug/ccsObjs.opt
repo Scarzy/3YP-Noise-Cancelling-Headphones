@@ -1,1 +1,1 @@
-"./test.obj" "./sigproc.obj" "./ring.obj" "./codec.obj" -l"libc.a" -l"C:\Program Files (x86)\Texas Instruments\ccsv4\tools\compiler\c6000\lib\csl6713.lib" -l"dsk6713bsl.lib" 
+"./test.obj" "./sigproc.obj" "./ring.obj" "./lms.obj" "./codec.obj" -l"libc.a" -l"C:\Program Files (x86)\Texas Instruments\ccsv4\tools\compiler\c6000\lib\csl6713.lib" -l"dsk6713bsl.lib" 

@@ -4,12 +4,13 @@ double cc[2*CROSS_CORR_MAX_DELAY+1];
 
 double ccmeansum1, ccmeansum2;
 
-void cancel(void * ring1, int16_t * ptr1in, uint16_t update1, void * ring2, int16_t * ptr2in, uint16_t update2, void * res, int16_t * ptrres)
+void cancel(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, void * res, int16_t * ptrres)
 {
 	int shift,i;
 	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
-	crosscorr(ring1, ptr1, update1, ring2, ptr2, update2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY, &shift);
+	crosscorr(ring1, ptr1, ring2, ptr2, cc, ((ringbuf *)ring1)->size, CROSS_CORR_MAX_DELAY);
+	shift = dpeak(cc, 2*CROSS_CORR_MAX_DELAY+1);
 	if(shift < 0)
 	{
 		for(i = 0; i < shift; i++)
@@ -21,71 +22,78 @@ void cancel(void * ring1, int16_t * ptr1in, uint16_t update1, void * ring2, int1
 	{
 		*ptrres = ((i - shift) <= 0) ? *ptr1 : *ptr1 - *ptr2 ;
 		inc_ring(ring1, &ptr1);
-		inc_ring(res, &ptrres);
+		inc_ring(res,&ptrres);
 		if(!(i < shift))
 			inc_ring(ring2, &ptr2);
 	}
 }
 
-void crosscorr(void * ring1, int16_t * ptr1in, uint16_t update1, void * ring2, int16_t * ptr2in, uint16_t update2, double * res, int16_t length, int16_t maxdel, int * shift)
+void crosscorr(void * ring1, int16_t * ptr1in, void * ring2, int16_t * ptr2in, double * res, int16_t length, int16_t maxdel)
 {
 	int del, i, j;
 	double mean1, mean2;
-	int16_t * ptr1 = ptr1in;				//Set the pointers for use to the input value
+	int16_t * ptr1 = ptr1in;
 	int16_t * ptr2 = ptr2in;
-	double s, sqrttmp0, sqrttmp1;
-	double sum1 = 0, sum2 = 0;
 	
-	int pos = 0;
-	double max = 0;
+	ccmeansum1 += *ptr1;
+	inc_ring(ring1, &ptr1);
+	ccmeansum1 -= *ptr1;
 	
-	ccmeansum1 -= *ptr1;					//Subtract the oldest value from the meansum
-	*ptr1 = update1;					//Bring the pointed to value up to date
-	ccmeansum1 += *ptr1;					//Add the latest value
+	ccmeansum2 += *ptr2;
+	inc_ring(ring2, &ptr2);
+	ccmeansum2 -= *ptr2;
 	
-	ccmeansum2 -= *ptr2;					//Subtract the oldest value from the meansum
-	*ptr2 = update2;					//Bring the pointed to value up to date
-	ccmeansum2 += *ptr2;					//Add the latest value
+	mean1 = ccmeansum1 / ((ringbuf *)ring1)->size;
+	mean2 = ccmeansum2 / ((ringbuf *)ring2)->size;
 	
-	mean1 = ccmeansum1 / ((ringbuf *)ring1)->size;		//Divide the meansum down to get the mean
-	mean2 = ccmeansum2 / ((ringbuf *)ring2)->size;		//Divide the meansum down to get the mean
-	
-	for(i = 0; i < length; i++)				//Loop for the number of resultant values, generating normalising factor
+	for(del = -maxdel; del <= maxdel; del++)
 	{
-		sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));	//Add the latest summation value
-		sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));	
-		inc_ring(ring1, &ptr1);				//Increment round the rings
-		inc_ring(ring2, &ptr2);
-	}
-	
-	sqrttmp0 = sum1 * sum2;					//Multiply the two summations together
-	sqrttmp1 = fabs(sqrttmp0);				//Acquire the absolute value of the multiplication (sanity checking)
-	s = sqrt(sqrttmp1);					//Squareroot the value, s is now the normalising factor
-	
-	for(del = -maxdel; del <= maxdel; del++)		//Loop for all required delays
-	{
+		double sum1, sum2;
+		double s, sqrttmp0, sqrttmp1;
 		double num = 0;
-		ptr1 = ptr1in;					//Reset the ring pointer
+		ptr1 = ptr1in;
 		ptr2 = ptr2in;
-		for(i = 0; i < length; i++)			//Loop for length of buffer
+		for(i = 0; i < length; i++)
 		{
-			j = i + del;				//Calculate position of j
-			if(!( (j < 0) || (j >= length) ))	//If j is in usable bounds
+			j = i + del;
+			if(!( (j < 0) || (j >= length) ))
 			{
-				num += ((*ptr1 - mean1) * (*ptr2 - mean2));	//Add up the summation
+				num += ((*ptr1 - mean1) * (*ptr2 - mean2));
 			}
-			inc_ring(ring1, &ptr1);			//Increment round the rings
+			inc_ring(ring1, &ptr1);
 			inc_ring(ring2, &ptr2);
 		}
-			
-		res[del + maxdel] = num / s;			//Assign the normalised value
 		
-		if(abs(res[del + maxdel]) > max)		//Detect if a new peak
+		ptr1 = ptr1in;
+		ptr2 = ptr2in;
+		sum1 = 0;
+		sum2 = 0;
+		for(i = 0; i < length; i++)
 		{
-			max = abs(res[del + maxdel]);		//Get height of peak
-			pos = (del + maxdel);			//Get position of peak
+			sum1 += ((*ptr1 - mean1) * (*ptr1 - mean1));
+			sum2 += ((*ptr2 - mean2) * (*ptr2 - mean2));
+			inc_ring(ring1, &ptr1);
+			inc_ring(ring2, &ptr2);
+		}
+		sqrttmp0 = sum1 * sum2;
+		sqrttmp1 = fabs(sqrttmp0);
+		s = sqrt(sqrttmp1);
+		res[del + maxdel] = num / s;
+	}
+}
+
+int dpeak(double * arr, int length)
+{
+	double max = 0;
+	int i, pos = 0;
+	for(i = 0; i < length; i++)
+	{
+		if(abs(arr[i]) > max)
+		{
+			max = abs(arr[i]);
+			pos = i;
 		}
 	}
-	*shift = pos;						//Set the peak value
+	return pos;
 }
 

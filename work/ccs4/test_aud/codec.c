@@ -27,7 +27,7 @@ DSK6713_AIC23_Config aic23_config = {
 	0x0000,	//Digital Audio Path Control, DAC unmuted - no Deemphasis - ADC high pass enabled
 	0x0000,	//Power Down Control, CLK off
 	0x0043,	//Digital Audio Format, Slave - no DAC swap - 16bit input - MSB first left aligned
-	0x0081,	//Sample Rate Control, ADC 48KHz - DAC 48KHz
+	0x008D,	//Sample Rate Control, ADC 48KHz - DAC 48KHz
 	0x0001	//Digital Interface Activation, Active
 };
 MCBSP_Config mcbsp_data_config = {
@@ -463,13 +463,13 @@ void codecSetup()
 	mcbspSetup();
 }
 
-void getData(uint32_t * ptr)
+void getData(int32_t * ptr)
 {
 	while(!MCBSP_rrdy(mcbspDataHandle));
 	*ptr = MCBSP_read(mcbspDataHandle);
 }
 
-void sendData(uint32_t * ptr)
+void sendData(int32_t * ptr)
 {
 	while(!MCBSP_rrdy(mcbspDataHandle));
 	MCBSP_write(mcbspDataHandle, *ptr);

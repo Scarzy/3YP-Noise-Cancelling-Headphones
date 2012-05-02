@@ -1,4 +1,5 @@
 #include "ring.h"
+#include "lms.h"
 #include <stdint.h>
 #include <dsk6713.h>
 #include <dsk6713_aic23.h>
@@ -7,7 +8,7 @@
 #include "codec.h"
 #include "sigproc.h"
 
-#define BUF_SIZE 10000
+#define BUF_SIZE 20000
 
 #define WAVE_DEL 1
 
@@ -31,6 +32,8 @@ int16_t * rptrcpyi;
 int16_t * lptrcpyo;
 int16_t * rptrcpyo;
 
+double lmstaps[TAP_LENGTH];
+
 int wave_count = 0;
 int16_t wave_del = 0;
 
@@ -41,61 +44,50 @@ void main()
 {
 	init_ring(&lringin, lbufin, BUF_SIZE);
 	init_ring(&rringin, rbufin, BUF_SIZE);
-	init_ring(&lringout, lbufout, BUF_SIZE);
-	init_ring(&rringout, rbufout, BUF_SIZE);
 	init_ring_ptr(&lringin, &lptrin);
 	init_ring_ptr(&rringin, &rptrin);
-	init_ring_ptr(&lringout, &lptrout);
-	init_ring_ptr(&rringout, &rptrout);
-	init_ring_ptr(&lringin, &lptrcpyi);
-	init_ring_ptr(&rringin, &rptrcpyi);
-	init_ring_ptr(&lringout, &lptrcpyo);
-	init_ring_ptr(&rringout, &rptrcpyo);
 	codecSetup();
+	init_taps(lmstaps,TAP_LENGTH);
 	test();
 }
 
 void test()
 {
+	double lmsnorm = NORM_MIN, lmserr = 0;
 	while(1)
 	{
-		uint32_t in, out;
+		int16_t lmsout;
+		int32_t in, out;
 		if(!DSK6713_DIP_get(0))
-			wave();
-		
+		{
+			if(wave_del)
+				DSK6713_LED_on(1);
+			else
+				DSK6713_LED_off(1);
+			wave_del = 1 - wave_del;
+		}
 		if(!DSK6713_DIP_get(1))
 		{
+//			printf("looping\n");
 			getData(&in);
 			*lptrin = ((in & 0xFFFF0000) >> 16);
 			*rptrin = (in & 0x0000FFFF);
+			
+			apply_tap(&lringin, lptrin, lmstaps, TAP_LENGTH, &lmsout, &lmsnorm, rptrin, &lmserr);
+			
+			out = (0x00000000 | ((0x0000FFFF & (int16_t)floor(lmserr)) << 16) | ((int16_t)floor(lmserr) & 0x0000FFFF));
+			sendData(&out);
+			
 			inc_ring(&lringin, &lptrin);
 			inc_ring(&rringin, &rptrin);
 		}
-		
-		if(!DSK6713_DIP_get(2))
-		{
-			*lptrcpyo = *lptrcpyi;
-			*rptrcpyo = *rptrcpyi;
-			inc_ring(&lringin, &lptrcpyi);
-			inc_ring(&rringin, &rptrcpyi);
-			inc_ring(&lringout, &lptrcpyo);
-			inc_ring(&rringout, &rptrcpyo);
-		}
 		else
 		{
-			cancel(&lringin, lptrcpyi, ((in & 0xFFFF0000) >>16), &rringin, rptrcpyi, (in & 0x0000FFFF), &lringout, lptrcpyo);
-			inc_ring(&lringin, &lptrcpyi);
-			inc_ring(&rringin, &rptrcpyi);
-			inc_ring(&lringout, &lptrcpyo);
-			inc_ring(&rringout, &rptrcpyo);
-		}
-		
-		if(!DSK6713_DIP_get(3))
-		{
-			out = (0x00000000 | (*lptrout << 16) | (*rptrout & 0x0000FFFF));
-			sendData(&out);
-			inc_ring(&lringout, &lptrout);
-			inc_ring(&rringout, &rptrout);
+			getData(&in);
+			in &= 0x0000FFFF;
+			*rptrin = in;
+			inc_ring(&rringin,&rptrin);
+			sendData(&in);
 		}
 	}
 }

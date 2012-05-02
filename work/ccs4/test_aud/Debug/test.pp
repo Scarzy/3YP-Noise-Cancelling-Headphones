@@ -4,6 +4,7 @@ test.obj: ../test.c
 test.obj: ../ring.h
 test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/stdint.h
 test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/tistdtypes.h
+test.obj: ../lms.h
 test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/dsk6713.h
 test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/csl.h
 test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/csl_chip.h
@@ -37,6 +38,7 @@ test.obj: C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000
 ../ring.h: 
 C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/stdint.h: 
 C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/tistdtypes.h: 
+../lms.h: 
 C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/dsk6713.h: 
 C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/csl.h: 
 C:/Program\ Files\ (x86)/Texas\ Instruments/ccsv4/tools/compiler/c6000/include/csl_chip.h: 
