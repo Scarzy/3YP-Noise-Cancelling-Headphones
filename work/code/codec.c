@@ -463,13 +463,13 @@ void codecSetup()
 	mcbspSetup();
 }
 
-void getData(uint32_t * ptr)
+void getData(int32_t * ptr)
 {
 	while(!MCBSP_rrdy(mcbspDataHandle));
 	*ptr = MCBSP_read(mcbspDataHandle);
 }
 
-void sendData(uint32_t * ptr)
+void sendData(int32_t * ptr)
 {
 	while(!MCBSP_rrdy(mcbspDataHandle));
 	MCBSP_write(mcbspDataHandle, *ptr);

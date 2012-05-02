@@ -9,8 +9,8 @@
 #define AIC23_CODEC_ID 0
 
 void codecSetup(void);
-void getData(uint32_t * ptr);
-void sendData(uint32_t * ptr);
+void getData(int32_t * ptr);
+void sendData(int32_t * ptr);
 void codec_reg_set(uint16_t num, uint16_t val);
 void codec_reset(void);
 void codec_config(void);
