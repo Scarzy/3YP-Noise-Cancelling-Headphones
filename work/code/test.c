@@ -67,8 +67,13 @@ void test()
 		double lmsnorm, lmserr;
 		int32_t in, out;
 		if(!DSK6713_DIP_get(0))
-			wave();
-		
+		{
+			if(wave_del)
+				DSK6713_LED_on(1);
+			else
+				DSK6713_LED_off(1);
+			wave_del = 1 - wave_del;
+		}
 		if(!DSK6713_DIP_get(1))
 		{
 //			printf("looping\n");
