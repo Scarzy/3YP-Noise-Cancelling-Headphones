@@ -241,4 +241,28 @@ The results of each of these can be seen in figures \ref{fig:testlmslinuxout} an
 The code was loaded onto the DSP evaluation board.
 Like the correlation method, the code did not run fast enough, reaching a frequency of approximately $7.5KHz$.
 This is approximately 6 times too slow.
-
+\\
+\\
+After some changes, the DSP evaluation board gave the desired output.
+Amongst other optimisations the filter length had to be reduced to achieve this.
+Additionally the sampling rate had to be reduced down to $8KHz$, rather than the preferred $48KHz$.
+Reducing the filter length significantly reduces the complexity of the LMS algorithm, however in this case it also reduces the quality of the cancelling, as suggested by figure \ref{fig:modellmsfiltlen}.
+\\
+\\
+Lowering the sampling rate results in a lower frequency range being available for use.
+The maximum frequency possible for the $8KHz$ sampling rate is $4KHz$.
+This does not cover much of the human hearing range, but does cover a large portion of vocal frequencies.
+If this were to be running on the PCB designed for this project, the signal conditioning filters would no longer remove the aliasing as such would have to be redesigned.
+Fortunately, due to the design used, changing the signal conditioners break frequency can be achieved by just changing the resistor value without changing the PCB.
+An acceptable resistor value would be 40K\textohm, providing a break frequency of $3978Hz$.
+\\
+\\
+In order to test that the DSP was functioning as expected two signals were passed in.
+Firstly both the noise and the heard signal were set to identical sine waves.
+The error signal was then played out and listened to.
+The sine wave rapidly reduced to nothing.
+Secondly a music file was added to the heard sine wave.
+The heard response from this was that the sine wave was reduced leaving the music file intact.
+\\
+\\
+These tests show that the LMS code was functioning satisfactorily, although with a more restrictive sampling rate and filter response.
