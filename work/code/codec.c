@@ -27,7 +27,7 @@ DSK6713_AIC23_Config aic23_config = {
 	0x0000,	//Digital Audio Path Control, DAC unmuted - no Deemphasis - ADC high pass enabled
 	0x0000,	//Power Down Control, CLK off
 	0x0043,	//Digital Audio Format, Slave - no DAC swap - 16bit input - MSB first left aligned
-	0x0081,	//Sample Rate Control, ADC 48KHz - DAC 48KHz
+	0x008D,	//Sample Rate Control, ADC 8KHz - DAC 8KHz
 	0x0001	//Digital Interface Activation, Active
 };
 MCBSP_Config mcbsp_data_config = {
