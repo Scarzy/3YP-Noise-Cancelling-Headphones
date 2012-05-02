@@ -53,10 +53,10 @@ void main()
 
 void test()
 {
+	double lmsnorm = NORM_MIN, lmserr = 0;
 	while(1)
 	{
 		int16_t lmsout;
-		double lmsnorm, lmserr;
 		int32_t in, out;
 		if(!DSK6713_DIP_get(0))
 		{
