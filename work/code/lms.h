@@ -2,6 +2,7 @@
 #define __LMS_H_
 
 #include <stdint.h>
+#include "ring.h"
 
 #define TAP_LENGTH 50
 
