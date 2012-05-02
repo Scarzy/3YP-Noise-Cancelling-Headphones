@@ -75,7 +75,7 @@ void test()
 			
 			apply_tap(&lringin, lptrin, lmstaps, TAP_LENGTH, &lmsout, &lmsnorm, rptrin, &lmserr);
 			
-			out = (0x00000000 /*| (lmsout << 16)*/ | ((int16_t)floor(lmsout) & 0x0000FFFF));
+			out = (0x00000000 | ((0x0000FFFF & (int16_t)floor(lmserr)) << 16) | ((int16_t)floor(lmserr) & 0x0000FFFF));
 			sendData(&out);
 			
 			inc_ring(&lringin, &lptrin);
